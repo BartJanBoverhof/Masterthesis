@@ -1,0 +1,132 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{caption} 
+\usepackage{setspace}
+
+\captionsetup[table]{skip=4pt}
+\onehalfspacing
+\pagestyle{myheadings}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\LARGE{\textbf{The Realtime Assesment of Mental Workload by Means of Multiple Bio-Signals}}\\
+\vspace*{2\baselineskip}
+\Large{\textbf{Masterthesis Report}}\\
+Methodology and Statistics for the Behavioural, Biomedical and Social Sciences\\
+\vspace*{1\baselineskip}
+Utrecht University\\
+\vspace*{4\baselineskip}
+{Bart-Jan Boverhof, 6000142}\\
+\vspace*{1\baselineskip}
+{\textbf{Thesis Supervisor}}\\
+Prof.dr.ir. B.P. Veldkamp\\
+\vspace*{1\baselineskip}
+{\textbf{Date}}\\
+October 14, 2020\\
+\vspace*{1\baselineskip}
+\end{center}
+\end{titlepage}
+
+\section{Introduction}
+The topic of mental workload (MWL) has received widespread attention across a variety of different fields, amongst others the field of ergonomics \cite{young2015state}, human factors \cite{pretorius2007development} and neurosciences \cite{shuggi2017mental}.
+A simple definition of MWL is the demand placed upon humans whilst carrying out a certain task. As pointed out by de Waard (1996), such a definition is too shallow, for it defines workload solely in external sense. It is of importance to acknowledge that MWL is person-specific, for the amount of experienced MWL ushered by a given task may differ across people \cite{de1996measurement}. When referring to MWL throughout this research, person-specific MWL is meant specifically.
+
+A commonly employed measure of workload is the NASA-Task Load Index (or TLX) questionnaire, operationalizing workload in clusters of six different dimensions \cite{hart2006nasa}. A potential problem arousing with such measurements, is that they are conducted post-experiment, posing the risk of jeopardizing the quality of the data by introducing subjectivity. An example of such a danger resides in the observer bias, proving that actors participating in an experiment tend to over-exaggerate the treatment effect when having to report it themselves post-experiment \cite{mahtani2018catalogue}. An inherently more objective method for the assessment of MWL is to gather bio-signals during the experiment, and use these to classify the degree of perceived MWL. Examples of such bio-signals (hereafter modalities) include techniques such as electroencephalogram, eye tracking, galvanic skin response, functional near-infrared spectroscopy, etc. The advantage of an approach like this is that complementary information streams, each stemming from a different modality can be interpreted simultaneously \cite{ramachandram2017deep}. This yields an objective and rich multifaceted classification of a mental construct, such as MWL. This approach comes however at the cost of an increase in complexity. This complexity mainly resides in the proper designing of a complex framework that inputs the data from the utilized modalities, and outputs a single classification outcome. 
+
+The current research directly builds upon previous research conducted by Dolmans and colleagues, who proposed a framework for multi-modal deep-learning classification of MWL \cite{dolmans2020perceived}. The current research will explore the feasibility of a similar framework, but by adding to this a real-time component. This implies that classification is done whilst the experiment takes place, enabling the possibilities to alter the state of the experiment in real-time. Such an approach could enable a wide range of possibilities: consider for example a flight-simulation with the objective of training pilots. The possibility for such a simulation to play out dynamically could enhance the learning-experience, namely by catering the state of the simulation towards the the individual, based on a real-time classification of for example their MWL.
+
+A real-time approach will be contrasted with a non-real-time approach. Special focus will be placed upon the justification of using a real-time approach, given the increment in complexity such an approach is likely to cause. Ultimately, this line of research pursues the ability to conduct a dynamic experiment for multiple people simultaneously, and which can be altered by the researches in real-time. 
+
+In order to build both frameworks, three of the (arguably) most widely utilized modalities will be included. These modalities include the techniques of electroencephalogram (EEG), galvanic skin response (GSR) and photoplethysmography (PPG). It is important to stress again that the objective of the current research is not to gain insight into the most optimal model for analyzing data stemming from the previously delineated modalities. It is rather to build a (real-time) framework researchers can utilize, and to which they can flexibly add modalities conform their own research goals. Consequently, one of two design principles on which the architecture of the framework reclines is the concept of modularity. Modularity refers the extent to which different modalities can freely be added and/or removed, without the necessity to re-architect and rebuild the entire framework. The second adhered design principle is the principle generalizability, prescribing that the framework should not solely be utilizable in the context of MWL, but also for the measurement of other mental constructs.
+
+\newpage
+\section{Methods}
+
+\subsection{Related Work}
+The current section will provide an overview of previous research on the most optimal model for each modality and the most feasible framework architectures.
+
+\subsubsection{Electroencephalogram (EEG)}
+The first utilized modality is a technique  called EEG, which detects electrical activity in the brain using electrodes. EEG is a widely utilized method for classifying MWL during experiments. With a review of the complete literature on EEG classification with deep learning, Craik and colleagues found a total of 16 \% of all available papers to deal with MWL, lending credence to the widely employed phenomenon of EEG for investigating MWL \cite{craik2019deep}. Additionally, this review aimed to map the feasibility of using deep neural learning for a range of different EEG application separately. Summarizing the findings, Craik and colleagues report that studies mostly found deep belief networks and ConvNets to perform best when aiming to classify MWL, and advice one of these approaches consequently.\cite{craik2019deep} 
+
+Research by Schirrmeister and colleagues contrasted several differently designed convolutional neural networks (ConvNets) against the baseline method for EEG data (FBCSP) in order to decode imagined or executed tasks. The investigated networks included deep, shallow, deep-shallow hybrid and residual ConvNets. Both the deep and shallow ConvNets were found to reach at least similar, and in some regard better classification results, as compared with the FBCSP baseline model. Altogether, a deep ConvNet with four convolutional-max-pooling blocks was found to perform best, displaying an accuracy of 92.4 \% \cite{schirrmeister2017deep}. The appropriate design choices were found to be of importance in order to be able to reach this accuracy, including the employment of techniques such as batch normalization, dropout and the usage of the ELU activation function.
+
+\subsubsection{Galvanic Skin Response (GSR)}
+The second utilized modality is GSR, measuring sweat gland on the hands and hereby inferring arousal. GSR readings have been found to significantly increase as a consequence of an increase in task cognitive load, hence constituting to be an objective predictor \cite{shi2007galvanic}. 
+
+Sun and colleagues explored the most optimal deep-learning model for classifying six different emotional states by means of GSR data. Several models were investigated, amongst others the support vector machine, the ConvNet, the long-short-term-memory (LSTM) model and a hybrid model combining the ConvNet and LSTM approaches. The hybrid model was found to perform best, exhibiting an accuracy of 74\%. Additionally, data augmentation was found to be able to substantially increase classification results \cite{sun2019hybrid}. 
+
+A variant on the CovNet LSTM model was employed by Dolmans and colleagues, who aimed to classify MWL by means of amongst other modalities GSR (equally so as the current research) \cite{dolmans2020perceived}. The performance of this model was contrasted with a network consisting solely of fully connected dense layers. Conform with findings by Sun and colleagues, the hybrid model was found to perform best \cite{dolmans2020perceived}. The model architecture as utilized by Dolmans and colleagues deployed 2 convolutional layers, after each of which batch normalisation was performed. Subsequently, max pooling was performed, after which the network feeds into two LSTM layers, followed by a dense layer.
+
+
+
+
+\subsubsection{Photoplethysmography (PPG)}
+The third modality constitutes PPG, which is a technique utilized to measure heart rate. PPG is, not undeservedly, a widely deployed technique within the field of MWL classification. Zhang and colleagues investigated several approaches for measuring MWL, amongst three others the technique of PPG. Out of these four approaches, PPG was found to display both the highest sensitivity and reliability for measuring MWL, lending credence to the feasibility of PPG as a method for classifying MWL \cite{zhang2018evaluating}. 
+
+Work by Biswas and colleagues investigated a deep learning approach to PPG data, with the objective to perform both bio-metric identification and heart rate information. Exceptional results were attained with a neural network, attaining an average accuracy of 96 \% \cite{biswas2019cornet}. This performance was managed with a hybrid model, incorporating two convolutional, followed with two LSTM layers. After each of two convolutional layers, batch normalisation and max pooling was applied. 
+
+The previously delineated model as proposed by Biswas and colleagues was adopted by Dolmans and colleagues, and subsequently applied towards the MWL case. This neural network was contrasted with a network of two fully connected dense layers. Batch normalisation and max pooling was performed in both contrasted networks. Surprisingly, the more sophisticated network constituting of the convolutional and LSTM layers was found to perform worse in the context of MLW classification, as compared with the simpler model, solely build from two dense layers \cite{dolmans2020perceived}.   
+
+\subsubsection{Framework Architecture - Data Fusion} 
+When architecting a multi-model framework, it is of importance to realize that the information stemming from the different modalities are required to be combined (i.e. fused) in order to result in a single classification. Fusion can be done at different time-points within the framework. Several fusion strategies as proposed by Ramachandram and colleagues will be considered \cite{ramachandram2017deep}.
+
+Early (or data-level) fusion focuses on how to optimally combine data sources, before being fed into the classification model. Techniques that realize this include for example principle component analysis or factor analysis. Early fusing is usually very challenging, due to the fact that data stemming from different modalities differ substantially in terms of dimensionality and sampling rate. Another disadvantage of early fusing, is that usually the oversimplified assumption of conditional independence is made. This assumption is unrealistic in practice, for data stemming from different modalities are expected to be correlated \cite{ramachandram2017deep}. 
+
+Late (or decision level) fusion on the other hand, refers to the process of aggregating the decisions from multiple models, each individually trained on all modalities. In case the data sources stemming from the various modalities are either correlated or measured within a deviant dimensionality, late fusion is a much more feasible approach \cite{ramachandram2017deep}.
+
+Lastly, intermediate fusion is the most widely employed fusion strategy for multi-modal deep-learning problems. Modalities are fused by simply adding a higher order layer, to which the individual deep-learning models separately defined for each modality feed into. This need not be a single layer, but could also be multiple layers, as long as each modality ultimately feeds into the highest order output layer \cite{ramachandram2017deep}.
+
+\subsubsection{Framework Architecture - Real-time component}
+bla bla 
+
+\subsection{Experimental Setup}
+The experimental setting for data collection is the spaceship bridge simulator videogame Empty Epsilon, in which respondents are required to carry out tasks on a virtual spaceship bridge \cite{daid2016empty}. This experiment is instituted by the Brain Computer Interfaces (BCI) testbed lab hosted by the University of Twente (UT) and carried out in cooperation with Thales. The data is currently in the process of being collected. Ethical approval has been attained at the UT, and will be requested at the UU in the near future.\\  
+\textit{Note on this paragraph: I will soon participate in the experiment, after which this paragraph will be extended.}
+
+
+\subsection{Hyper Parameter Optimization}
+
+
+\subsection{Model Evaluation}
+The performance of the real-time framework will be assessed by contrasting it with a regular, non-real-time framework. Specifically, the quality of performance for each modality individually will be compared across both frameworks. This validation will be endeavored by means of six widely used performance measures, all constructed from the confusion matrix, as depicted below:  
+
+\bgroup
+\def\arraystretch{1.6}%  
+\begin{table}[h]
+\centering
+\caption{Confusion matrix}
+\label{tab:my-table}
+\begin{tabular}{lll}
+                                        & True Positive          & True Negative          \\ \cline{2-3} 
+\multicolumn{1}{l|}{Predicted Positive} & \multicolumn{1}{l|}{a} & \multicolumn{1}{l|}{b} \\ \cline{2-3} 
+\multicolumn{1}{l|}{Predicted Negative} & \multicolumn{1}{l|}{c} & \multicolumn{1}{l|}{d} \\ \cline{2-3} 
+\end{tabular}
+\end{table}
+\egroup
+
+The measures accuracy, sensitivity, specificity, PPV, NPV and F1 will be utilized in order to asses model performance. The framework that performs best across these measures is considered to be the superior performing framework. Table two depicts the constitution of these performance measures by partly referring to confusion matrix depicted as table 1. 
+\bgroup
+\def\arraystretch{1.8}%  
+\begin{table}[h]
+\centering
+\caption{Performance Metrics}
+\label{tab:my-table}
+\begin{tabular}{ll}
+\hline
+Accuracy:                       & \(\frac{\!\!\!\!\!\!\!\!\!\!\!\!\!\!a+d}{a+b+c+d}\) \\
+Sensitivity:                    & \(\frac{a}{a+c}\)                                   \\
+Specificity:                    & \(\frac{d}{b+d}\)                                   \\
+Positive Predicted Value (PPV): & \(\frac{a}{a+b}\)                                   \\
+Negative Predicted Value:       & \(\frac{d}{c+d}\)                                   \\
+F1-measure:                     & \(\frac{2*Sensitivity*PPV}{Sensitivity+PPV}\)       \\ \hline
+\end{tabular}
+\end{table}
+\egroup
+
+\newpage
+\bibliographystyle{apacite}
+\bibliography{References}
+\end{document}
