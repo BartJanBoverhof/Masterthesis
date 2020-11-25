@@ -1,0 +1,441 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Biswas%
+\ \protect \BOthers {.}}{%
+Biswas%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+biswas2019cornet}
+\APACinsertmetastar {%
+biswas2019cornet}%
+\begin{APACrefauthors}%
+Biswas, D.%
+, Everson, L.%
+, Liu, M.%
+, Panwar, M.%
+, Verhoef, B\BHBI E.%
+, Patki, S.%
+\BDBL {}others%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {CorNET: Deep learning framework for PPG-based heart rate
+  estimation and biometric identification in ambulant environment} {Cornet:
+  Deep learning framework for ppg-based heart rate estimation and biometric
+  identification in ambulant environment}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{IEEE transactions on biomedical circuits and
+  systems}{13}{2}{282--291}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Daid%
+\ \BBA {} Nallath%
+}{%
+Daid%
+\ \BBA {} Nallath%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+daid2016empty}
+\APACinsertmetastar {%
+daid2016empty}%
+\begin{APACrefauthors}%
+Daid%
+\BCBT {}\ \BBA {} Nallath.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+\APACrefbtitle {Empty Epsilon multiplayer spaceship bridge simulation.} {Empty
+  epsilon multiplayer spaceship bridge simulation.}
+\newblock
+\APAChowpublished {URL: https://github.com/daid/EmptyEpsilon}.
+\newblock
+\APACaddressPublisher{}{GitHub}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+De~Waard%
+\ \BBA {} te Groningen%
+}{%
+De~Waard%
+\ \BBA {} te Groningen%
+}{%
+{\protect \APACyear {1996}}%
+}]{%
+de1996measurement}
+\APACinsertmetastar {%
+de1996measurement}%
+\begin{APACrefauthors}%
+De~Waard, D.%
+\BCBT {}\ \BBA {} te Groningen, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1996}.
+\newblock
+\APACrefbtitle {The measurement of drivers' mental workload} {The measurement
+  of drivers' mental workload}.
+\newblock
+\APACaddressPublisher{}{Groningen University, Traffic Research Center
+  Netherlands}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Dolmans%
+, Poel%
+, van~'t Klooster%
+\BCBL {}\ \BBA {} Veldkamp%
+}{%
+Dolmans%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {{\protect \BIP {}}}}%
+}]{%
+dolmans2020perceived}
+\APACinsertmetastar {%
+dolmans2020perceived}%
+\begin{APACrefauthors}%
+Dolmans, T.%
+, Poel, M.%
+, van~'t Klooster, J\BHBI W.%
+\BCBL {}\ \BBA {} Veldkamp, B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{{\protect \BIP {}}}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Percieved Mental Workload detection using intermediate
+  fusion multi-modal networks} {Percieved mental workload detection using
+  intermediate fusion multi-modal networks}.{\BBCQ}
+\newblock
+
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hart%
+}{%
+Hart%
+}{%
+{\protect \APACyear {2006}}%
+}]{%
+hart2006nasa}
+\APACinsertmetastar {%
+hart2006nasa}%
+\begin{APACrefauthors}%
+Hart, S\BPBI G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2006}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {NASA-task load index (NASA-TLX); 20 years later}
+  {Nasa-task load index (nasa-tlx); 20 years later}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings of the human factors and ergonomics society
+  annual meeting} {Proceedings of the human factors and ergonomics society
+  annual meeting}\ (\BVOL~50, \BPGS\ 904--908).
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Kothe%
+, Medine%
+\BCBL {}\ \BBA {} Grivich%
+}{%
+Kothe%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+kothe2018lab}
+\APACinsertmetastar {%
+kothe2018lab}%
+\begin{APACrefauthors}%
+Kothe, C.%
+, Medine, D.%
+\BCBL {}\ \BBA {} Grivich, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Lab Streaming Layer (2014)} {Lab streaming layer
+  (2014)}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{URL: https://github. com/sccn/labstreaminglayer
+  (visited on 02/01/2019)}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Mahtani%
+, Spencer%
+, Brassey%
+\BCBL {}\ \BBA {} Heneghan%
+}{%
+Mahtani%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+mahtani2018catalogue}
+\APACinsertmetastar {%
+mahtani2018catalogue}%
+\begin{APACrefauthors}%
+Mahtani, K.%
+, Spencer, E\BPBI A.%
+, Brassey, J.%
+\BCBL {}\ \BBA {} Heneghan, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Catalogue of bias: observer bias} {Catalogue of bias:
+  observer bias}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{BMJ Evidence-Based Medicine}{23}{1}{23}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Paszke%
+\ \protect \BOthers {.}}{%
+Paszke%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+paszke2017automatic}
+\APACinsertmetastar {%
+paszke2017automatic}%
+\begin{APACrefauthors}%
+Paszke, A.%
+, Gross, S.%
+, Chintala, S.%
+, Chanan, G.%
+, Yang, E.%
+, DeVito, Z.%
+\BDBL {}Lerer, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Automatic differentiation in PyTorch} {Automatic
+  differentiation in pytorch}.{\BBCQ}
+\newblock
+
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Pretorius%
+\ \BBA {} Cilliers%
+}{%
+Pretorius%
+\ \BBA {} Cilliers%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+pretorius2007development}
+\APACinsertmetastar {%
+pretorius2007development}%
+\begin{APACrefauthors}%
+Pretorius, A.%
+\BCBT {}\ \BBA {} Cilliers, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Development of a mental workload index: A systems
+  approach} {Development of a mental workload index: A systems
+  approach}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Ergonomics}{50}{9}{1503--1515}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Schirrmeister%
+\ \protect \BOthers {.}}{%
+Schirrmeister%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+schirrmeister2017deep}
+\APACinsertmetastar {%
+schirrmeister2017deep}%
+\begin{APACrefauthors}%
+Schirrmeister, R\BPBI T.%
+, Springenberg, J\BPBI T.%
+, Fiederer, L\BPBI D\BPBI J.%
+, Glasstetter, M.%
+, Eggensperger, K.%
+, Tangermann, M.%
+\BDBL {}Ball, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Deep learning with convolutional neural networks for EEG
+  decoding and visualization} {Deep learning with convolutional neural networks
+  for eeg decoding and visualization}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Human brain mapping}{38}{11}{5391--5420}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Shi%
+, Ruiz%
+, Taib%
+, Choi%
+\BCBL {}\ \BBA {} Chen%
+}{%
+Shi%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2007}}%
+}]{%
+shi2007galvanic}
+\APACinsertmetastar {%
+shi2007galvanic}%
+\begin{APACrefauthors}%
+Shi, Y.%
+, Ruiz, N.%
+, Taib, R.%
+, Choi, E.%
+\BCBL {}\ \BBA {} Chen, F.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Galvanic skin response (GSR) as an index of cognitive
+  load} {Galvanic skin response (gsr) as an index of cognitive load}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {CHI'07 extended abstracts on Human factors in computing
+  systems} {Chi'07 extended abstracts on human factors in computing systems}\
+  (\BPGS\ 2651--2656).
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Shuggi%
+, Oh%
+, Shewokis%
+\BCBL {}\ \BBA {} Gentili%
+}{%
+Shuggi%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+shuggi2017mental}
+\APACinsertmetastar {%
+shuggi2017mental}%
+\begin{APACrefauthors}%
+Shuggi, I\BPBI M.%
+, Oh, H.%
+, Shewokis, P\BPBI A.%
+\BCBL {}\ \BBA {} Gentili, R\BPBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Mental workload and motor performance dynamics during
+  practice of reaching movements under various levels of task difficulty}
+  {Mental workload and motor performance dynamics during practice of reaching
+  movements under various levels of task difficulty}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Neuroscience}{360}{}{166--179}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Sun%
+, Hong%
+, Li%
+\BCBL {}\ \BBA {} Ren%
+}{%
+Sun%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+sun2019hybrid}
+\APACinsertmetastar {%
+sun2019hybrid}%
+\begin{APACrefauthors}%
+Sun, X.%
+, Hong, T.%
+, Li, C.%
+\BCBL {}\ \BBA {} Ren, F.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Hybrid spatiotemporal models for sentiment
+  classification via galvanic skin response} {Hybrid spatiotemporal models for
+  sentiment classification via galvanic skin response}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Neurocomputing}{358}{}{385--400}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Young%
+, Brookhuis%
+, Wickens%
+\BCBL {}\ \BBA {} Hancock%
+}{%
+Young%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+young2015state}
+\APACinsertmetastar {%
+young2015state}%
+\begin{APACrefauthors}%
+Young, M\BPBI S.%
+, Brookhuis, K\BPBI A.%
+, Wickens, C\BPBI D.%
+\BCBL {}\ \BBA {} Hancock, P\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {State of science: mental workload in ergonomics} {State
+  of science: mental workload in ergonomics}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Ergonomics}{58}{1}{1--17}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Zhang%
+\ \protect \BOthers {.}}{%
+Zhang%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+zhang2018evaluating}
+\APACinsertmetastar {%
+zhang2018evaluating}%
+\begin{APACrefauthors}%
+Zhang, X.%
+, Lyu, Y.%
+, Hu, X.%
+, Hu, Z.%
+, Shi, Y.%
+\BCBL {}\ \BBA {} Yin, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Evaluating photoplethysmogram as a real-time cognitive
+  load assessment during game playing} {Evaluating photoplethysmogram as a
+  real-time cognitive load assessment during game playing}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{International Journal of Human--Computer
+  Interaction}{34}{8}{695--706}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
