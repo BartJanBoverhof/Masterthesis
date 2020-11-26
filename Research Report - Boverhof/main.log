@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  25 NOV 2020 13:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  26 NOV 2020 10:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -61,11 +61,7 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 (/usr/local/texlive/2019/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
-(./main.aux
-
-LaTeX Warning: Label `tab:my-table' multiply defined.
-
-)
+(./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
@@ -88,38 +84,93 @@ LaTeX Info: Redefining \BHBI on input line 130.
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
- [1
+[1
 
-{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] [2]
+{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-[3] [4]
+LaTeX Warning: Citation `young2015state' undefined on input line 34.
+
+
+LaTeX Warning: Citation `pretorius2007development' undefined on input line 34.
+
+
+LaTeX Warning: Citation `shuggi2017mental' undefined on input line 34.
+
+
+LaTeX Warning: Citation `de1996measurement' undefined on input line 35.
+
+
+LaTeX Warning: Citation `hart2006nasa' undefined on input line 37.
+
+
+LaTeX Warning: Citation `mahtani2018catalogue' undefined on input line 37.
+
+
+LaTeX Warning: Citation `ramachandram2017deep' undefined on input line 37.
+
+
+LaTeX Warning: Citation `dolmans2020perceived' undefined on input line 39.
+
+[1] [2]
+
+LaTeX Warning: Citation `craik2019deep' undefined on input line 52.
+
+
+LaTeX Warning: Citation `schirrmeister2017deep' undefined on input line 54.
+
+
+LaTeX Warning: Citation `shi2007galvanic' undefined on input line 57.
+
+
+LaTeX Warning: Citation `sun2019hybrid' undefined on input line 59.
+
+[3]
+
+LaTeX Warning: Citation `zhang2018evaluating' undefined on input line 67.
+
+
+LaTeX Warning: Citation `biswas2019cornet' undefined on input line 69.
+
+[4]
 Overfull \hbox (1.33395pt too wide) in paragraph at lines 76--77
 []\OT1/cmr/m/n/10 Early (or data-level) fu-sion fo-cuses on how to op-ti-mally 
 com-bine data sources,
  []
 
+
+LaTeX Warning: Citation `daid2016empty' undefined on input line 88.
+
 [5]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 102.
+(Font)              <7> on input line 96.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 102.
+(Font)              <5> on input line 96.
+
+Overfull \hbox (1.77724pt too wide) in paragraph at lines 107--109
+[]\OT1/cmr/m/n/10 This ex-per-i-ment is in-sti-tuted by the Brain Com-puter In-
+ter-faces (BCI) testbed
+ []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[6] (./main.bbl [7]) [8] (./main.aux)
+[6] [7] (./main.bbl
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Empty `thebibliography' environment on input line 3.
+
+) [8] (./main.aux)
+
+LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 1899 strings out of 492616
- 30287 string characters out of 6129482
- 104853 words of memory out of 5000000
- 5870 multiletter control sequences out of 15000+600000
+ 1888 strings out of 492616
+ 30039 string characters out of 6129482
+ 106853 words of memory out of 5000000
+ 5859 multiletter control sequences out of 15000+600000
  6463 words of font info for 23 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,39p,1507b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,39p,1504b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></
@@ -128,7 +179,7 @@ r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
 local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loc
 al/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local
 /texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on main.pdf (9 pages, 131034 bytes).
+Output written on main.pdf (9 pages, 121772 bytes).
 PDF statistics:
  66 PDF objects out of 1000 (max. 8388607)
  46 compressed objects within 1 object stream
