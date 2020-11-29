@@ -1,6 +1,41 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
+Akiba%
+, Sano%
+, Yanase%
+, Ohta%
+\BCBL {}\ \BBA {} Koyama%
+}{%
+Akiba%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+akiba2019optuna}
+\APACinsertmetastar {%
+akiba2019optuna}%
+\begin{APACrefauthors}%
+Akiba, T.%
+, Sano, S.%
+, Yanase, T.%
+, Ohta, T.%
+\BCBL {}\ \BBA {} Koyama, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Optuna: A next-generation hyperparameter optimization
+  framework} {Optuna: A next-generation hyperparameter optimization
+  framework}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings of the 25th ACM SIGKDD International
+  Conference on Knowledge Discovery \& Data Mining} {Proceedings of the 25th
+  acm sigkdd international conference on knowledge discovery \& data mining}\
+  (\BPGS\ 2623--2631).
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Biswas%
 \ \protect \BOthers {.}}{%
 Biswas%
@@ -168,6 +203,59 @@ Hart, S\BPBI G.%
 \BIn{} \APACrefbtitle {Proceedings of the human factors and ergonomics society
   annual meeting} {Proceedings of the human factors and ergonomics society
   annual meeting}\ (\BVOL~50, \BPGS\ 904--908).
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Ioffe%
+\ \BBA {} Szegedy%
+}{%
+Ioffe%
+\ \BBA {} Szegedy%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+ioffe2015batch}
+\APACinsertmetastar {%
+ioffe2015batch}%
+\begin{APACrefauthors}%
+Ioffe, S.%
+\BCBT {}\ \BBA {} Szegedy, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Batch normalization: Accelerating deep network training
+  by reducing internal covariate shift} {Batch normalization: Accelerating deep
+  network training by reducing internal covariate shift}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv preprint arXiv:1502.03167}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+LeCun%
+, Bengio%
+\BCBL {}\ \BBA {} Hinton%
+}{%
+LeCun%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+lecun2015deep}
+\APACinsertmetastar {%
+lecun2015deep}%
+\begin{APACrefauthors}%
+LeCun, Y.%
+, Bengio, Y.%
+\BCBL {}\ \BBA {} Hinton, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Deep learning} {Deep learning}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{nature}{521}{7553}{436--444}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -375,6 +463,33 @@ Sun, X.%
   sentiment classification via galvanic skin response}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Neurocomputing}{358}{}{385--400}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Tabar%
+\ \BBA {} Halici%
+}{%
+Tabar%
+\ \BBA {} Halici%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+tabar2016novel}
+\APACinsertmetastar {%
+tabar2016novel}%
+\begin{APACrefauthors}%
+Tabar, Y\BPBI R.%
+\BCBT {}\ \BBA {} Halici, U.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A novel deep learning approach for classification of EEG
+  motor imagery signals} {A novel deep learning approach for classification of
+  eeg motor imagery signals}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of neural engineering}{14}{1}{016003}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
