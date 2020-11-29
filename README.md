@@ -1,2 +1,2 @@
 # Masterthesis
-Masterthesis repo
+Masterthesis repository - By Bart-Jan Boverhof
