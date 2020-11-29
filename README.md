@@ -1,2 +1,2 @@
-# Thesis-
+# Masterthesis
 Masterthesis repo
