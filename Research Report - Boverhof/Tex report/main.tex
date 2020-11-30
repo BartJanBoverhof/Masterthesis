@@ -100,29 +100,11 @@ Pooling layers are often used in ConvNets, following a convolutional layer with 
 
 Hyper-parameter optimization (HPO) is a technique that can be used to optimize hyper-parameter including learning rate, dropout probability and momentum. The Optuna toolbox provides a method for creating a parameter search space, from which values for the hyper-parameters can be sampled \cite{akiba2019optuna}. 
 
-\subsection{Framework Architecture}
-The architecture for the proposed framework is constructed by combining insights from the literature whilst keeping in mind the previously delineated design principles (i.e. the principles of modularity and generalizability). 
-
-The utilized network for the EEG modality is a ConvNet as proposed by \citeA{schirrmeister2017deep}. The network is designed to include four convolutional layers, each follow by a max pooling layer of stride $1* 3$. Ultimately, these blocks are followed up with a softmax layer in order end up with a classification. The Exponential Linear Unit (ELU) function is utilized as activation function, defined as: 
-
-\begin{equation}
-R(x)= 
-\begin{Bmatrix}
-x & x \geq0 \\ 
-\alpha (e^x -1) & x<0
-\end{Bmatrix}
-\bigskip
-\end{equation}
-
-
-The utilized network for the GSR modality is a LSTM ConvNet hybrid.  
-
-
 \subsection{Data}
 The current section will provide an overview of the utilized data. Special attention is placed on the experimental setup, the description of the participants and the data collection / synchronization process. 
 
 \subsubsection{Experimental setup}
-The experimental setting for data collection is the spaceship videogame Empty Epsilon, in which the respondent is required to carry out tasks on a virtual spaceship \cite{daid2016empty}. This experiment is instituted by the Brain Computer Interfaces (BCI) testbed lab, hosted by the University of Twente (UT) and carried out in cooperation with Thales. The experiment constituted three different segments, during each of which respondents had to carry out different tasks, all aiming to measure workload. Each segment consists of six small sessions of roughly 5-10 minutes. These sessions varied in difficulty, including two easy, two intermediate and two hard sessions per segment. A schematic overview of the experimental structure is depicted as table \ref{table:expsetup}. After each of the 18 segments, respondents filled in the TLX questionnaire consisting of 6 questions each, resulting in 18 filled in questionnaires. Each questionnaire inquired upon the degree to which the respondent experienced workload during the previous session. These ratings will be used as labels in later training. Within each segment, the order in which the sessions (varying in difficulty) were presented have been randomized. The order in which the segments were administrated were not random. Between every three sessions, respondents were requested to take a short 2 minute break.
+The experimental setting for data collection is the spaceship videogame Empty Epsilon, in which the respondent is required to carry out tasks on a virtual spaceship \cite{daid2016empty}. This experiment is instituted by the Brain Computer Interfaces (BCI) testbed lab, hosted by the University of Twente (UT) and carried out in cooperation with Thales group Hengelo. The experiment constituted three different segments, during each of which respondents had to carry out different tasks, all aiming to measure workload. Each segment consists of six small sessions of roughly 5-10 minutes. These sessions varied in difficulty, including two easy, two intermediate and two hard sessions per segment. A schematic overview of the experimental structure is depicted as table \ref{table:expsetup}. After each of the 18 segments, respondents filled in the TLX questionnaire consisting of 6 questions each, resulting in 18 filled in questionnaires. Each questionnaire inquired upon the degree to which the respondent experienced workload during the previous session. These ratings will be used as labels in later training. Within each segment, the order in which the sessions (varying in difficulty) were presented have been randomized. The order in which the segments were administrated were not random. Between every three sessions, respondents were requested to take a short 2 minute break.
 \bgroup
 \def\arraystretch{1.6}%  
 \begin{table}[h]
@@ -141,10 +123,29 @@ The experimental setting for data collection is the spaceship videogame Empty Ep
 The first segment emulated a scenario in which hostile spaceships approach the respondents spaceship. The respondent is required to  quickly react, and defuse hostile spaceships in order to survive. The increment in difficulty caused the process of defusing hostile spaceships to be more challenging and hereby to take longer,  aiming to increase workload consequently. The second segment emulated a scenario in which the respondent had to navigate their spaceship trough space, gathering as many way-points as possible. Obstacles around which the respondent had to carefully navigate were introduced in the intermediate difficult scenario, and hostile spaceships the respondent had to decimate were introduced in the hard scenario. Both increase difficulty, and hereby aim to increase workload consequently. The third and final segment emulated a machine room, in which respondents had to control the power based on random requests generated by the video-game. Variables that could overheat the spaceship  were introduced as a consequence of an increase in difficulty, demanding the respondent multi-task, hereby aiming to increase workload. 
 
 \subsubsection{Participants}
-In total, \# respondents have participated in the study. 
+In total, twenty-five respondents are participating in the study. Currently, the data is still in the process of being collected, for which no additional descriptive statistics can be presented in the prevailing section. The respondents are students, recruited from the University of Twente. Recruitment has been conducted with Sona, which is a cloud-based participant management system. Requirements were that respondents didn't have constraints that might interfere with the utilized sensors, such as for example a pacemaker. This is assessed by means of a short demographic questionnaire prior to the experiment. Additionally, the respondents are made aware of ethical consent prior to the experiment, with the objective to ensure completely voluntary participation. Respondents were able to draw back from the experiment at any time. 
 
 \subsubsection{Data collection and Synchronization}
-About streaming to LSL, and the utilized devices. 
+Data streams stemming from the different modalities are measured on different frequencies, and consequently need to be properly synchronized. This is accomplished by means of a technique called Lab-Streaming Layer (LSL), to which different data streams are streamed during the experiment. LSL properly synchronizes these data streams, records all data into a single file per participant \cite{kothe2018lab}.
+
+\subsection{Framework Architecture}
+The architecture for the proposed framework is constructed by combining insights from the literature whilst keeping in mind the previously delineated design principles (i.e. the principles of modularity and generalizability). 
+
+The utilized network for the EEG modality is a ConvNet as proposed by \citeA{schirrmeister2017deep}. The network is designed to include four convolutional layers, each follow by a max pooling layer of stride $1* 3$. Ultimately, these blocks are followed up with a softmax layer in order end up with a classification. The Exponential Linear Unit (ELU) function is utilized as activation function, defined as: 
+
+\begin{equation}
+R(x)= 
+\begin{Bmatrix}
+x & x \geq0 \\ 
+\alpha (e^x -1) & x<0
+\end{Bmatrix}
+\bigskip
+\end{equation}
+
+
+The utilized network for the GSR modality is a LSTM ConvNet hybrid.  
+
+
 
 \subsection{Model Evaluation}
 The performance of the real-time framework will be assessed by contrasting it with a regular, non-real-time framework. Specifically, the quality of performance for each modality individually will be compared across both frameworks. This validation will be endeavored by means of six widely used performance measures, all constructed from the confusion matrix, depicted as table  \ref{table:confusion}  
