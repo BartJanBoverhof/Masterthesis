@@ -233,6 +233,34 @@ Ioffe, S.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Kothe%
+, Medine%
+\BCBL {}\ \BBA {} Grivich%
+}{%
+Kothe%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+kothe2018lab}
+\APACinsertmetastar {%
+kothe2018lab}%
+\begin{APACrefauthors}%
+Kothe, C.%
+, Medine, D.%
+\BCBL {}\ \BBA {} Grivich, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Lab Streaming Layer (2014)} {Lab streaming layer
+  (2014)}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{URL: https://github. com/sccn/labstreaminglayer
+  (visited on 02/01/2019)}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 LeCun%
 , Bengio%
 \BCBL {}\ \BBA {} Hinton%
