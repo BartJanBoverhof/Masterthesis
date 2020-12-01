@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  30 NOV 2020 12:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  1 DEC 2020 15:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -160,31 +160,53 @@ e sam-pled []Akiba,
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7] [8] [9] [10] (./main.bbl [11]) [12] (./main.aux) ) 
+[7] [8] [9]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[10] [11] (./main.bbl [12]
+Underfull \hbox (badness 4634) in paragraph at lines 446--458
+[]\OT1/cmr/m/n/10 Shimmer-Research.  (n.d.[]).  \OT1/cmr/m/it/10 Shim-mer3 gsr 
+unit.  \OT1/cmr/m/n/10 Re-trieved from
+ []
+
+
+Overfull \hbox (36.99692pt too wide) in paragraph at lines 446--458
+\OT1/cmtt/m/n/10 https://www.shimmersensing.com/products/shimmer3-wireless-gsr-
+sensor
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 446--458
+
+ []
+
+) [13] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 2522 strings out of 492616
- 37525 string characters out of 6129482
- 109229 words of memory out of 5000000
- 6476 multiletter control sequences out of 15000+600000
- 6917 words of font info for 25 fonts, out of 8000000 for 9000
+ 2529 strings out of 492616
+ 37608 string characters out of 6129482
+ 109350 words of memory out of 5000000
+ 6482 multiletter control sequences out of 15000+600000
+ 7085 words of font info for 26 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,10n,39p,1414b,304s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2019/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on main.pdf (13 pages, 165570 bytes).
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7
+.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
+pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.p
+fb>
+Output written on main.pdf (14 pages, 181152 bytes).
 PDF statistics:
- 91 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 98 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

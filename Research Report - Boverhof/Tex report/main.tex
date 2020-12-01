@@ -125,16 +125,18 @@ The first segment emulated a scenario in which hostile spaceships approach the r
 \subsubsection{Participants}
 In total, twenty-five respondents are participating in the study. Currently, the data is still in the process of being collected, for which no additional descriptive statistics can be presented in the prevailing section. The respondents are students, recruited from the University of Twente. Recruitment has been conducted with Sona, which is a cloud-based participant management system. Requirements were that respondents didn't have constraints that might interfere with the utilized sensors, such as for example a pacemaker. This is assessed by means of a short demographic questionnaire prior to the experiment. Additionally, the respondents are made aware of ethical consent prior to the experiment, with the objective to ensure completely voluntary participation. Respondents were able to draw back from the experiment at any time. 
 
-\subsubsection{Data collection and Synchronization}
-Data streams stemming from the different modalities are measured on different frequencies, and consequently need to be properly synchronized. This is accomplished by means of a technique called Lab-Streaming Layer (LSL), to which different data streams are streamed during the experiment. LSL properly synchronizes these data streams, records all data into a single file per participant \cite{kothe2018lab}.
+\subsubsection{Devices and Synchronization}
+The Shimmer3 GSR+ sensor is used for both PPG and GSR measurements. The device is worn on the wrist, and communicates the signals wirelessly. An ear-clip is utilized for measuring the PPG, and converting this to estimate heart rate. Skin conductivity (GSR) is monitored between two electrodes attached to two fingers \cite{shimmer}. Both PPG and GSR are measured on a sample rate of 256 Hz. EEG measurement is conducted with the shimmer 2, equally so on a sampling rate of 256 Hz. 
+
+Data streams stemming from the different modalities are measured on different frequencies, and consequently need to be properly synchronized. This is accomplished by means of an application called Lab-Streaming Layer (LSL), to which different data streams are streamed during the experiment. LSL properly synchronizes these data streams such that they refer to the same points in time, and records all data into a single file per participant \cite{kothe2018lab}.
 
 \subsection{Framework Architecture}
-The architecture for the proposed framework is constructed by combining insights from the literature whilst keeping in mind the previously delineated design principles (i.e. the principles of modularity and generalizability). 
+The architecture for the proposed framework is constructed by combining insights from the literature whilst keeping in mind the previously delineated design principles (i.e. the principles of modularity and generalizability). Figure \# visualizes the entire framework \textit{Still has to be made but didnt figure out yet how}.
 
-The utilized network for the EEG modality is a ConvNet as proposed by \citeA{schirrmeister2017deep}. The network is designed to include four convolutional layers, each follow by a max pooling layer of stride $1* 3$. Ultimately, these blocks are followed up with a softmax layer in order end up with a classification. The Exponential Linear Unit (ELU) function is utilized as activation function, defined as: 
+The utilized network for the EEG modality is a ConvNet as proposed by \citeA{schirrmeister2017deep}. The network is designed to include four convolutional layers, each follow by a max pooling layer of stride 3. The Exponential Linear Unit (ELU) function is utilized as activation function, defined as: 
 
 \begin{equation}
-R(x)= 
+f(x)= 
 \begin{Bmatrix}
 x & x \geq0 \\ 
 \alpha (e^x -1) & x<0
@@ -143,8 +145,38 @@ x & x \geq0 \\
 \end{equation}
 
 
-The utilized network for the GSR modality is a LSTM ConvNet hybrid.  
+The utilized network for the GSR modality is a LSTM ConvNet hybrid model, inspired by the work of \citeA{sun2019hybrid} and  \citeA{dolmans2020perceived}. The network is designed to include two convolutional blocks, each consisting of a convolutional layer, followed by a batch normalization layer and closed with a max-pooling layer of stride 4. Following these blocks are two LTSM layers. The Rectified Linear Unit (ReLU) function is utilized as activation function, defined as: 
 
+\begin{equation} 
+\label{eqn:relu}
+f(x)=max(0,x)
+\bigskip
+\end{equation}
+
+Lastly, the PPG modality is analyzed by means of the model as proposed by \citeA{biswas2019cornet}. The nework starts with two convolutional blocks, each consisting of a convolutional layer, batch normalization layer and closed with a max pooling layer of stride 4. Following these blocks are two LTSM layers, equal to the GSR model. The utilized activation function is the ReLU, depicted as equation \ref{eqn:relu}.
+
+The network for each of the modalities are finally closed with one fully connected dense layer before feeding into the head network, such that all inputs are flattened in a lower dimensional space. All outputs from these dense layers are concatenated. The head network consists of Four dense layers, alternated with some batch normalization and max-pooling layers with the objective of stabilization. The entire network and its  size, is summarized in table \ref{table:networksummary}.
+\bigskip
+
+\bgroup
+\def\arraystretch{1.6}%  
+\begin{table}[h]
+\centering
+\caption{Network summary	}
+\label{table:networksummary}
+\begin{tabular}{llll}
+EEG        & GSR        & PPG        & Head       \\ \hline
+Conv1: 25  & Conv1: 128 & Conv1: 128 & Dense: 712 \\
+Conv2: 50  & Conv2: 128 & Conv2: 128 & Dense: 356 \\
+Conv3: 100 & LSTM1: 256 & LSTM1: 256 & Dense: 128 \\
+Conv4: 200 & LSTM1: 256 & LSTM2: 256 &            \\
+Dense: 200 & Dense: 256 & Dense: 256 &            \\ \hline
+\end{tabular}
+\vspace{2ex}
+
+{\raggedright \textit{Note that for convolutional layers the number reflects the amount of filters, whereas for all other layers it refers to the amount of nodes.} \par}
+\end{table}
+\egroup
 
 
 \subsection{Model Evaluation}
