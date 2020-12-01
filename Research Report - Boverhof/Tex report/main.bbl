@@ -433,6 +433,30 @@ Shi, Y.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Shimmer-Research%
+}{%
+Shimmer-Research%
+}{%
+{\protect \APACyear {{\protect \bibnodate {}}}}%
+}]{%
+shimmer}
+\APACinsertmetastar {%
+shimmer}%
+\begin{APACrefauthors}%
+Shimmer-Research.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{{\protect \bibnodate {}}}{}{}.
+\newblock
+\APACrefbtitle {Shimmer3 GSR Unit.} {Shimmer3 gsr unit.}
+\newblock
+\begin{APACrefURL}
+  \url{https://www.shimmersensing.com/products/shimmer3-wireless-gsr-sensor}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Shuggi%
 , Oh%
 , Shewokis%
