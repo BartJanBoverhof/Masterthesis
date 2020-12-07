@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 
 %Required packages
 \usepackage[utf8]{inputenc}
@@ -6,23 +6,26 @@
 \usepackage{caption} 
 \usepackage{setspace}
 \usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[textwidth=160mm, textheight=210mm, hmarginratio=1:1]{geometry}
 
 
 %Prerequisite statements
 \captionsetup[table]{skip=4pt} %Line indent after table title
 \captionsetup{labelfont={bf}} %Bold label font for tables
 \onehalfspacing %Document line spacing
-\pagestyle{myheadings} 
+\pagestyle{myheadings} %Heading style
+\graphicspath{ {./figures/} } %Defining image path
 
 \begin{document}
 
 %Title page 
 \begin{titlepage}
 \begin{center}
-\LARGE{\textbf{The Realtime Assesment of Mental Workload by Means of Multiple Bio-Signals}}\\
+\LARGE{\textbf{The Realtime Assessment of Mental Workload by Means of Multiple Bio-Signals}}\\
 \vspace*{2\baselineskip}
-\Large{\textbf{Masterthesis Report}}\\
-Methodology and Statistics for the Behavioural, Biomedical and Social Sciences\\
+\Large{\textbf{Master thesis Report}}\\
+Methodology and Statistics for the Behavioral, Biomedical and Social Sciences\\
 \vspace*{1\baselineskip}
 Utrecht University\\
 \vspace*{4\baselineskip}
@@ -43,13 +46,13 @@ A simple definition of MWL is the demand placed upon humans whilst carrying out 
 
 A commonly employed measure of workload is the NASA-Task Load Index (or TLX) questionnaire, operationalizing workload in clusters of six different dimensions \cite{hart2006nasa}. Such measurements are usually conducted post experiment, which could introduce some bias. An example of such a bias is the observer bias, prescribing that actors participating in an experiment tend to over-exaggerate the treatment effect when having to report it themselves post-experiment \cite{mahtani2018catalogue}.
 
-An alternative method for assessing MWL is by measuring bio-signals during the experiment, and use these to classify the degree of perceived MWL. Examples of such bio-signals (hereafter modalities) include techniques such as electroencephalogram, eye tracking, galvanic skin response, functional near-infrared spectroscopy, etc. When training such classification models, administration of a questionnaire such as the TLX is usually utilized for labeling. The advantage of an approach like this is that complementary information streams, each stemming from a different modality can be interpreted simultaneously \cite{ramachandram2017deep}. This yields an objective and rich multifaceted classification of a mental construct, such as MWL. Additionally, a separate model for each respondent individually can be fitted, catering towards the individual perception of MWL. This approach comes however at the cost of an increase in complexity. This complexity resides in the construction of a complex framework that inputs the data from the utilized modalities, and outputs a single classification outcome. 
+An alternative method for assessing MWL is by measuring bio-signals during the experiment, and use these to classify the degree of perceived MWL. Examples of such bio-signals (hereafter modalities) include techniques such as electroencephalogram, eye tracking, galvanic skin response, functional near-infrared spectroscopy, etc. The advantage of an approach like this is that complementary information streams, each stemming from a different modality can be interpreted simultaneously \cite{ramachandram2017deep}. This yields an objective and rich multifaceted classification of a mental construct, such as MWL. Additionally, a separate model for each respondent individually can be fitted, catering towards the individual perception of MWL. This approach comes however at the cost of an increase in complexity. This complexity resides in the construction of a complex framework that inputs the data from the utilized modalities, and outputs a single classification outcome. 
 
-The current research directly builds upon previous research conducted by Dolmans and colleagues, who proposed a framework for multi-modal deep-learning classification of MWL \cite{dolmans2020perceived}. The current research will explore the feasibility of a similar framework, but by utilizing different modalities and data. Additionally, the current research will aim to incorporate a real-time component. This implies that classification is done whilst the experiment takes place, enabling the possibilities to alter the state of the experiment in real-time. Such an approach could enable a wide range of possibilities: consider for example a flight-simulation with the objective of training pilots. The possibility for such a simulation to play out dynamically could enhance the learning-experience, namely by catering the state of the simulation towards the the individual, based on a real-time classification of for example their MWL.
+The current research directly builds upon previous research conducted by Dolmans and colleagues, who proposed a framework for multi-modal deep-learning classification of MWL \cite{dolmans2020perceived}. The current research will explore the feasibility of a similar framework, but by utilizing different modalities and data. Additionally a realtime component will be introduced. This implies that classification can done in realtime, that is whilst the experiment takes place, opening the possibility for the researcher to alter the state of the experiment in realtime. Such an approach could enable a wide range of possibilities: consider for example a flight simulation with the objective of educating pilots. The possibility for such a simulation to be altered dynamically could substantially enhance the learning-experience, namely by catering the state of the simulation towards the the individual, for example based on their perceived workload. 
 
-A real-time classification approach will be contrasted with a non-real-time approach. Special focus will be placed upon the justification of using a real-time approach, given the increment in complexity such an approach is likely to cause. Ultimately, this line of research pursues the ability to conduct a dynamic experiment for multiple people simultaneously, and which can be altered by the researches in real-time. 
+In order to build both frameworks, three of the (arguably) most widely utilized modalities will be included. These modalities include the techniques of electroencephalogram (EEG), galvanic skin response (GSR) and photoplethysmography (PPG). It is important to stress that the objective of the current research is not to gain insight into the most optimal model design for each of the previously delineated modalities. It is rather to construct a framework with which realtime classification can be managed, and to which modalities of choice can easily be added. Consequently, one of two design principles on which the architecture of the framework reclines is the concept of modularity. Modularity refers the extent to which different modalities can freely be added and/or removed, without the necessity to re-architect and rebuild the framework. The second adhered design principle is the principle generalizability, prescribing that the framework should not solely be utilizable in the context of MWL, but also for the measurement of other mental constructs.
 
-In order to build both frameworks, three of the (arguably) most widely utilized modalities will be included. These modalities include the techniques of electroencephalogram (EEG), galvanic skin response (GSR) and photoplethysmography (PPG). It is important to stress that the objective of the current research is not to gain insight into the most optimal model for analyzing data stemming from the previously delineated modalities individually. It is rather to build a (real-time) framework researchers can utilize, and to which they can flexibly add modalities conform their own research goals. Consequently, one of two design principles on which the architecture of the framework reclines is the concept of modularity. Modularity refers the extent to which different modalities can freely be added and/or removed, without the necessity to re-architect and rebuild the entire framework. The second adhered design principle is the principle generalizability, prescribing that the framework should not solely be utilizable in the context of MWL, but also for the measurement of other mental constructs.
+Considering the relative complexity of a multi-modular deep neural network, an important point of attention is model optimization. In order for realtime classification to be a feasible, an optimized and swift neural network is required. The problem in realtime classification with deep learning is often not the quality of classification, but rather the speed of classification. The focus of the current research is therefore to architect and optimize a multi-modular deep neural network, which is capable of realtime classification, whilst still ensuring ample accuracy in classification. Several networks will be investigated upon in order to asses this. Ultimately, this line of research pursues the ability to conduct a dynamic experiment for multiple people simultaneously, the state of which can be altered in real-time. 
 
 \newpage
 \section{Methods}
@@ -58,9 +61,9 @@ In order to build both frameworks, three of the (arguably) most widely utilized 
 The current section will provide an overview of previous research on the model design for each seperate modality. Additionally,  the most feasible architecture for a multi-modular framework will be explored. In particular, attention is placed upon the data fusion, the real-time component and several model optimization techniques.
 
 \subsubsection{First modality: Electroencephalogram (EEG)}
-The first utilized modality is a technique  called EEG, which detects electrical activity in the brain using electrodes. EEG is a widely utilized method for classifying MWL during experiments. With a review of the complete literature on EEG classification with deep learning, Craik and colleagues found a total of 16 \% of all available papers to deal with MWL, lending credence to the widely employed phenomenon of EEG for investigating MWL \cite{craik2019deep}. Additionally, this review aimed to map the feasibility of using deep neural learning for a range of different EEG application separately. Summarizing the findings, Craik and colleagues report that studies mostly found deep belief networks and ConvNets to perform best when aiming to classify MWL, and advice one of these approaches consequently \cite{craik2019deep}.
+The first utilized modality is EEG, which detects electrical activity in the brain using electrodes. EEG is a widely utilized method for classifying MWL during experiments. With their review of the complete literature on EEG classification with deep learning, \citeA{craik2019deep} found a total of 16 \% of all available papers to deal with MWL, lending credence to the ability of EEG for classifying MWL. Additionally, the usage of deep learning for a range of different EEG application was mapped. Summarizing, it was reported that studies mostly found deep belief networks and convolutional neural networks (ConvNets) to perform best when classifying workload, and advice one of these approaches consequently \cite{craik2019deep}.
 
-Research by \citeA{schirrmeister2017deep} contrasted several differently designed convolutional neural networks (ConvNets) against the baseline method for EEG data (FBCSP) in order to decode imagined or executed tasks. The investigated networks included deep, shallow, deep-shallow hybrid and residual ConvNets. Both the deep and shallow ConvNets were found to reach at least similar, and in some regard better classification results, as compared with the FBCSP baseline model. Altogether, a deep ConvNet with four convolutional-max-pooling blocks was found to perform best, displaying an accuracy of 92.4 \% \cite{schirrmeister2017deep}. The appropriate design choices were found to be of importance in order to be able to reach this accuracy, including the employment of techniques such as batch normalization, dropout and the usage of the ELU activation function.
+Research by \citeA{schirrmeister2017deep} contrasted the performance of several ConvNets against the widely acknowledged baseline method for EEG data, being FBCSP. The investigated networks included deep, shallow, deep-shallow hybrid and residual ConvNets. Both the deep and shallow ConvNets were found to reach at least similar, and in some regard better classification results, as compared with the FBCSP baseline. Altogether, a deep ConvNet with four convolutional-max-pooling blocks was found to perform best, displaying an accuracy of 92.4 \% \cite{schirrmeister2017deep}. The appropriate design choices were found to be of importance in order to be able to reach this accuracy, including the employment of techniques such as batch normalization, dropout and the usage of the ELU activation function.
 
 A different approach is proposed by \citeA{tabar2016novel}, combining a ConvNet with a Stacked auto-encoder network (SAE). Within this network, the input layer feeds into a convolutional layer with the objective of learning the filters and network parameters. The output of this convolutional layer subsequently feeds into SAE part of the network, constituting an input layer, 6 hidden layers and an output layer. A classification accuracy of 90 \% was acquired with this model \cite{tabar2016novel} . 
 
@@ -70,9 +73,6 @@ The second utilized modality is GSR, measuring sweat gland on the hands and here
 Sun and colleagues explored the most optimal deep-learning model for classifying six different emotional states by means of GSR data. Several models were investigated, amongst others the support vector machine, the ConvNet, the long-short-term-memory (LSTM) model and a hybrid model combining the ConvNet and LSTM approaches. The hybrid model was found to perform best, exhibiting an accuracy of 74\%. Additionally, data augmentation was found to be able to substantially increase classification results \cite{sun2019hybrid}. 
 
 A variant on the CovNet LSTM model was employed by \citeA{dolmans2020perceived}, who aimed to classify MWL by means of amongst other modalities GSR (equally so as the current research). The performance of this model was contrasted with a network consisting solely of fully connected dense layers. Conform with findings by Sun and colleagues, the hybrid model was found to perform best \cite{dolmans2020perceived}, displaying an accuracy of 82 \%. The model architecture as utilized by Dolmans and colleagues deployed 2 convolutional layers, after each of which batch normalization was performed. Subsequently, max pooling was performed, after which the network feeds into two LSTM layers, followed by a dense layer.
-
-
-
 
 \subsubsection{Third modality: Photoplethysmography (PPG)}
 The third modality constitutes PPG, which is a technique utilized to measure heart rate. PPG is, not undeservedly, a widely deployed technique within the field of MWL classification. Zhang and colleagues investigated several approaches for measuring MWL, amongst three others the technique of PPG. Out of these four approaches, PPG was found to display both the highest sensitivity and reliability for measuring MWL, lending credence to the feasibility of PPG as a method for classifying MWL \cite{zhang2018evaluating}. 
@@ -88,10 +88,9 @@ Early (or data-level) fusion focuses on how to optimally combine data sources, b
 
 Late (or decision level) fusion on the other hand, refers to the process of aggregating the decisions from multiple models, each individually trained on all modalities. In case the data sources stemming from the various modalities are either correlated or measured within a deviant dimensionality, late fusion is a much more feasible approach \cite{ramachandram2017deep}.
 
-Lastly, intermediate fusion is the most widely employed fusion strategy for multi-modal deep-learning problems. Modalities are fused by simply adding a higher order layer, to which the individual deep-learning models separately defined for each modality feed into. This need not be a single layer, but could also be multiple layers, as long as each modality ultimately feeds into the highest order output layer. The depth of the fusion (i.e. the amount of fusion layers) can be chosen conform the specific situation, posing intermediate fusion to be the most flexible, and therefore the most widely used fusion method \cite{ramachandram2017deep}. 
+Lastly, intermediate fusion is the most widely employed fusion strategy for multi-modal deep-learning problems. Modalities are fused by simply adding a higher order layer, to which the individual deep-learning models separately defined for each modality feed into. This need not be a single layer, but could also be multiple layers, as long as each modality ultimately feeds into the highest order output layer. The depth of the fusion (i.e. the amount of fusion layers) can be chosen conform the specific situation, posing intermediate fusion to be the most flexible, and therefore the most widely used fusion method \cite{ramachandram2017deep}.
 
-\subsubsection{Real-time component}
-bla bla 
+Indeed, when consulting the literature, intermediate fusion strategies are the most prevailing for multimodal deep neural networks. When taking such an approach, one is required to design the architecture of these fusion layers.  \citeA{rastgoo2019automatic} utilize a multimodal ConvNet approach, and fuse the modalities by concatenation followed by two LTSM layers, 2 dense layers and a softmax layer. A simpler approach is utilized by	\citeA{han2020classification}, who utilized an intermediate fusion approach solely consisting of several fully connected dense layers, ended with a soft-max layer. Lastly, \citeA{dolmans2020perceived} used a much more deeper intermediate fusion approach, consisting of two dense layers, two convolutional layers followed by another two dense layers.  
 
 \subsubsection{Model optimization}
 The technique of batch normalization was proposed by  \citeA{ioffe2015batch},  and is often applied in deep learning with the objective of enhancing the stability of a network. This is endeavored by including a batch normalization layer after each convolutional layer, re-centering and re-scaling the input feeding into this layer. If incorporating a batch normalization layer, it is recommended to do so before feeding into the activation function \cite{ioffe2015batch}. An increase in accuracy for EEG classification was attained by \citeA{dolmans2020perceived},  \citeA{schirrmeister2017deep} by specifying a batch normalization layer after each convolutional layer. Equally so, the best performing model for PPG data as proposed by \citeA{biswas2019cornet} included a batch normalization layer after each convolutional layer.  
@@ -105,6 +104,7 @@ The current section will provide an overview of the utilized data. Special atten
 
 \subsubsection{Experimental setup}
 The experimental setting for data collection is the spaceship videogame Empty Epsilon, in which the respondent is required to carry out tasks on a virtual spaceship \cite{daid2016empty}. This experiment is instituted by the Brain Computer Interfaces (BCI) testbed lab, hosted by the University of Twente (UT) and carried out in cooperation with Thales group Hengelo. The experiment constituted three different segments, during each of which respondents had to carry out different tasks, all aiming to measure workload. Each segment consists of six small sessions of roughly 5-10 minutes. These sessions varied in difficulty, including two easy, two intermediate and two hard sessions per segment. A schematic overview of the experimental structure is depicted as table \ref{table:expsetup}. After each of the 18 segments, respondents filled in the TLX questionnaire consisting of 6 questions each, resulting in 18 filled in questionnaires. Each questionnaire inquired upon the degree to which the respondent experienced workload during the previous session. These ratings will be used as labels in later training. Within each segment, the order in which the sessions (varying in difficulty) were presented have been randomized. The order in which the segments were administrated were not random. Between every three sessions, respondents were requested to take a short 2 minute break.
+\bigskip
 \bgroup
 \def\arraystretch{1.6}%  
 \begin{table}[h]
@@ -119,6 +119,7 @@ The experimental setting for data collection is the spaceship videogame Empty Ep
 \end{tabular}
 \end{table}
 \egroup
+\bigskip 
 
 The first segment emulated a scenario in which hostile spaceships approach the respondents spaceship. The respondent is required to  quickly react, and defuse hostile spaceships in order to survive. The increment in difficulty caused the process of defusing hostile spaceships to be more challenging and hereby to take longer,  aiming to increase workload consequently. The second segment emulated a scenario in which the respondent had to navigate their spaceship trough space, gathering as many way-points as possible. Obstacles around which the respondent had to carefully navigate were introduced in the intermediate difficult scenario, and hostile spaceships the respondent had to decimate were introduced in the hard scenario. Both increase difficulty, and hereby aim to increase workload consequently. The third and final segment emulated a machine room, in which respondents had to control the power based on random requests generated by the video-game. Variables that could overheat the spaceship  were introduced as a consequence of an increase in difficulty, demanding the respondent multi-task, hereby aiming to increase workload. 
 
@@ -126,12 +127,14 @@ The first segment emulated a scenario in which hostile spaceships approach the r
 In total, twenty-five respondents are participating in the study. Currently, the data is still in the process of being collected, for which no additional descriptive statistics can be presented in the prevailing section. The respondents are students, recruited from the University of Twente. Recruitment has been conducted with Sona, which is a cloud-based participant management system. Requirements were that respondents didn't have constraints that might interfere with the utilized sensors, such as for example a pacemaker. This is assessed by means of a short demographic questionnaire prior to the experiment. Additionally, the respondents are made aware of ethical consent prior to the experiment, with the objective to ensure completely voluntary participation. Respondents were able to draw back from the experiment at any time. 
 
 \subsubsection{Devices and Synchronization}
-The Shimmer3 GSR+ sensor is used for both PPG and GSR measurements. The device is worn on the wrist, and communicates the signals wirelessly. An ear-clip is utilized for measuring the PPG, and converting this to estimate heart rate. Skin conductivity (GSR) is monitored between two electrodes attached to two fingers \cite{shimmer}. Both PPG and GSR are measured on a sample rate of 256 Hz. EEG measurement is conducted with the shimmer 2, equally so on a sampling rate of 256 Hz. 
+The Shimmer3 GSR+ sensor is used for both PPG and GSR measurements. The device is worn on the wrist, and communicates the signals wirelessly. An ear-clip is utilized for measuring the PPG, and converting this to estimate heart rate. Skin conductivity (GSR) is monitored between two electrodes attached to two fingers \cite{shimmer}. Both PPG and GSR are measured on a sample rate of 256 Hz, i.e. 256 measured data points per second. EEG measurement is conducted with the shimmer 2, equally so on a sampling rate of 256 Hz.
 
 Data streams stemming from the different modalities are measured on different frequencies, and consequently need to be properly synchronized. This is accomplished by means of an application called Lab-Streaming Layer (LSL), to which different data streams are streamed during the experiment. LSL properly synchronizes these data streams such that they refer to the same points in time, and records all data into a single file per participant \cite{kothe2018lab}.
 
 \subsection{Framework Architecture}
-The architecture for the proposed framework is constructed by combining insights from the literature whilst keeping in mind the previously delineated design principles (i.e. the principles of modularity and generalizability). Figure \# visualizes the entire framework \textit{Still has to be made but didnt figure out yet how}.
+
+\subsubsection{Universal Framework Architecture}
+The architecture for the proposed framework is constructed by combining insights from the literature whilst keeping in mind the previously delineated design principles (i.e. the principles of modularity and generalizability). No variations based on the general framework architecture will be made, for deviating from the architecture as verified in the literature is likely to be detrimental towards classification accuracy.
 
 The utilized network for the EEG modality is a ConvNet as proposed by \citeA{schirrmeister2017deep}. The network is designed to include four convolutional layers, each follow by a max pooling layer of stride 3. The Exponential Linear Unit (ELU) function is utilized as activation function, defined as: 
 
@@ -144,7 +147,6 @@ x & x \geq0 \\
 \bigskip
 \end{equation}
 
-
 The utilized network for the GSR modality is a LSTM ConvNet hybrid model, inspired by the work of \citeA{sun2019hybrid} and  \citeA{dolmans2020perceived}. The network is designed to include two convolutional blocks, each consisting of a convolutional layer, followed by a batch normalization layer and closed with a max-pooling layer of stride 4. Following these blocks are two LTSM layers. The Rectified Linear Unit (ReLU) function is utilized as activation function, defined as: 
 
 \begin{equation} 
@@ -155,29 +157,50 @@ f(x)=max(0,x)
 
 Lastly, the PPG modality is analyzed by means of the model as proposed by \citeA{biswas2019cornet}. The nework starts with two convolutional blocks, each consisting of a convolutional layer, batch normalization layer and closed with a max pooling layer of stride 4. Following these blocks are two LTSM layers, equal to the GSR model. The utilized activation function is the ReLU, depicted as equation \ref{eqn:relu}.
 
-The network for each of the modalities are finally closed with one fully connected dense layer before feeding into the head network, such that all inputs are flattened in a lower dimensional space. All outputs from these dense layers are concatenated. The head network consists of Four dense layers, alternated with some batch normalization and max-pooling layers with the objective of stabilization. The entire network and its  size, is summarized in table \ref{table:networksummary}.
+The network for each of the modalities are finally closed with one fully connected dense layer before feeding into the head network, such that all inputs are flattened in a lower dimensional space. All outputs from these dense layers are concatenated. The head network consists of Four dense layers, alternated with some batch normalization and max-pooling layers with the objective of stabilization. A visual representation of the utilized model is depicted as figure \ref{fig:architecture}.
+
+\begin{figure}
+\caption{Framework Architecture}
+\bigskip
+\includegraphics[scale=0.725]{model_architecture}
+\label{fig:architecture}
+\end{figure}
+
+
+\subsubsection{Model Variations}
+Multi-modular classification in realtime by means of deep-learning requires an optimized network, as was elaborated upon in the introduction. Speed is a potential bottleneck for realtime classification with deep learning, especially given the fact the proposed framework architecture is multi-modular, and consequently very complex. Different model variations will be investigated upon as a consequence of this. The aim is to propose a model that is fast enough for realtime classification, whilst ensuring the maximum amount of accuracy. Variations on two different parameters of the previously delineated model will therefore be considered, resulting in four different models. 
+
+The first variation reflects the sample rates for each of the included modalities. As was elaborated on before, the data collection for each modality was on a sampling rate of 256Hz. Naturally, an increase in speed can be attained by feeding less data into the model, i.e. decreasing the sampling rate. Two out of the four models will consequently model based on a sampling rate of 256Hz, whilst the other two models will model based on sampling rate of 128Hz. 
+
+The second variation reflects the amount of utilized filters for convolutional layers, and the amount of neurons for all utilized layers. A decrease in the amount of filters / neurons equals a decrease in network size, and consequently an increase in speed. Two out of the four models will be the full sized network, whilst the other two models will be halved in size. An overview of all four models and their size is provided in table \ref{table:modelvariations}.
 \bigskip
 
 \bgroup
 \def\arraystretch{1.6}%  
 \begin{table}[h]
 \centering
-\caption{Network summary	}
-\label{table:networksummary}
-\begin{tabular}{llll}
-EEG        & GSR        & PPG        & Head       \\ \hline
-Conv1: 25  & Conv1: 128 & Conv1: 128 & Dense: 712 \\
-Conv2: 50  & Conv2: 128 & Conv2: 128 & Dense: 356 \\
-Conv3: 100 & LSTM1: 256 & LSTM1: 256 & Dense: 128 \\
-Conv4: 200 & LSTM1: 256 & LSTM2: 256 &            \\
-Dense: 200 & Dense: 256 & Dense: 256 &            \\ \hline
+\caption{Model variations	}
+\label{table:modelvariations}
+\begin{tabular}{lllll}
+\hline
+                   & EEG        & GSR        & PPG        & Head       \\ \hline
+Model 1: 128Hz \&  & Conv1: 25  & Conv1: 128 & Conv1: 128 & Dense: 712 \\
+Model 2: 256Hz     & Conv2: 50  & Conv2: 128 & Conv2: 128 & Dense: 356 \\
+                   & Conv3: 100 & LSTM1: 256 & LSTM1: 256 & Dense: 178 \\
+                   & Conv4: 200 & LSTM1: 256 & LSTM2: 256 &            \\
+                   \vspace{3ex}
+                   & Dense: 200 & Dense: 256 & Dense: 256 &            \\
+Model 3: 128 Hz \& & Conv1: 13  & Conv1: 64  & Conv1: 64  & Dense: 356 \\
+Model 4: 256Hz     & Conv2: 25  & Conv2: 64  & Conv2: 64  & Dense: 178 \\
+                   & Conv3: 50  & LSTM1: 128 & LSTM1: 128 & Dense: 89  \\
+                   & Conv4: 100 & LSTM1: 128 & LSTM2: 128 &            \\
+                   & Dense: 100 & Dense: 128 & Dense: 128 &            \\ \hline
 \end{tabular}
 \vspace{2ex}
 
-{\raggedright \textit{Note that for convolutional layers the number reflects the amount of filters, whereas for all other layers it refers to the amount of nodes.} \par}
+{\raggedright \textit{Note: for convolutional layers the provided number reflects the amount of filters, whereas for all other layers it refers to the amount of nodes.} \par}
 \end{table}
 \egroup
-
 
 \subsection{Model Evaluation}
 The performance of the real-time framework will be assessed by contrasting it with a regular, non-real-time framework. Specifically, the quality of performance for each modality individually will be compared across both frameworks. This validation will be endeavored by means of six widely used performance measures, all constructed from the confusion matrix, depicted as table  \ref{table:confusion}  

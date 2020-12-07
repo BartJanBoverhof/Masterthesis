@@ -181,6 +181,37 @@ Dolmans, T.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Han%
+, Kwak%
+, Oh%
+\BCBL {}\ \BBA {} Lee%
+}{%
+Han%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+han2020classification}
+\APACinsertmetastar {%
+han2020classification}%
+\begin{APACrefauthors}%
+Han, S\BHBI Y.%
+, Kwak, N\BHBI S.%
+, Oh, T.%
+\BCBL {}\ \BBA {} Lee, S\BHBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Classification of pilots’ mental states using a
+  multimodal deep learning network} {Classification of pilots’ mental states
+  using a multimodal deep learning network}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Biocybernetics and Biomedical
+  Engineering}{40}{1}{324--336}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Hart%
 }{%
 Hart%
@@ -367,6 +398,38 @@ Ramachandram, D.%
   trends}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{IEEE Signal Processing Magazine}{34}{6}{96--108}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Rastgoo%
+, Nakisa%
+, Maire%
+, Rakotonirainy%
+\BCBL {}\ \BBA {} Chandran%
+}{%
+Rastgoo%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+rastgoo2019automatic}
+\APACinsertmetastar {%
+rastgoo2019automatic}%
+\begin{APACrefauthors}%
+Rastgoo, M\BPBI N.%
+, Nakisa, B.%
+, Maire, F.%
+, Rakotonirainy, A.%
+\BCBL {}\ \BBA {} Chandran, V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Automatic driver stress level classification using
+  multimodal deep learning} {Automatic driver stress level classification using
+  multimodal deep learning}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Expert Systems with Applications}{138}{}{112793}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
