@@ -36,6 +36,33 @@ Akiba, T.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Bergstra%
+\ \BBA {} Bengio%
+}{%
+Bergstra%
+\ \BBA {} Bengio%
+}{%
+{\protect \APACyear {2012}}%
+}]{%
+bergstra2012random}
+\APACinsertmetastar {%
+bergstra2012random}%
+\begin{APACrefauthors}%
+Bergstra, J.%
+\BCBT {}\ \BBA {} Bengio, Y.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Random search for hyper-parameter optimization} {Random
+  search for hyper-parameter optimization}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The Journal of Machine Learning
+  Research}{13}{1}{281--305}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Biswas%
 \ \protect \BOthers {.}}{%
 Biswas%
