@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  9 DEC 2020 15:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  19 DEC 2020 11:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -287,24 +287,36 @@ e
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [1] [2] [3] [4] [5] [6] [7] [8] [9]
-<./figures/model_architecture.png, id=38, 630.355pt x 712.6625pt>
-File: ./figures/model_architecture.png Graphic file (type png)
-<use ./figures/model_architecture.png>
-Package pdftex.def Info: ./figures/model_architecture.png  used on input line 1
-46.
-(pdftex.def)             Requested size: 457.0101pt x 516.6834pt.
+<./figures/single_model_architecture.png, id=38, 627.34375pt x 439.6425pt>
+File: ./figures/single_model_architecture.png Graphic file (type png)
+<use ./figures/single_model_architecture.png>
+Package pdftex.def Info: ./figures/single_model_architecture.png  used on input
+ line 145.
+(pdftex.def)             Requested size: 454.82692pt x 318.7427pt.
 
-Overfull \hbox (1.76602pt too wide) in paragraph at lines 146--148
+Underfull \hbox (badness 10000) in paragraph at lines 145--147
 [][]
  []
 
-[10] [11 <./figures/model_architecture.png>]
+[10] [11 <./figures/single_model_architecture.png>]
+<./figures/multi_model_architecture.png, id=51, 630.355pt x 712.6625pt>
+File: ./figures/multi_model_architecture.png Graphic file (type png)
+<use ./figures/multi_model_architecture.png>
+Package pdftex.def Info: ./figures/multi_model_architecture.png  used on input 
+line 177.
+(pdftex.def)             Requested size: 457.0101pt x 516.6834pt.
+
+Overfull \hbox (1.76602pt too wide) in paragraph at lines 177--179
+[][]
+ []
+
+[12] [13 <./figures/multi_model_architecture.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[12] [13] [14
+[14] [15] [16
 
-] (./main.bbl [15]
+] (./main.bbl [17]
 Underfull \hbox (badness 1502) in paragraph at lines 473--491
 []\OT1/cmr/m/n/12 Schirrmeister, R. T., Sprin-gen-berg, J. T., Fiederer, L. D. 
 J., Glasstet-ter, M.,
@@ -316,15 +328,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 536--548
 unit.  \OT1/cmr/m/n/12 Re-trieved from
  []
 
-) [16] (./main.aux) ) 
+) [18] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 4229 strings out of 492616
- 63330 string characters out of 6129482
- 140072 words of memory out of 5000000
- 8101 multiletter control sequences out of 15000+600000
+ 4235 strings out of 492616
+ 63593 string characters out of 6129482
+ 140081 words of memory out of 5000000
+ 8106 multiletter control sequences out of 15000+600000
  10042 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,38p,1490b,319s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,10n,38p,1579b,319s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfo
@@ -337,10 +349,10 @@ y10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12
 .pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.
 pfb>
-Output written on main.pdf (17 pages, 276255 bytes).
+Output written on main.pdf (19 pages, 366482 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
- 73 compressed objects within 1 object stream
+ 115 PDF objects out of 1000 (max. 8388607)
+ 78 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
