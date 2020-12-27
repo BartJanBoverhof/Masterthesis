@@ -14,45 +14,45 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: References.bib
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
 Warning--No journal in dolmans2020perceived
-You've used 24 entries,
+You've used 28 entries,
             6951 wiz_defined-function locations,
-            1416 strings with 15506 characters,
-and the built_in function-call counts, 49350 in all, are:
-= -- 5997
-> -- 494
-< -- 2352
-+ -- 2482
-- -- 56
-* -- 3197
-:= -- 8876
-add.period$ -- 102
-call.type$ -- 24
-change.case$ -- 397
+            1440 strings with 16153 characters,
+and the built_in function-call counts, 56474 in all, are:
+= -- 6846
+> -- 560
+< -- 2700
++ -- 2813
+- -- 66
+* -- 3655
+:= -- 10177
+add.period$ -- 118
+call.type$ -- 28
+change.case$ -- 452
 chr.to.int$ -- 0
-cite$ -- 49
-duplicate$ -- 1440
-empty$ -- 1894
-format.name$ -- 858
-if$ -- 9309
+cite$ -- 57
+duplicate$ -- 1636
+empty$ -- 2190
+format.name$ -- 969
+if$ -- 10672
 int.to.chr$ -- 0
-int.to.str$ -- 72
+int.to.str$ -- 84
 missing$ -- 0
-newline$ -- 643
-num.names$ -- 192
-pop$ -- 875
+newline$ -- 744
+num.names$ -- 224
+pop$ -- 1021
 preamble$ -- 1
-purify$ -- 94
+purify$ -- 109
 quote$ -- 0
-skip$ -- 3085
+skip$ -- 3528
 stack$ -- 0
-substring$ -- 2710
-swap$ -- 830
-text.length$ -- 73
+substring$ -- 3065
+swap$ -- 944
+text.length$ -- 81
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 2112
+type$ -- 2432
 warning$ -- 1
-while$ -- 284
+while$ -- 321
 width$ -- 0
-write$ -- 850
+write$ -- 979
 (There was 1 warning)

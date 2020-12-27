@@ -208,6 +208,33 @@ Dolmans, T.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Fujita%
+\ \BBA {} Suzuki%
+}{%
+Fujita%
+\ \BBA {} Suzuki%
+}{%
+{\protect \APACyear {2019}}%
+}]{%
+fujita2019evaluation}
+\APACinsertmetastar {%
+fujita2019evaluation}%
+\begin{APACrefauthors}%
+Fujita, D.%
+\BCBT {}\ \BBA {} Suzuki, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Evaluation of the possible use of PPG waveform features
+  measured at low sampling rate} {Evaluation of the possible use of ppg
+  waveform features measured at low sampling rate}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{IEEE Access}{7}{}{58361--58367}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Han%
 , Kwak%
 , Oh%
@@ -261,6 +288,29 @@ Hart, S\BPBI G.%
 \BIn{} \APACrefbtitle {Proceedings of the human factors and ergonomics society
   annual meeting} {Proceedings of the human factors and ergonomics society
   annual meeting}\ (\BVOL~50, \BPGS\ 904--908).
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+InteraXon%
+}{%
+InteraXon%
+}{%
+{\protect \APACyear {{\protect \bibnodate {}}}}%
+}]{%
+muse}
+\APACinsertmetastar {%
+muse}%
+\begin{APACrefauthors}%
+InteraXon.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{{\protect \bibnodate {}}}{}{}.
+\newblock
+\APACrefbtitle {Muse 2 brainwave activity headband.} {Muse 2 brainwave activity
+  headband.}
+\newblock
+\begin{APACrefURL} \url{https://choosemuse.com/muse-2/} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -578,6 +628,34 @@ Shuggi, I\BPBI M.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Srinivasan%
+, Tucker%
+\BCBL {}\ \BBA {} Murias%
+}{%
+Srinivasan%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1998}}%
+}]{%
+srinivasan1998estimating}
+\APACinsertmetastar {%
+srinivasan1998estimating}%
+\begin{APACrefauthors}%
+Srinivasan, R.%
+, Tucker, D\BPBI M.%
+\BCBL {}\ \BBA {} Murias, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1998}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Estimating the spatial Nyquist of the human EEG}
+  {Estimating the spatial nyquist of the human eeg}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Behavior Research Methods, Instruments, \&
+  Computers}{30}{1}{8--19}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Sun%
 , Hong%
 , Li%
@@ -632,6 +710,36 @@ Tabar, Y\BPBI R.%
   eeg motor imagery signals}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of neural engineering}{14}{1}{016003}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Weiergraeber%
+, Papazoglou%
+, Broich%
+\BCBL {}\ \BBA {} Mueller%
+}{%
+Weiergraeber%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2016}}%
+}]{%
+weiergraeber2016sampling}
+\APACinsertmetastar {%
+weiergraeber2016sampling}%
+\begin{APACrefauthors}%
+Weiergraeber, M.%
+, Papazoglou, A.%
+, Broich, K.%
+\BCBL {}\ \BBA {} Mueller, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Sampling rate, signal bandwidth and related pitfalls in
+  EEG analysis} {Sampling rate, signal bandwidth and related pitfalls in eeg
+  analysis}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of neuroscience methods}{268}{}{53--55}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
