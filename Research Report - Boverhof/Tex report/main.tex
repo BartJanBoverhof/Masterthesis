@@ -129,24 +129,47 @@ The first segment emulated a scenario in which hostile spaceships approach the r
 In total, twenty-five respondents are participating in the study. Currently, the data is still in the process of being collected, for which no additional descriptive statistics can be presented in the this section as of yet. The respondents are students, recruited from the University of Twente. Recruitment has been conducted with Sona, which is a cloud-based participant management system. Requirements were that respondents didn't have any constraints that might interfere with the utilized sensors, such as for example a pacemaker. This was assessed by means of a short demographic questionnaire prior to the experiment. Additionally, the respondents were made aware of informed consent prior to the experiment, with the objective to ensure completely voluntary participation. Respondents were able to draw back from the experiment at any time. 
 
 \subsubsection{Devices and Synchronization}
-The Shimmer3 GSR+ sensor was used for both PPG and GSR measurements. The device is worn on the wrist, and is able to communicate the signal wirelessly. An ear-clip was utilized for measuring PPG, and converting this to estimate heart rate. Skin conductivity, or GSR, was monitored by two electrodes attached to the fingers \cite{shimmer}. Both PPG and GSR were measured on a sample rate of 256 Hz. EEG measurement is conducted with the shimmer 2, equally so on a sampling rate of 256 Hz.
+The Shimmer3 GSR+ sensor was used for both PPG and GSR measurements. The device is worn on the wrist, and is able to communicate the signal wirelessly. An ear-clip was utilized for measuring PPG, and converting this to estimate heart rate. Skin conductivity, or GSR, was monitored by two electrodes attached to the fingers \cite{shimmer}. EEG measurement is conducted with the Muse 2, which is a multi-sensor headband that provides feedback on brain activity \cite{muse}. The Shimmer3 GSR+ is able to read and output data signals on a sampling rate of 256 Hz, whereas the Muse 2 is able to sample at 220 Hz. 
+
+As was already touched upon in the introduction, real-time classification requires a swift network. A higher sampling rate entails more data traveling through the network, decelerating classification speed. As a consequence, it is beneficial to input data on the minimum required sampling rate with which the key features can be detected for each modality separately. \citeA{fujita2019evaluation} investigated the minimum required sampling rate for the PPG modality. The extent to which features were detected have been contrasted for several sampling rates. A sampling rate of 60 Hz was found to be the absolute minimum required sampling rate for extracting features stably \cite{fujita2019evaluation}. A slightly higher sampling rate might be the safer option, however. \citeA{shimmer} recommend a sampling rate of 100 Hz for the PPG modality, and stable feature extraction was observed on this rate by \citeA{fujita2019evaluation} as well. Hence, a sampling rate of 100 Hz is utilized for the PPG modality. The recommended sampling rate for GSR data is determined to range between 0.03 and 5 Hz \cite{shimmer}. A sampling rate of 5 Hz will be utilized consequently. For the EEG modality, different features require a widely different sampling rate in order to be detected. Frequency bands for traditional EEG features are defined on about 0.5-4 Hz for delta, and at most on about 16-24 Hz for beta. The gamma frequency band recently gained in popularity within the field of EEG, and is defined on a frequency ranging up to 80 Hz \cite{weiergraeber2016sampling}. In order to detect a feature residing on the 80 Hz frequency band, a substantially higher sampling rate is required to record the signal without aliasing. The required sampling rate can be determined by means of the Nyquist criterion for practical EEG sampling, defined as equation \ref{eqn:nyquist}.
+
+\begin{equation}
+\label{eqn:nyquist}
+f_{samp} > 2.5 * f_{max}
+\end{equation}
+where $f_{sam}$ reflects the required sampling rate and $f_{max}$ reflects the frequency range of a particular modality \cite{srinivasan1998estimating}. Hence, in order to be able to detect the gamma frequency band, a sampling rate of 200 is utilized for the EEG modality. A summary of the utilized sampling rates per modality is depicted as table \ref{table:samplingrate}.
+
+\bgroup
+\def\arraystretch{1.6}%  
+\begin{table}[h]
+\centering
+\caption{Sampling rate per modality}
+\label{table:samplingrate}
+\begin{tabular}{ll}
+    & Utilized sampling rate (Hz) \\ \hline
+ Electroencephalogram (EEG) & 200                         \\
+Galvanic Skin Response (GSR) & 5                           \\
+Photoplethysmography (PPG) & 100                         \\ \hline
+\end{tabular}
+\end{table}
+\egroup
 
 Data streams stemming from the different modalities were required to be properly synchronized such that they are parallel. This was accomplished by means of an application called Lab-Streaming Layer, hereafter refered to as "LSL", to which the different data are streamed during the experiment. LSL properly synchronized these data streams, such that they refer to the same points in time, and subsequently record all data into a single file per participant \cite{kothe2018lab}.
 
 \subsection{Framework Architecture}
-As was elaborated on in the introduction, several networks will be compared in their ability to classify workload in real-time, and the performance with which this is managed. The upcoming section firstly describes the universal architecture that all networks variants have in common. Subsequently, the distinctions in each of the four varying networks are delineated. 
+As was elaborated on in the introduction, several networks will be compared in their ability to classify workload in real-time, and the performance with which this is managed. The upcoming section opens with the description of the network architectures solely utilizing one of the three modalities each. Subsequently, the multi-modular architecture will be elaborated on. Lastly, several variations based on this multi-modular architecture are delineated. 
 
 \subsubsection{Single-modular Network Architectures}
-The architecture of each of the single-modular networks is determined by combining insights from the literature. Each network utilizes only a single modality. No variations from this network architecture will be made, for deviating from the architectures as verified in the literature could be detrimental with regards to performance. These separate networks are all depicted as figure \ref{fig:singlearchitecture}.
+The architecture of each of the single-modular networks is determined by combining insights from the literature. Each of the three network merely utilizes a single modality with which workload is classified. These networks and their architecture are all depicted as figure \ref{fig:singlearchitecture}.
 
 \begin{figure}
-\caption{Three Single-modular Network Architectures}
+\caption{The Three Single-modular Network Architectures}
 \bigskip
 \includegraphics[scale=0.725]{single_model_architecture}
 \label{fig:singlearchitecture}
 \end{figure}
 
-The utilized network for the EEG modality is a ConvNet, as proposed by \citeA{schirrmeister2017deep}. The network is designed to include four convolutional blocks, each constituting a convolutional layer, followed by a batch normalisation layer. The Exponential Linear Unit, hereafter referred to as "ELU", function is utilized as activation function, and is defined as equation \ref{eqn:elu}. Lastly, each block is closed with a max pooling layer of stride three.
+The utilized network for the EEG modality is a ConvNet, as proposed by \citeA{schirrmeister2017deep}. The network is designed to include four convolutional blocks, each constituting a convolutional layer, followed by a batch normalisation layer. The Exponential Linear Unit, hereafter referred to as "ELU", function is utilized as activation function, and is defined as equation \ref{eqn:elu}. Each convolutional block is closed with a max pooling layer of stride three.
 
 \begin{equation}
 \label{eqn:elu}
@@ -166,10 +189,10 @@ f(x)=max(0,x)
 \bigskip
 \end{equation}
 
-Lastly, the PPG modality is analyzed by means of the network as proposed by \citeA{biswas2019cornet}. The nework opens with two convolutional blocks, each consisting of a convolutional layer, batch normalization layer, activation layer and closed with a max pooling layer of stride four. The utilized activation function is the ReLU, depicted as equation \ref{eqn:relu}. Following these convolutional blocks are two LTSM layers, equal to the GSR model. 
+Lastly, the utilized network for the PPG modality is inspired upon the network as proposed by \citeA{biswas2019cornet}. The nework opens with two convolutional blocks, each consisting of a convolutional layer, batch normalization layer, activation layer and closed with a max pooling layer of stride four. The utilized activation function is the ReLU, depicted as equation \ref{eqn:relu}. Following these convolutional blocks are two LTSM layers, equal to the GSR model. 
 
-\subsubsection{Multi-modular Network Architecture}
-The architecture for multi-modular approach is constructed by combining the single-modular networks as derived from the literature, whilst keeping in mind the previously delineated design principles (i.e. the principles of modularity and generalizability). A visual representation of the complete network is depicted as figure \ref{fig:multiarchitecture}.
+\subsubsection{Multi-modular Network: Architecture}
+The network architecture that is utilized for the multi-modular approach is determined by a combination of the single-modular networks, as derived from the literature. The previously delineated design principles (i.e. the principles of modularity and generalizability) are taken into account when doing so. A visual representation of the multi-modular network is depicted as figure \ref{fig:multiarchitecture}.
 
 \begin{figure}
 \caption{Multi-modular Network Architecture}
@@ -178,12 +201,12 @@ The architecture for multi-modular approach is constructed by combining the sing
 \label{fig:multiarchitecture}
 \end{figure}
 
-In order to combine the previously delineated single-modular networks, each of these distinct parts are closed with one fully connected dense layer before feeding into the head network. This is done in order to flatten all inputs into a lower dimensional space, such that concatenation is possible. The head network consists of Four dense layers, alternated with a batch normalization and max-pooling layers, with the objective of stabilization. 
+In order to combine the previously delineated single-modular networks, each of these distinct parts are closed with one fully connected dense layer before feeding into the head network. This is done in order to flatten all inputs into a lower dimensional space, such that concatenation is possible. The head network consists of four dense layers. These layers are alternated with a batch normalization and max-pooling layer with the objective of stabilization. 
 
-\subsubsection{Multi-modular Network Variations}
-Multi-modular classification in real-time by means of deep-learning requires an optimized network, as was elaborated upon in the introduction. Speed is a potential bottleneck, especially given the proposed network architecture is multi-modular, and thus substantially complex. Consequently, different variations of the delineated network will be investigated upon. The aim is to propose a network that is fast enough for real-time classification, whilst ensuring the maximum amount of accuracy. Three different variations with regards to size of the network as depicted in figure \ref{fig:multiarchitecture} will therefore be considered.
+\subsubsection{Multi-modular Network: Variations}
+Multi-modular classification in real-time by means of deep-learning requires an optimized network, as was elaborated upon in the introduction. Speed is a potential bottleneck, for a multi-modular network such as presented is substantially complex in nature. Therefore, several variations of the delineated network will be investigated upon, differing in their complexity. These variations are not made by changing the network architecture, whereas deviating from the proven network architecure is likely to be detrimental with regards to model performance. The aim is to propose a network that is fast enough for real-time classification, whilst maintaining the highest amount of accuracy as possible. Three different variations with regards to size of the network as depicted in figure \ref{fig:multiarchitecture} will therefore be considered.
 
-Network size constitutes the amount of utilized filters for convolutional layers, and the amount of neurons for all other utilized layers. A decrease in the amount of filters and neurons constitutes a decrease in network size, and consequently a decrease in the amount of calculations. This is likely to bring about an increase in speed. An overview of all three multi-modular network variations, and the amount of utilized neurons/filters is provided in table \ref{table:modelvariations}. Network 1 is referred to as the full network, and is the biggest in terms of size. The size of network 2 constitutes of 75 \% of the size of the full network. Network 3 constitutes of 50 \% of the size of the full network.
+Network size is understood as the amount of utilized filters for convolutional layers, and the amount of neurons for all other utilized layers. A decrease in the amount of filters and neurons constitutes a decrease in network size, and consequently a decrease in the amount of required calculations. This is likely to bring about an increase in speed. An overview of all three multi-modular network variations, and the amount of utilized neurons/filters is provided in table \ref{table:modelvariations}. Network 1 is referred to as the full network, and is the biggest in terms of size. The size of network 2 constitutes of 75 \% of the size of the full network. Network 3 constitutes of 50 \% of the size of the full network.
 
 \bgroup
 \def\arraystretch{1.6}%  
@@ -194,19 +217,19 @@ Network size constitutes the amount of utilized filters for convolutional layers
 \begin{tabular}{lllll}
 \hline
         & EEG        & GSR        & PPG        & Head       \\ \hline
-Model 1 & Conv1: 25  & Conv1: 128 & Conv1: 128 & Dense: 712 \\
+Network 1 & Conv1: 25  & Conv1: 128 & Conv1: 128 & Dense: 712 \\
         & Conv2: 50  & Conv2: 128 & Conv2: 128 & Dense: 356 \\
         & Conv3: 100 & LSTM1: 256 & LSTM1: 256 & Dense: 178 \\
         & Conv4: 200 & LSTM1: 256 & LSTM2: 256 &            \\ 
         \vspace{3ex}
         & Dense: 200 & Dense: 256 & Dense: 256 &            \\ \hline
-Model 2 & Conv1: 18  & Conv1: 96  & Conv1: 96  & Dense: 534 \\
+Network 2 & Conv1: 18  & Conv1: 96  & Conv1: 96  & Dense: 534 \\
         & Conv2: 34  & Conv2: 96  & Conv2: 96  & Dense: 267 \\
         & Conv3: 75  & LSTM1: 192 & LSTM1: 192 & Dense: 134 \\
         & Conv4: 150 & LSTM1: 192 & LSTM1: 192 &            \\
         \vspace{3ex}
         & Dense: 150 & Dense: 192 & Dense: 192 &            \\ \hline
-Model 3 & Conv1: 13  & Conv1: 64  & Conv1: 64  & Dense: 356 \\
+Network 3 & Conv1: 13  & Conv1: 64  & Conv1: 64  & Dense: 356 \\
         & Conv2: 25  & Conv2: 64  & Conv2: 64  & Dense: 178 \\
         & Conv3: 50  & LSTM1: 128 & LSTM1: 128 & Dense: 89  \\
         & Conv4: 100 & LSTM1: 128 & LSTM2: 128 &            \\
