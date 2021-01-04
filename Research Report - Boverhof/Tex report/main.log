@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  3 JAN 2021 11:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  4 JAN 2021 12:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -297,7 +297,7 @@ Dolmans, Poel, van 't Klooster,
 File: ./figures/experimental_setup.png Graphic file (type png)
 <use ./figures/experimental_setup.png>
 Package pdftex.def Info: ./figures/experimental_setup.png  used on input line 1
-18.
+19.
 (pdftex.def)             Requested size: 398.28094pt x 210.38226pt.
  [8] [9 <./figures/experimental_setup.png>] [10]
 [11]
@@ -305,36 +305,35 @@ Package pdftex.def Info: ./figures/experimental_setup.png  used on input line 1
 File: ./figures/single_model_architecture.png Graphic file (type png)
 <use ./figures/single_model_architecture.png>
 Package pdftex.def Info: ./figures/single_model_architecture.png  used on input
- line 174.
+ line 175.
 (pdftex.def)             Requested size: 454.82692pt x 318.7427pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--176
+Underfull \hbox (badness 10000) in paragraph at lines 175--177
 [][]
  []
 
 
-Overfull \hbox (2.68045pt too wide) in paragraph at lines 178--179
+Overfull \hbox (2.68045pt too wide) in paragraph at lines 179--180
 []\OT1/cmr/m/n/12 The uti-lized net-work for the EEG modal-ity was a Con-vNet a
 s pro-posed by []Schirrmeister
  []
 
-[12 <./figures/single_model_architecture.png>]
-<./figures/multi_model_architecture.png, id=56, 630.355pt x 712.6625pt>
+[12] [13 <./figures/single_model_architecture.png>]
+<./figures/multi_model_architecture.png, id=59, 630.355pt x 712.6625pt>
 File: ./figures/multi_model_architecture.png Graphic file (type png)
 <use ./figures/multi_model_architecture.png>
 Package pdftex.def Info: ./figures/multi_model_architecture.png  used on input 
-line 190.
+line 192.
 (pdftex.def)             Requested size: 457.0101pt x 516.6834pt.
 
-Overfull \hbox (1.76602pt too wide) in paragraph at lines 190--192
+Overfull \hbox (1.76602pt too wide) in paragraph at lines 192--194
 [][]
  []
 
-[13] [14 <./figures/multi_model_architecture.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15] [16] [17
+[14] [15 <./figures/multi_model_architecture.png>] [16] [17
 
 ] (./main.bbl
 Underfull \hbox (badness 3579) in paragraph at lines 304--315
@@ -358,11 +357,11 @@ unit.  \OT1/cmr/m/n/12 Re-trieved from
 Here is how much of TeX's memory you used:
  4250 strings out of 492616
  64003 string characters out of 6129482
- 138539 words of memory out of 5000000
+ 140539 words of memory out of 5000000
  8120 multiletter control sequences out of 15000+600000
  10042 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,38p,1462b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,38p,1471b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/a
@@ -374,7 +373,7 @@ m/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mti12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 tt12.pfb>
-Output written on main.pdf (21 pages, 408644 bytes).
+Output written on main.pdf (21 pages, 408620 bytes).
 PDF statistics:
  119 PDF objects out of 1000 (max. 8388607)
  79 compressed objects within 1 object stream
