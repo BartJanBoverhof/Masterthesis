@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  4 JAN 2021 12:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  6 JAN 2021 12:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -287,7 +287,7 @@ e
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [1]
-Overfull \hbox (1.88313pt too wide) in paragraph at lines 56--57
+Overfull \hbox (1.88313pt too wide) in paragraph at lines 55--56
 []\OT1/cmr/m/n/12 The cur-rent re-search builds upon re-search con-ducted by []
 Dolmans, Poel, van 't Klooster,
  []
@@ -301,67 +301,66 @@ Package pdftex.def Info: ./figures/experimental_setup.png  used on input line 1
 (pdftex.def)             Requested size: 398.28094pt x 210.38226pt.
  [8] [9 <./figures/experimental_setup.png>] [10]
 [11]
-<./figures/single_model_architecture.png, id=50, 627.34375pt x 439.6425pt>
+<./figures/single_model_architecture.png, id=50, 630.355pt x 439.6425pt>
 File: ./figures/single_model_architecture.png Graphic file (type png)
 <use ./figures/single_model_architecture.png>
 Package pdftex.def Info: ./figures/single_model_architecture.png  used on input
- line 175.
-(pdftex.def)             Requested size: 454.82692pt x 318.7427pt.
+ line 174.
+(pdftex.def)             Requested size: 457.0101pt x 318.7427pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--177
+Overfull \hbox (1.76602pt too wide) in paragraph at lines 174--176
 [][]
  []
 
 
-Overfull \hbox (2.68045pt too wide) in paragraph at lines 179--180
+Overfull \hbox (2.68045pt too wide) in paragraph at lines 178--179
 []\OT1/cmr/m/n/12 The uti-lized net-work for the EEG modal-ity was a Con-vNet a
 s pro-posed by []Schirrmeister
  []
 
-[12] [13 <./figures/single_model_architecture.png>]
-<./figures/multi_model_architecture.png, id=59, 630.355pt x 712.6625pt>
+[12 <./figures/single_model_architecture.png>]
+<./figures/multi_model_architecture.png, id=56, 626.34pt x 709.65125pt>
 File: ./figures/multi_model_architecture.png Graphic file (type png)
 <use ./figures/multi_model_architecture.png>
 Package pdftex.def Info: ./figures/multi_model_architecture.png  used on input 
-line 192.
-(pdftex.def)             Requested size: 457.0101pt x 516.6834pt.
+line 190.
+(pdftex.def)             Requested size: 454.0992pt x 514.50021pt.
 
-Overfull \hbox (1.76602pt too wide) in paragraph at lines 192--194
+Underfull \hbox (badness 10000) in paragraph at lines 190--192
 [][]
  []
 
+[13] [14 <./figures/multi_model_architecture.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14] [15 <./figures/multi_model_architecture.png>] [16] [17
+[15] [16]
 
-] (./main.bbl
-Underfull \hbox (badness 3579) in paragraph at lines 304--315
-[]\OT1/cmr/m/n/12 InteraXon.  (n.d.[]).  \OT1/cmr/m/it/12 Muse 2 brain-wave ac-
-tiv-ity head-band.  \OT1/cmr/m/n/12 Re-trieved from
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[18]
-Underfull \hbox (badness 1502) in paragraph at lines 523--541
+[17
+
+] [18] (./main.bbl [19]
+Underfull \hbox (badness 1502) in paragraph at lines 551--569
 []\OT1/cmr/m/n/12 Schirrmeister, R. T., Sprin-gen-berg, J. T., Fiederer, L. D. 
 J., Glasstet-ter, M.,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 586--598
-[]\OT1/cmr/m/n/12 Shimmer-Research.  (n.d.[]).  \OT1/cmr/m/it/12 Shim-mer3 gsr 
-unit.  \OT1/cmr/m/n/12 Re-trieved from
+Underfull \hbox (badness 10000) in paragraph at lines 614--625
+[]\OT1/cmr/m/n/12 Shimmer-research.  (n.d.[]).  \OT1/cmr/m/it/12 Shim-mer3 gsr 
+unit.  \OT1/cmr/m/n/12 Re-trieved from:
  []
 
-[19]) [20] (./main.aux) ) 
+[20]) [21] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 4250 strings out of 492616
- 64003 string characters out of 6129482
- 140539 words of memory out of 5000000
- 8120 multiletter control sequences out of 15000+600000
- 10042 words of font info for 36 fonts, out of 8000000 for 9000
+ 4251 strings out of 492616
+ 64054 string characters out of 6129482
+ 138686 words of memory out of 5000000
+ 8122 multiletter control sequences out of 15000+600000
+ 9873 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,38p,1471b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,38p,1460b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/a
@@ -371,12 +370,11 @@ nts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mti12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-tt12.pfb>
-Output written on main.pdf (21 pages, 408620 bytes).
+mti12.pfb>
+Output written on main.pdf (22 pages, 406929 bytes).
 PDF statistics:
- 119 PDF objects out of 1000 (max. 8388607)
- 79 compressed objects within 1 object stream
+ 118 PDF objects out of 1000 (max. 8388607)
+ 78 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
