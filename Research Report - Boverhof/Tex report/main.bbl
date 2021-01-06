@@ -151,10 +151,10 @@ Daid%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-De~Waard%
+de Waard%
 \ \BBA {} te Groningen%
 }{%
-De~Waard%
+de Waard%
 \ \BBA {} te Groningen%
 }{%
 {\protect \APACyear {1996}}%
@@ -163,7 +163,7 @@ de1996measurement}
 \APACinsertmetastar {%
 de1996measurement}%
 \begin{APACrefauthors}%
-De~Waard, D.%
+de Waard, D.%
 \BCBT {}\ \BBA {} te Groningen, R.%
 \end{APACrefauthors}%
 \unskip\
@@ -185,7 +185,7 @@ Dolmans%
 }{%
 Dolmans%
 \ \protect \BOthers {.}}{%
-{\protect \APACyear {{\protect \BIP {}}}}%
+{\protect \APACyear {2020}}%
 }]{%
 dolmans2020perceived}
 \APACinsertmetastar {%
@@ -198,11 +198,12 @@ Dolmans, T.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{{\protect \BIP {}}}{}{}.
+\APACrefYearMonthDay{2020}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Percieved Mental Workload detection using intermediate
-  fusion multi-modal networks} {Percieved mental workload detection using
-  intermediate fusion multi-modal networks}.{\BBCQ}
+  fusion multi-modal networks. Manuscript submitted for publication} {Percieved
+  mental workload detection using intermediate fusion multi-modal networks.
+  manuscript submitted for publication}.{\BBCQ}
 \newblock
 
 \PrintBackRefs{\CurrentBib}
@@ -232,6 +233,33 @@ Fujita, D.%
   waveform features measured at low sampling rate}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{IEEE Access}{7}{}{58361--58367}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gunawardana%
+\ \BBA {} Shani%
+}{%
+Gunawardana%
+\ \BBA {} Shani%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+gunawardana2009survey}
+\APACinsertmetastar {%
+gunawardana2009survey}%
+\begin{APACrefauthors}%
+Gunawardana, A.%
+\BCBT {}\ \BBA {} Shani, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A survey of accuracy evaluation metrics of
+  recommendation tasks.} {A survey of accuracy evaluation metrics of
+  recommendation tasks.}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Machine Learning Research}{10}{12}{}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -288,29 +316,6 @@ Hart, S\BPBI G.%
 \BIn{} \APACrefbtitle {Proceedings of the human factors and ergonomics society
   annual meeting} {Proceedings of the human factors and ergonomics society
   annual meeting}\ (\BVOL~50, \BPGS\ 904--908).
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-InteraXon%
-}{%
-InteraXon%
-}{%
-{\protect \APACyear {{\protect \bibnodate {}}}}%
-}]{%
-muse}
-\APACinsertmetastar {%
-muse}%
-\begin{APACrefauthors}%
-InteraXon.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{{\protect \bibnodate {}}}{}{}.
-\newblock
-\APACrefbtitle {Muse 2 brainwave activity headband.} {Muse 2 brainwave activity
-  headband.}
-\newblock
-\begin{APACrefURL} \url{https://choosemuse.com/muse-2/} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -421,6 +426,29 @@ Mahtani, K.%
   observer bias}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{BMJ Evidence-Based Medicine}{23}{1}{23}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Muse-incorperation%
+}{%
+Muse-incorperation%
+}{%
+{\protect \APACyear {{\protect \bibnodate {}}}}%
+}]{%
+muse}
+\APACinsertmetastar {%
+muse}%
+\begin{APACrefauthors}%
+Muse-incorperation.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{{\protect \bibnodate {}}}{}{}.
+\newblock
+\APACrefbtitle {Muse 2 Brainwave Activity Headband.} {Muse 2 brainwave activity
+  headband.}
+\newblock
+\APAChowpublished {Retrieved from: https://choosemuse.com/muse-2/}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -573,9 +601,9 @@ Shi, Y.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Shimmer-Research%
+Shimmer-research%
 }{%
-Shimmer-Research%
+Shimmer-research%
 }{%
 {\protect \APACyear {{\protect \bibnodate {}}}}%
 }]{%
@@ -583,7 +611,7 @@ shimmer}
 \APACinsertmetastar {%
 shimmer}%
 \begin{APACrefauthors}%
-Shimmer-Research.%
+Shimmer-research.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
@@ -591,9 +619,8 @@ Shimmer-Research.%
 \newblock
 \APACrefbtitle {Shimmer3 GSR Unit.} {Shimmer3 gsr unit.}
 \newblock
-\begin{APACrefURL}
-  \url{https://www.shimmersensing.com/products/shimmer3-wireless-gsr-sensor}
-  \end{APACrefURL}
+\APAChowpublished {Retrieved from:
+  https://www.shimmersensing.com/products/shimmer3-wireless-gsr-sensor}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
