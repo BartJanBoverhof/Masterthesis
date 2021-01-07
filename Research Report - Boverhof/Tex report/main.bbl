@@ -452,6 +452,35 @@ Muse-incorperation.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Paszke%
+\ \protect \BOthers {.}}{%
+Paszke%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+paszke2017automatic}
+\APACinsertmetastar {%
+paszke2017automatic}%
+\begin{APACrefauthors}%
+Paszke, A.%
+, Gross, S.%
+, Chintala, S.%
+, Chanan, G.%
+, Yang, E.%
+, DeVito, Z.%
+\BDBL {}Lerer, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Automatic differentiation in PyTorch} {Automatic
+  differentiation in pytorch}.{\BBCQ}
+\newblock
+
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Pretorius%
 \ \BBA {} Cilliers%
 }{%

@@ -12,47 +12,52 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: References.bib
+Repeated entry---line 287 of file References.bib
+ : @article{paszke2017automatic
+ :                             ,
+I'm skipping whatever remains of this entry
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
 Warning--No journal in dolmans2020perceived
-You've used 29 entries,
+Warning--No journal in paszke2017automatic
+You've used 30 entries,
             6951 wiz_defined-function locations,
-            1444 strings with 16381 characters,
-and the built_in function-call counts, 58651 in all, are:
-= -- 7121
-> -- 574
-< -- 2826
-+ -- 2935
-- -- 68
-* -- 3804
-:= -- 10631
-add.period$ -- 124
-call.type$ -- 29
-change.case$ -- 482
+            1447 strings with 16612 characters,
+and the built_in function-call counts, 60691 in all, are:
+= -- 7355
+> -- 601
+< -- 2911
++ -- 3033
+- -- 70
+* -- 3934
+:= -- 10963
+add.period$ -- 127
+call.type$ -- 30
+change.case$ -- 499
 chr.to.int$ -- 0
-cite$ -- 59
-duplicate$ -- 1679
-empty$ -- 2254
-format.name$ -- 993
-if$ -- 11061
+cite$ -- 62
+duplicate$ -- 1761
+empty$ -- 2338
+format.name$ -- 1051
+if$ -- 11445
 int.to.chr$ -- 0
-int.to.str$ -- 87
+int.to.str$ -- 90
 missing$ -- 0
-newline$ -- 769
-num.names$ -- 232
-pop$ -- 1048
+newline$ -- 797
+num.names$ -- 240
+pop$ -- 1078
 preamble$ -- 1
-purify$ -- 114
+purify$ -- 118
 quote$ -- 0
-skip$ -- 3659
+skip$ -- 3796
 stack$ -- 0
-substring$ -- 3194
-swap$ -- 970
-text.length$ -- 84
+substring$ -- 3301
+swap$ -- 1013
+text.length$ -- 86
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 2512
-warning$ -- 1
-while$ -- 329
+type$ -- 2592
+warning$ -- 2
+while$ -- 348
 width$ -- 0
-write$ -- 1010
-(There was 1 warning)
+write$ -- 1048
+(There was 1 error message)

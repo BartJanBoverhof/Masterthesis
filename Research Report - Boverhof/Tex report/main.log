@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  6 JAN 2021 12:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  7 JAN 2021 10:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -297,7 +297,7 @@ Dolmans, Poel, van 't Klooster,
 File: ./figures/experimental_setup.png Graphic file (type png)
 <use ./figures/experimental_setup.png>
 Package pdftex.def Info: ./figures/experimental_setup.png  used on input line 1
-19.
+20.
 (pdftex.def)             Requested size: 398.28094pt x 210.38226pt.
  [8] [9 <./figures/experimental_setup.png>] [10]
 [11]
@@ -305,15 +305,15 @@ Package pdftex.def Info: ./figures/experimental_setup.png  used on input line 1
 File: ./figures/single_model_architecture.png Graphic file (type png)
 <use ./figures/single_model_architecture.png>
 Package pdftex.def Info: ./figures/single_model_architecture.png  used on input
- line 174.
+ line 175.
 (pdftex.def)             Requested size: 457.0101pt x 318.7427pt.
 
-Overfull \hbox (1.76602pt too wide) in paragraph at lines 174--176
+Overfull \hbox (1.76602pt too wide) in paragraph at lines 175--177
 [][]
  []
 
 
-Overfull \hbox (2.68045pt too wide) in paragraph at lines 178--179
+Overfull \hbox (2.68045pt too wide) in paragraph at lines 179--180
 []\OT1/cmr/m/n/12 The uti-lized net-work for the EEG modal-ity was a Con-vNet a
 s pro-posed by []Schirrmeister
  []
@@ -323,10 +323,10 @@ s pro-posed by []Schirrmeister
 File: ./figures/multi_model_architecture.png Graphic file (type png)
 <use ./figures/multi_model_architecture.png>
 Package pdftex.def Info: ./figures/multi_model_architecture.png  used on input 
-line 190.
+line 191.
 (pdftex.def)             Requested size: 454.0992pt x 514.50021pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--192
+Underfull \hbox (badness 10000) in paragraph at lines 191--193
 [][]
  []
 
@@ -341,26 +341,26 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [17
 
 ] [18] (./main.bbl [19]
-Underfull \hbox (badness 1502) in paragraph at lines 551--569
+Underfull \hbox (badness 1502) in paragraph at lines 580--598
 []\OT1/cmr/m/n/12 Schirrmeister, R. T., Sprin-gen-berg, J. T., Fiederer, L. D. 
 J., Glasstet-ter, M.,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 614--625
+Underfull \hbox (badness 10000) in paragraph at lines 643--654
 []\OT1/cmr/m/n/12 Shimmer-research.  (n.d.[]).  \OT1/cmr/m/it/12 Shim-mer3 gsr 
 unit.  \OT1/cmr/m/n/12 Re-trieved from:
  []
 
 [20]) [21] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 4251 strings out of 492616
- 64054 string characters out of 6129482
- 138686 words of memory out of 5000000
- 8122 multiletter control sequences out of 15000+600000
+ 4254 strings out of 492616
+ 64118 string characters out of 6129482
+ 138767 words of memory out of 5000000
+ 8125 multiletter control sequences out of 15000+600000
  9873 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,38p,1460b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,38p,1449b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/a
@@ -371,7 +371,7 @@ s/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mti12.pfb>
-Output written on main.pdf (22 pages, 406929 bytes).
+Output written on main.pdf (22 pages, 407275 bytes).
 PDF statistics:
  118 PDF objects out of 1000 (max. 8388607)
  78 compressed objects within 1 object stream
