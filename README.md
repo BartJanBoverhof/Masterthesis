@@ -5,6 +5,8 @@ A summary of the content of this repository, in addition to the required softwar
 
 | File/Folder | Description | Required software |
 | ----------- | ----------- | ----------------- |
-| 1. LaTeX report | Written research report LaTeX repository | Any LaTeX engine ([Texmaker](https://www.xm1math.net/texmaker/)recommended) |
+| 1. LaTeX report | Written manuscript LaTeX-repository | Any LaTeX engine ([Texmaker](https://www.xm1math.net/texmaker/) recommended) |
+| 2. Descriptives | R code & data to create descriptive statistics reported in the manuscript (method section) | [R](https://www.r-project.org/) (version 3.6.2) |
+| 3. Main analysis | R code & data to conduct the main analysis reported in the manuscript (result section) | [Python](https://www.python.org/) (version 3.9.1) & [Pytorch](https://pytorch.org/) | 
 
 
