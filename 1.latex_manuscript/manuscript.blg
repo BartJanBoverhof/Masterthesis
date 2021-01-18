@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99d (TeX Live 2019)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
-The top-level auxiliary file: main.aux
+The top-level auxiliary file: manuscript.aux
 The style file: apacite.bst
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
@@ -21,7 +21,7 @@ Warning--No journal in dolmans2020perceived
 Warning--No journal in paszke2017automatic
 You've used 30 entries,
             6951 wiz_defined-function locations,
-            1447 strings with 16612 characters,
+            1447 strings with 16624 characters,
 and the built_in function-call counts, 60691 in all, are:
 = -- 7355
 > -- 601

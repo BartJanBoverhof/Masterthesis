@@ -28,7 +28,7 @@
 \begin{center}
 \LARGE{\textbf{The Realtime Assessment of Mental Workload by Means of Multiple Bio-Signals}}\\
 \vspace*{2\baselineskip}
-\Large{\textbf{Master thesis Report}}\\
+\Large{\textbf{Masterthesis Report}}\\
 Methodology and Statistics for the Behavioral, Biomedical and Social Sciences\\
 \vspace*{1\baselineskip}
 Utrecht University\\
@@ -124,7 +124,29 @@ After each of the 18 sessions, respondents were asked to fill in the TLX questio
 The first segment emulated a scenario in which hostile spaceships approached the respondent's spaceship. The respondent was required to quickly react by defusing the hostiles in order to survive. The increment in difficulty caused the process of defusing hostile spaceships to become more challenging, hereby aiming to cause an increase in workload. The second segment emulated a scenario in which the respondent had to navigate their spaceship trough space, gathering as many way-points as possible. Obstacles around which the respondent had to navigate carefully, as well as hostile spaceships the respondent had to decimate, were introduced in the higher difficulty sessions. The third and final segment emulated a machine room, in which respondents had to control the power based on randomly generated requests. In the increased difficulty settings, variables that could overheat the spaceship were introduced, demanding the respondent to multi-task and aiming to increase workload as a consequence.
 
 \subsubsection{Respondents}
-In total, 25 respondents have participated in the study. No additional descriptive statistics can be presented in the this section as of yet. The respondents are students recruited from the University of Twente. Recruitment has been conducted by means of Sona, which is a cloud-based participant management system. A requirement for participation was that respondents didn't have any constraints that might interfere with the utilized sensors, such as for example a pacemaker. This was assessed by means of a short demographic questionnaire prior to the experiment. Additionally, respondents were made aware of informed consent prior to the experiment in order to ensure completely voluntary participation. Respondents were able to draw back from the experiment at any time. 
+In total, 25 respondents have participated in the study. Demographic information of the respondents is set forth in Table \ref{table:demographics}. The respondents are students recruited from the University of Twente. Recruitment has been conducted by means of Sona, which is a cloud-based participant management system. A requirement for participation was that respondents didn't have any constraints that might interfere with the utilized sensors, such as for example a pacemaker. This was assessed by means of a short demographic questionnaire prior to the experiment. Additionally, respondents were made aware of informed consent prior to the experiment in order to ensure completely voluntary participation. Respondents were able to draw back from the experiment at any time. 
+
+\bgroup
+\def\arraystretch{1.6}  
+\begin{table}[h]
+\bigskip
+\caption{Demographic Overview Respondents}
+\label{table:demographics}
+\begin{tabular}{rrrr}
+  \hline
+ & Female & Male \\ 
+  \hline
+10-19 &   7 &   0 &  \hspace{1cm} \\ 
+  20-29 &  13 &   4 &   \\ 
+  30-39 &   1 &   1  &   \\ 
+  40-49 &   0 &   8  &   \\ 
+  50-59 &   0 &   0 &   \\ 
+  60-69 &   0 &   4 &   \\ 
+   \hline
+   \bigskip
+\end{tabular}
+\end{table}
+\egroup
 
 \subsubsection{Devices and Sampling Rate}
 The Shimmer3 GSR+ sensor was used for both PPG and GSR measurements. This device was worn on the wrist. Signals were communicated wirelessly. An ear-clip was utilized for measuring PPG, and converting this to estimate heart rate. Skin conductivity, or GSR, was monitored by two electrodes attached to the fingers \cite{shimmer}. EEG measurement was conducted with the Muse 2, which is a multi-sensor headband that provides feedback on brain activity \cite{muse}. The Shimmer3 GSR+ is able to read and output data signals on a sampling rate of 256 Hz, whereas the Muse 2 is able to sample at a maximum rate of 220 Hz. 
@@ -154,9 +176,9 @@ where $f_{samp}$ reflects the required sampling rate and $f_{max}$ reflects the 
  Electroencephalogram (EEG) & 200                         \\
 Galvanic Skin Response (GSR) & 5                           \\
 Photoplethysmography (PPG) & 100                         \\ \hline
+   \bigskip
 \end{tabular}
 \end{table}
-\bigskip
 \egroup
 
 \subsubsection{Synchronization}

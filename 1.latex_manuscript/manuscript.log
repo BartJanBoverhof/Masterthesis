@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  15 JAN 2021 15:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  18 JAN 2021 12:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**main.tex
-(./main.tex
+**manuscript.tex
+(./manuscript.tex
 LaTeX2e <2018-12-01>
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -165,8 +165,8 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutvoffset=\dimen128
 \Gm@dimlist=\toks22
 )
-(./main.aux)
-\openout1 = `main.aux'.
+(./manuscript.aux)
+\openout1 = `manuscript.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
@@ -181,13 +181,15 @@ LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 \c@maskedRefs=\count106
- (/usr/local/texlive/2019/texmf-dist/tex/latex/apacite/english.apc
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/apacite/english.apc
 File: english.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
+
 (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count107
@@ -299,48 +301,55 @@ File: ./figures/experimental_setup.png Graphic file (type png)
 Package pdftex.def Info: ./figures/experimental_setup.png  used on input line 1
 20.
 (pdftex.def)             Requested size: 398.28094pt x 210.38226pt.
- [8] [9 <./figures/experimental_setup.png>] [10]
+ [8]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9 <./figures/experimental_setup.png>] [10]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [11]
 <./figures/single_model_architecture.png, id=50, 630.355pt x 439.6425pt>
 File: ./figures/single_model_architecture.png Graphic file (type png)
 <use ./figures/single_model_architecture.png>
 Package pdftex.def Info: ./figures/single_model_architecture.png  used on input
- line 175.
+ line 197.
 (pdftex.def)             Requested size: 457.0101pt x 318.7427pt.
 
-Overfull \hbox (1.76602pt too wide) in paragraph at lines 175--177
+Overfull \hbox (1.76602pt too wide) in paragraph at lines 197--199
 [][]
  []
 
 
-Overfull \hbox (2.68045pt too wide) in paragraph at lines 179--180
+Overfull \hbox (2.68045pt too wide) in paragraph at lines 201--202
 []\OT1/cmr/m/n/12 The uti-lized net-work for the EEG modal-ity was a Con-vNet a
 s pro-posed by []Schirrmeister
  []
 
-[12 <./figures/single_model_architecture.png>]
-<./figures/multi_model_architecture.png, id=56, 626.34pt x 709.65125pt>
+[12] [13 <./figures/single_model_architecture.png>]
+<./figures/multi_model_architecture.png, id=59, 626.34pt x 709.65125pt>
 File: ./figures/multi_model_architecture.png Graphic file (type png)
 <use ./figures/multi_model_architecture.png>
 Package pdftex.def Info: ./figures/multi_model_architecture.png  used on input 
-line 191.
+line 213.
 (pdftex.def)             Requested size: 454.0992pt x 514.50021pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--193
+Underfull \hbox (badness 10000) in paragraph at lines 213--215
 [][]
  []
 
-[13] [14 <./figures/multi_model_architecture.png>]
+[14] [15 <./figures/multi_model_architecture.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15] [16]
+[16] [17]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[17
+[18
 
-] [18] (./main.bbl [19]
+] [19] (./manuscript.bbl [20]
 Underfull \hbox (badness 1502) in paragraph at lines 580--598
 []\OT1/cmr/m/n/12 Schirrmeister, R. T., Sprin-gen-berg, J. T., Fiederer, L. D. 
 J., Glasstet-ter, M.,
@@ -352,29 +361,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 643--654
 unit.  \OT1/cmr/m/n/12 Re-trieved from:
  []
 
-[20]) [21] (./main.aux) ) 
+[21]) [22] (./manuscript.aux) ) 
 Here is how much of TeX's memory you used:
- 4254 strings out of 492616
- 64118 string characters out of 6129482
- 138767 words of memory out of 5000000
- 8125 multiletter control sequences out of 15000+600000
+ 4255 strings out of 492616
+ 64204 string characters out of 6129482
+ 138776 words of memory out of 5000000
+ 8126 multiletter control sequences out of 15000+600000
  9873 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,38p,1449b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mti12.pfb>
-Output written on main.pdf (22 pages, 407275 bytes).
+ 41i,9n,38p,1455b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2019/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmti12.pfb>
+Output written on manuscript.pdf (23 pages, 407963 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
- 78 compressed objects within 1 object stream
+ 121 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
