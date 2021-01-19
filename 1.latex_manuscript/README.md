@@ -6,11 +6,9 @@ This subsection of the repository contains the following objects/folders:
 * `manuscript.pdf`: LaTeX manuscript output in pdf format. 
 * `References.bib`: Bibtex file that contains all used references in Bibtex style.
 * `figures` folder: folder that contains all figures utilized in the manuscript.
-* All remaining files are external/auxiliary files. Since as of yet the manuscript is still in edit, all these files are retained. 
+* All remaining files are external/auxiliary files. Since as of yet the manuscript is still in edit, all these files are retained for now. 
 
 The following software is required: 
 * Any LaTeX editor should be utilizable for rendering the manuscript. The `Texmaker` [version 5.0.4](https://www.xm1math.net/texmaker/) is utilized in this repository, and is therefore recommended.
-
-Additional note: The complete git history of this manuscript does not date back fully to the start of this manuscript, but rather initiates slightly later in time. As a consequence, the earlier work on this manuscript was not logged via git. 
 
 
