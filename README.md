@@ -8,12 +8,12 @@ A general overview of the content and structure of this repository, in addition 
 | ----------- | ----------- | ----------------- |
 | `1.latex_manuscript` | Written manuscript LaTeX-repository | Any LaTeX engine ([Texmaker](https://www.xm1math.net/texmaker/) recommended) |
 | `2.descriptives` | R code & data to obtain descriptive statistics as reported in the manuscript (method section) | [R](https://www.r-project.org/) (version 3.6.2) |
-| `3.main_analysis` | R code & data to conduct the main analysis reported in the manuscript (result section) | [Python](https://www.python.org/) (version 3.9.1) & [PyTorch](https://pytorch.org/) | 
+| `3.main_analysis` | Python code & data to conduct the main analysis reported in the manuscript (result section) | [Python](https://www.python.org/) (version 3.9.1) & [PyTorch](https://pytorch.org/) (version 1.7.1) | 
 
 More detailed information on the content within each of the subsection is provided via additional `README.md` files. Each of the three subsection is accompanied with one additional `README.md` file.
 
 ---
 ### Some notes to Gerko: 
-- As of yet I don't have access to the main data files yet. Therefore, the subfolder `3.main_analysis` is work in progress. In order for you to get an idea about the future repository structure, I did already set up some initial files/projects/structure in this folder. 
+- As of yet I don't have access to the main data files. Therefore, the subfolder `3.main_analysis` is work in progress. In order for you to get an idea about the future repository structure, I did already set up some initial files/projects/structure in this folder. 
 - On the main page, you might observe that Jan-Willem is a collaborator. The reason for this is that I wanted to check whether someone invited to this repository could commit directly to the main branch. Well, apparently they can... I removed the commits from the git history, however Jan-Willem is still listed as collaborator on the main page of the project. I did some research to find out how to reverse this, but couldn't find anything that worked. If you happen to have an idea, im glad to hear it. Just removing the commits from the history didn't do the trick. (I by the way also contacted the GitHub customer service to see if they can help).
 - The complete git history of the LaTeX manuscript (in the `1.latex_manuscript subfolder`) does not date back fully to the start of this manuscript, but rather initiates slightly later in time. The reason for this is that I initially used overleaf, and didn't log the history of the document. As a consequence, only the very early work on the manuscript was not logged via git. 
