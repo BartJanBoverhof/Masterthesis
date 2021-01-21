@@ -1,5 +1,5 @@
 # 4. Multi-Modular Analysis
-This subsection of the repository contains the multi-modular main analysis. For an extensive ellaboration on the approach, please consult the research manuscript [manuscript.pdf](Masterthesis/1.latex_manuscript/manuscript.pdf).
+This subsection of the repository contains the multi-modular main analysis. For an extensive elaboration on the approach, please consult the research manuscript [manuscript.pdf](https://github.com/BartJanBoverhof/Masterthesis/tree/main/1.latex_manuscript).
 
 ---
 
