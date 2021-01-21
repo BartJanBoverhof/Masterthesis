@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  21 JAN 2021 09:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  21 JAN 2021 15:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -314,15 +314,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: ./figures/single_model_architecture.png Graphic file (type png)
 <use ./figures/single_model_architecture.png>
 Package pdftex.def Info: ./figures/single_model_architecture.png  used on input
- line 197.
+ line 196.
 (pdftex.def)             Requested size: 457.0101pt x 318.7427pt.
 
-Overfull \hbox (1.76602pt too wide) in paragraph at lines 197--199
+Overfull \hbox (1.76602pt too wide) in paragraph at lines 196--198
 [][]
  []
 
 
-Overfull \hbox (2.68045pt too wide) in paragraph at lines 201--202
+Overfull \hbox (2.68045pt too wide) in paragraph at lines 200--201
 []\OT1/cmr/m/n/12 The uti-lized net-work for the EEG modal-ity was a Con-vNet a
 s pro-posed by []Schirrmeister
  []
@@ -332,10 +332,10 @@ s pro-posed by []Schirrmeister
 File: ./figures/multi_model_architecture.png Graphic file (type png)
 <use ./figures/multi_model_architecture.png>
 Package pdftex.def Info: ./figures/multi_model_architecture.png  used on input 
-line 213.
+line 212.
 (pdftex.def)             Requested size: 454.0992pt x 514.50021pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--215
+Underfull \hbox (badness 10000) in paragraph at lines 212--214
 [][]
  []
 
@@ -380,7 +380,7 @@ msfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmti12.pfb>
-Output written on manuscript.pdf (23 pages, 407963 bytes).
+Output written on manuscript.pdf (23 pages, 408011 bytes).
 PDF statistics:
  121 PDF objects out of 1000 (max. 8388607)
  80 compressed objects within 1 object stream

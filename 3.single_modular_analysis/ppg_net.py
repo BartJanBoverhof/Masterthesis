@@ -1,5 +1,7 @@
 """
-Single-modular deep neural network PPG modality
+@Author: Bart-Jan Boverhof
+@Last Modified by: Bart-Jan Boverhof
+@Description Single-modular deep neural network design for the PPG-modality.
 """
 
 
@@ -12,19 +14,8 @@ import torch.nn.functional as F #PyTorch library providing a lot of pre-specifie
 
 
 
-################### 1. Loading data ###################
-#Load the training data
-train_dat = 
-train_loader = torch.utils.data.DataLoader(train_dat, batch_size = 64, shuffle = True)
-
-#Load the test data
-test_dat = 
-test_loader = torch.utils.data.Dataloader(test_dat, batch_size = 64, shuffle = True)
-
-
-
-################### 2. Define Network architecture ###################
-class Net(nn.Module):
+################### 1. Define Network architecture ###################
+class PpgNet(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
         #Convolutional layers
@@ -54,4 +45,4 @@ class Net(nn.Module):
         return x
 
 #Display network
-Net()
+PpgNet()
