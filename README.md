@@ -11,7 +11,7 @@ A general overview of the content and structure of this repository, in addition 
 | `2.descriptives` | R code & data to obtain descriptive statistics as reported in the manuscript (method section) | ![R version](https://img.shields.io/badge/R-%33.6-blue) |
 | `3.single_modular_analysis` | Python code to conduct the main single-modular analysis | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) ![PyTorch version](https://img.shields.io/badge/PyTorch-%31.7-green) | 
 | `4.multi_modular_analysis` | Python code to conduct the main multi-modular analysis | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) ![PyTorch version](https://img.shields.io/badge/PyTorch-%31.7-green) | 
-| `5.data` | Folder that contains the data (currently empty, *21-01-2021*) | |
+| `5.data` | Folder that contains the data (xdf extension) & reader utilized for reading the data | |
 
 
 More detailed information regarding the content of each of the subsection is provided in additional `README.md` files situated in the respective subsections.
