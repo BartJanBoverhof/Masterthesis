@@ -12,3 +12,6 @@ For an extensive elaboration on the approach, please consult the research manusc
 This subsection of the repository contains the following objects: 
 * `bc10` folder: Data of particpant `bc10` in `.xdf` format.
 * `data_writer`: Script that provides a function to read and write the data in a usable extension (`.TFRecord`).
+
+In addition to the earlier listed software, the following packages are utilized:  
+- `pyxdf`: package for reading .xdf files.
