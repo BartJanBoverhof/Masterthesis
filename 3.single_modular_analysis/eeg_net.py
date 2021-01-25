@@ -17,12 +17,12 @@ import torch.nn.functional as F #PyTorch library providing a lot of pre-specifie
 ################### 1. Define Network architecture ###################
 class EegNet(nn.Module):
     def __init__(self):
-        super(Net, self).__init__()
+        super(EegNet, self).__init__()
         #Convolutional layers
-        self.conv1 = nn.Conv1d(784, 256)
-        self.conv2 = nn.Conv1d(784, 256)
-        self.conv3 = nn.Conv1d(784, 256)
-        self.conv4 = nn.Conv1d(784, 256)
+        self.conv1 = nn.Conv1d(3, 16, 3, padding=1)
+        self.conv2 = nn.Conv1d(16, 32, 3, padding=1)
+        self.conv3 = nn.Conv1d(32, 64, 3, padding=1)
+        self.conv4 = nn.Conv1d(3, 16, 3, padding=1)
 
         #Max pooling layer (3x1)
         self.pool = nn.MaxPool1d(kernel_size = 3, stride = 1) 
@@ -45,6 +45,6 @@ class EegNet(nn.Module):
         return x
 
 #Display network
-EegNet()
-
+eeg_net = EegNet()
+print(eeg_net)
 
