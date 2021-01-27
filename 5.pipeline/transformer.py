@@ -4,6 +4,7 @@
 @Description: Creates pandas dataframes based on the desired markers.
 """
 
+#### Prerequisites ####
 #Importing packages
 import pyxdf
 import numpy as np
@@ -14,13 +15,13 @@ import pandas as pd
 event_list = ['1', '2', '3', 'break', 'rest']
 stream_types_list = ['PPG', 'GSR', 'EEG']
 
-#Window size parameters
-block_start_margin = 0  # number seconds cut from the start of each block
-block_end_margin = 0    # number of seconds cut from the end of each block
+#Window creation related parameters
+block_start_margin = 0  
+block_end_margin = 0    
+window_size = 50       
+window_overlap = 1     
+window_exact = True     
 
-window_size = 50         # in seconds
-window_overlap = 1      # in seconds
-window_exact = True     # whether or not smaller windows then window_size are used
 
 
 def load_data(filename):
@@ -33,8 +34,9 @@ def load_data(filename):
     streams, _ = pyxdf.load_xdf(filename)
     return streams
 
-def create_windows(streams, events, 
 
+
+def create_windows(streams, events, 
                    start_margin=0, end_margin=0, 
                    window_size=0, window_overlap=0, 
                    window_exact=False):
@@ -42,11 +44,13 @@ def create_windows(streams, events,
     Purpose:
         Use the marker stream to create windows and return these in a dataframe
     Arguments:
-        start_margin:
-        end_margin:
-        window_size:
-        window_overlap:
-        window_exaxt:
+        streams: streams loaded from the .xdf file       
+        event_list: experimental events to create windows from 
+        start_margin: number of seconds to cut from the start of each block
+        end_margin: number of seconds to cut from the end of each block
+        window_size: windows size in seconds
+        window_overlap: window overlap in seconds
+        window_exaxt: whether or not smaller windows then window_size are used
     Return:
         dataframe:
             ROWS:
@@ -117,6 +121,7 @@ def create_windows(streams, events,
     return result
 
 
+
 def create_dataframes(streams, stream_types):
     """
     Purpose:
@@ -152,36 +157,24 @@ def create_dataframes(streams, stream_types):
 
             stream_data = pd.DataFrame(data, columns=labels) #Create a seperate dataframe with the data for each stream
             stream_data.insert(0, "timestamps", timestamps, True) #Add column with timestamps to data
-            result[stream_name] = stream_data
+            result[stream_type] = stream_data
     return result
 
 
-def main(filename):
-        """
-    Purpose:
-        Create a dataframe
-    Arguments:
-        stream:
-        stream type: a list of the required streams
-    Return:
-        dataframe:
-            ROWS:
-                windows
-            COLS:
-                index: window index
-                durations: window durations
-                start: start timecode window
-                task: task type (1, 2, 3, rest, break)
-                tries: number of tries to cut the window
-                window: window index per task (thus seperate index for each task)
+
+def window_cutter(stream_dataframes, windows):
     """
-    print("filename", filename)
-    streams = load_data(filename)
-    print('streams', len(streams))
-    windows = create_windows(streams, event_list, block_start_margin, block_end_margin, window_size, window_overlap, window_exact)
-    print('windows', windows)
-    stream_dataframes = create_dataframes(streams, stream_types_list) #Obtain dict with 
-    print('data', stream_dataframes)
+    Purpose:
+        Cut data into specified windows
+    Arguments:
+        stream_dataframes: 
+        windows:
+    Return:
+    """
+
+    #Extract utilized modalities
+    stream_labels = list(stream_dataframes.keys())
+    result = {}
 
     #Create a dataset for every stream in every window
     for window in windows.itertuples(): #Iterate over all windows defined in the windows dataframe
@@ -190,14 +183,34 @@ def main(filename):
         stop_ts = window.stop
         for dataframe_id in stream_dataframes: #Iterate over the three streams
             dataframe = stream_dataframes[dataframe_id]
+            
+            #Create unqiue time window name (of modality + window number)
+            
+
             #Select only relevant timestamps
             after_start = dataframe['timestamps'] >= start_ts
             before_end = dataframe['timestamps'] < stop_ts
             epoch = dataframe[after_start & before_end] 
 
-            print(dataframe_id, epoch) 
+            #Append to dict
+            result["GSR"] = 
+
+            print(dataframe_id, epoch)
+
+
+
+def main(filename): 
+    print("filename", filename)
+    streams = load_data(filename)
+    print('streams', len(streams))
+    windows = create_windows(streams, event_list, block_start_margin, block_end_margin, window_size, window_overlap, window_exact)
+    print('windows', windows)
+    stream_dataframes = create_dataframes(streams, stream_types_list) #Obtain dict with 
+    print('data', stream_dataframes)
+    cutted_data = window_cutter(stream_dataframes, windows)
+
 
 if __name__ == '__main__':
-    main("/Users/bart-janb/Documents/GitHub/Masterthesis/5.data_preparation/data/bc10/bci10 operations.xdf")
+    main("5.pipeline/data/bc10/bci10 operations.xdf")
 
-
+    

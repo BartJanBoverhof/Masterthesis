@@ -1,7 +1,6 @@
 .DS_Store
-.DS_Store
+.vscode
 single_modular.code-workspace
 multi_modular.code-workspace
-.vscode
-5.data_preperation/data/
 masterthesis.code-workspace
+*.xdf

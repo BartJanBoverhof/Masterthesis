@@ -11,7 +11,7 @@ A general overview of the content and structure of this repository, in addition 
 | `2.descriptives` | R code & data to obtain descriptive statistics as reported in the manuscript (method section) | ![R version](https://img.shields.io/badge/R-%33.6-blue) |
 | `3.single_modular_analysis` | Python code to conduct the main single-modular analysis | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) ![PyTorch version](https://img.shields.io/badge/PyTorch-%31.7-green) | 
 | `4.multi_modular_analysis` | Python code to conduct the main multi-modular analysis | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) ![PyTorch version](https://img.shields.io/badge/PyTorch-%31.7-green) | 
-| `5.data_preperation` | Folder that contains the script to read and write the data into the usable `.csv` format. | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) |
+| `5.pipeline` | Folder that contains scripts to read data and cut into epochs of `pandas df` type. | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) |
 
 More detailed information regarding the content of each of the subsection is provided in additional `README.md` files situated in the respective subsections.
 
