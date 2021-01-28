@@ -3,13 +3,12 @@
 @Modified by: Bart-Jan Boverhof
 @Description: Creates pandas dataframes based on the desired markers.
 """
-
 #### Prerequisites ####
 #Importing packages
 import pyxdf
-import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
+import pickle
+import os, sys; sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 #Defining required events and streams
 event_list = ['1', '2', '3', 'break', 'rest']
@@ -31,7 +30,22 @@ def load_data(filename):
     Arguments:
         filename: Path of the respective .xdf file
     """
+    print(  """
+   transforming...
+         __
+ _(\    |@@|
+(__/\__ \--/ __
+   \___|----|  |   __
+       \ }{ /\ )_ / _
+       /\__/\ \__O (__
+      (--/\--)    \__/
+      _)(  )(_
+     `---''---`
+    """)
+
     streams, _ = pyxdf.load_xdf(filename)
+
+
     return streams
 
 
@@ -67,9 +81,9 @@ def create_windows(streams, events,
     tries = {}
     for stream in streams: #Iterate over the 18 streams
         stream_type = stream['info']['type'][0] #Determine the type of the stream
-        if stream_type == 'GameEvents': #We create the windows only based on the event stream
-            data = stream['time_series'] #Data object: contains the events (844)
-            timestamps = stream['time_stamps'] #Timestamps object: contains all time stamps ((844))
+        if stream_type == 'GameEvents' and stream["time_stamps"].size !=0 : #We create the windows only based on the event stream & if it is not empty (some event streams are double)!
+            data = stream['time_series'] #Data object: contains the events 
+            timestamps = stream['time_stamps'] #Timestamps object: contains all time stamps 
 
             for index, event in enumerate(data): #For all of the selected events (844)
                 #Only for events that we are interested in
@@ -162,7 +176,7 @@ def create_dataframes(streams, stream_types):
 
 
 
-def window_cutter(stream_dataframes, windows):
+def cut_epochs(stream_dataframes, windows):
     """
     Purpose:
         Cut data into specified windows
@@ -174,7 +188,7 @@ def window_cutter(stream_dataframes, windows):
 
     #Extract utilized modalities
     stream_labels = list(stream_dataframes.keys())
-    result = {}
+    result = {stream_labels[0]:[], stream_labels[1]:[], stream_labels[2]:[]}
 
     #Create a dataset for every stream in every window
     for window in windows.itertuples(): #Iterate over all windows defined in the windows dataframe
@@ -184,33 +198,25 @@ def window_cutter(stream_dataframes, windows):
         for dataframe_id in stream_dataframes: #Iterate over the three streams
             dataframe = stream_dataframes[dataframe_id]
             
-            #Create unqiue time window name (of modality + window number)
-            
-
             #Select only relevant timestamps
             after_start = dataframe['timestamps'] >= start_ts
             before_end = dataframe['timestamps'] < stop_ts
             epoch = dataframe[after_start & before_end] 
 
             #Append to dict
-            result["GSR"] = 
+            result[dataframe_id].append(epoch)
 
-            print(dataframe_id, epoch)
+    return result
 
 
 
-def main(filename): 
+def transformer(filename): 
     print("filename", filename)
     streams = load_data(filename)
     print('streams', len(streams))
     windows = create_windows(streams, event_list, block_start_margin, block_end_margin, window_size, window_overlap, window_exact)
     print('windows', windows)
-    stream_dataframes = create_dataframes(streams, stream_types_list) #Obtain dict with 
+    stream_dataframes = create_dataframes(streams, stream_types_list) 
     print('data', stream_dataframes)
-    cutted_data = window_cutter(stream_dataframes, windows)
-
-
-if __name__ == '__main__':
-    main("5.pipeline/data/bc10/bci10 operations.xdf")
-
-    
+    cutted_data = cut_epochs(stream_dataframes, windows)
+    return cutted_data

@@ -10,7 +10,13 @@ For an extensive elaboration on the approach, please consult the research manusc
 ---
 
 This subsection of the repository contains the following objects: 
-* `transformer`: Script that provides a function to read and write the data in a usable extension (`pandas dataframe`).
+* `transformer.py`: Script that provides functions utilized for cutting epochs and writing data in usable format:
+    - `load_data`: read the data from `.xdf` extension.
+    - `create_windows`: determine timestamps for the selected time window.
+    - `create_dataframe`: creates `pandas dataframes` based on the previously selected windows.
+    - `cut_epochs`: cuts the data into epochs based on the selected time windows.
+    - `transformer`: function that combines all of the above functions. 
+* `main.py`: central script from which the data transformation is conducted.
 
 In addition to the earlier listed software, specifically the following packages are utilized:  
 - `pyxdf`: package for reading .xdf files.
