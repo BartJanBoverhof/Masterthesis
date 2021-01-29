@@ -7,10 +7,10 @@ A general overview of the content and structure of this repository, in addition 
 
 | Folder | Description | Utilized software |
 | ----------- | ----------- | ----------------- |
-| `descriptives` | R code & data to obtain descriptive statistics as reported in the manuscript (method section) | ![R version](https://img.shields.io/badge/R-%33.6-blue) |
-| `manuscript` | Written LaTeX manuscript | ![Texmaker](https://img.shields.io/badge/Texmaker-%35.0-orange) |
+| `descriptives` | R code & data to obtain descriptive statistics as reported in the manuscript (method section). | ![R version](https://img.shields.io/badge/R-%33.6-blue) |
+| `manuscript` | Written LaTeX manuscript. | ![Texmaker](https://img.shields.io/badge/Texmaker-%35.0-orange) |
 | `pipeline` | Folder that contains scripts to read data and cut into epochs of `pandas df` type. | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) |
-| `pytorch` | Definition of deep-learning models and scripts to train these | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) ![PyTorch version](https://img.shields.io/badge/PyTorch-%31.7-green) | 
+| `pytorch` | Definition of deep-learning models and scripts to train these. | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) ![PyTorch version](https://img.shields.io/badge/PyTorch-%31.7-green) | 
 
 More detailed information regarding the content of each of the subsection is provided in additional `README.md` files situated in the respective subsections.
 
