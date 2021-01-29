@@ -1,4 +1,4 @@
-# 2. Descriptives
+# Descriptives
 This subsection of the repository deals with the description of the demographics information of the respondents. These demographics are reported in the [manuscript.pdf](https://github.com/BartJanBoverhof/Masterthesis/tree/main/1.latex_manuscript).
 
 ---

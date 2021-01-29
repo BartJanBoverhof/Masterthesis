@@ -1,4 +1,4 @@
-# 1. LaTeX manuscript
+# LaTeX manuscript
 This subsection of the repository contains the LaTeX manuscript. 
 
 ---
