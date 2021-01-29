@@ -7,8 +7,6 @@
 #Importing packages
 import pyxdf
 import pandas as pd
-import pickle
-import os, sys; sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 #Defining required events and streams
 event_list = ['1', '2', '3', 'break', 'rest']

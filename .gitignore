@@ -1,7 +1,6 @@
 .DS_Store
 .vscode
-single_modular.code-workspace
-multi_modular.code-workspace
 masterthesis.code-workspace
 *.xdf
 *.pickle
+__pycache__

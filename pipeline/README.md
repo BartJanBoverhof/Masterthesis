@@ -1,4 +1,4 @@
-# 5. Pipeline
+# Pipeline
 The data obtained from *LSL* (see manuscript for an elaboration on *LSL*) is in `.xdf` format. Since files with `.xdf` extensions can't be directly read into Python, this subsection contains scripts to read and write the data as dataframe. The time-series are cut into windows. Ultimately, the goal of this script is to obtain a seperate dataframe for each window, for each modality seperately. Due to privacy concerns the data is not included provided.
 
 For an extensive elaboration on the approach, please consult the research manuscript [manuscript.pdf](https://github.com/BartJanBoverhof/Masterthesis/tree/main/1.latex_manuscript).
@@ -21,3 +21,7 @@ This subsection of the repository contains the following objects:
 In addition to the earlier listed software, specifically the following packages are utilized:  
 - `pyxdf`: package for reading .xdf files.
 - `pandas`: data science package. 
+- `pickle`: transform data is .pickle file.
+
+## Still to add: 
+- Automate transformer such that it iterates over, and transforms for all respondents.
