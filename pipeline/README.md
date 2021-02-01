@@ -24,4 +24,4 @@ In addition to the earlier listed software, specifically the following packages 
 - `pickle`: transform data is .pickle file.
 
 ## Still to add: 
-- Automate transformer such that it iterates over, and transforms for all respondents.
+- Automate transformer such that it iterates over, and transforms for all respondents. (Look into `list_fies_recursively`)
