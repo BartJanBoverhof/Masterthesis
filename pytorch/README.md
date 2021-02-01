@@ -1,7 +1,7 @@
 # PyTorch
 This subsection of the repository contains all PyTorch related code. This includes network architectures utilized in the main analysis, as well as scripts that are utilized for training.
 
-For an extensive elaboration on the approach, please consult the research manuscript [manuscript.pdf](https://github.com/BartJanBoverhof/Masterthesis/tree/main/1.latex_manuscript).
+For an extensive elaboration on the approach, please consult the research manuscript [manuscript.pdf](https://github.com/BartJanBoverhof/Masterthesis/tree/main/manuscript).
 
 ---
 
