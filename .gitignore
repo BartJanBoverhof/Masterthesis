@@ -4,3 +4,4 @@ masterthesis.code-workspace
 *.xdf
 *.pickle
 __pycache__
+*.csv

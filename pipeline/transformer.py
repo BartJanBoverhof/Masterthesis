@@ -7,18 +7,8 @@
 #Importing packages
 import pyxdf
 import pandas as pd
-
-#Defining required events and streams
-event_list = ['1', '2', '3', 'break', 'rest']
-stream_types_list = ['PPG', 'GSR', 'EEG']
-
-#Window creation related parameters
-block_start_margin = 0  
-block_end_margin = 0    
-window_size = 50       
-window_overlap = 1     
-window_exact = True     
-
+import torch
+ 
 
 
 def load_data(filename):
@@ -28,7 +18,7 @@ def load_data(filename):
     Arguments:
         filename: Path of the respective .xdf file
     """
-    print(  """
+    print("""
    transforming...
          __
  _(\    |@@|
@@ -38,7 +28,7 @@ def load_data(filename):
        /\__/\ \__O (__
       (--/\--)    \__/
       _)(  )(_
-     `---''---`
+     `---''---`     
     """)
 
     streams, _ = pyxdf.load_xdf(filename)
@@ -49,9 +39,9 @@ def load_data(filename):
 
 
 def create_windows(streams, events, 
-                   start_margin=0, end_margin=0, 
-                   window_size=0, window_overlap=0, 
-                   window_exact=False):
+                   start_margin, end_margin, 
+                   window_size, window_overlap, 
+                   window_exact):
     """
     Purpose:
         Use the marker stream to create windows and return these in a dataframe
@@ -129,6 +119,7 @@ def create_windows(streams, events,
                                                 'duration': window_duration}, ignore_index=True)
                         window_id += 1
                         next_window_start_ts = window_end_ts - window_overlap
+
             break
     return result
 
@@ -201,20 +192,28 @@ def cut_epochs(stream_dataframes, windows):
             before_end = dataframe['timestamps'] < stop_ts
             epoch = dataframe[after_start & before_end] 
 
-            #Append to dict
-            result[dataframe_id].append(epoch)
+            #Only including data points in epoch object
+            epoch.tensor = epoch.iloc[:,1]
 
+            #Transfer to Tensor
+            epoch.tensor = torch.FloatTensor(epoch.iloc[:,1].values)
+
+            #Append to dict
+            result[dataframe_id].append(epoch.tensor)     
     return result
 
 
 
-def transformer(filename): 
+def transformer(filename, event_list, block_start_margin, block_end_margin, window_size, window_overlap, window_exact, stream_types_list): 
     print("filename", filename)
-    streams = load_data(filename)
+    streams = load_data(filename = filename)
     print('streams', len(streams))
-    windows = create_windows(streams, event_list, block_start_margin, block_end_margin, window_size, window_overlap, window_exact)
+    windows = create_windows(streams = streams, events = event_list, 
+                            start_margin = block_start_margin, end_margin = block_end_margin, 
+                            window_size = window_size, window_overlap = window_overlap, 
+                            window_exact = window_exact)
     print('windows', windows)
-    stream_dataframes = create_dataframes(streams, stream_types_list) 
+    stream_dataframes = create_dataframes(streams = streams, stream_types = stream_types_list) 
     print('data', stream_dataframes)
     cutted_data = cut_epochs(stream_dataframes, windows)
     return cutted_data
