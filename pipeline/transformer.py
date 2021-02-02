@@ -18,6 +18,7 @@ def load_data(filename):
     Arguments:
         filename: Path of the respective .xdf file
     """
+
     print("""
    transforming...
          __
@@ -40,33 +41,47 @@ def load_data(filename):
 
 def create_windows(streams, events, 
                    start_margin, end_margin, 
-                   window_size, window_overlap, 
-                   window_exact):
+                   window_size, window_overlap, window_exact, 
+                   labels, role):
     """
     Purpose:
-        Use the marker stream to create windows and return these in a dataframe
+        Use the marker stream to create windows and summarize these in a pandas df
+        Additionally, within this function the labels are appended to this df
     Arguments:
-        streams: streams loaded from the .xdf file       
-        event_list: experimental events to create windows from 
-        start_margin: number of seconds to cut from the start of each block
-        end_margin: number of seconds to cut from the end of each block
-        window_size: windows size in seconds
+        streams:        streams loaded from the .xdf file       
+        events:         experimental events to create windows from 
+        start_margin:   number of seconds to cut from the start of each block
+        end_margin:     number of seconds to cut from the end of each block
+        window_size:    windows size in seconds
         window_overlap: window overlap in seconds
-        window_exaxt: whether or not smaller windows then window_size are used
+        window_exaxt:   whether or not smaller windows then window_size are used
+        labels:         labels df object 
+        role:           experimental role of the data type (Engineer /  Operations / Tactical)
     Return:
-        dataframe:
+        dataframe containing:
             ROWS:
-                windows
+                all cutted windows
             COLS:
                 index: window index
                 durations: window durations
                 start: start timecode window
-                task: task type (1, 2, 3, rest, break)
+                task: task difficulty (1, 2, 3,)
                 tries: number of tries to cut the window
                 window: window index per task (thus seperate index for each task)
+                workload: workload assessment lable
     """
+
+    #Windows result object 
     result = pd.DataFrame()
     tries = {}
+
+    #Create labels df 
+    pfilter = labels["Username"] == "bci10"
+    labels = labels[pfilter]
+    rolefilter = labels["Role"] == role
+    labels = labels[rolefilter]
+    counter = 0 #Counter for attributing labels to windows df 
+    
     for stream in streams: #Iterate over the 18 streams
         stream_type = stream['info']['type'][0] #Determine the type of the stream
         if stream_type == 'GameEvents' and stream["time_stamps"].size !=0 : #We create the windows only based on the event stream & if it is not empty (some event streams are double)!
@@ -92,6 +107,12 @@ def create_windows(streams, events,
                         window_length = window_size
 
                     window_id = 0 #Index the windows by a number
+                    
+                    #Select correct label col
+                    counter = counter+1 #Counter +1
+                    foofilter = labels["taskN"] == counter #Create filter
+                    foo = labels[foofilter] #Select correct col
+
                     next_window_start_ts = block_start 
                     
                     #While loop for defining the consecutive window
@@ -116,9 +137,13 @@ def create_windows(streams, events,
                                                 'window': window_id,
                                                 'start': window_start_ts,
                                                 'stop': window_end_ts,
-                                                'duration': window_duration}, ignore_index=True)
+                                                'duration': window_duration,
+                                                'workload': int(foo["Q01_Mental demand->low|high"])},                                
+                                                 ignore_index=True)
                         window_id += 1
                         next_window_start_ts = window_end_ts - window_overlap
+
+                        
 
             break
     return result
@@ -134,10 +159,11 @@ def create_dataframes(streams, stream_types):
         stream type: a list of the required streams
     Return:
         Dictionary containing:
-            GSR dataframe containing all GSR data + Timestamps
-            PPG dataframe containing all PPG data + Timestamps                
-            GSR dataframe containing all EEG data + Timestamps
+            GSR dataframe containing all GSR data 
+            PPG dataframe containing all PPG data               
+            GSR dataframe containing all GSR data
     """
+
     result = {} #Create dict to store results in
     for stream in streams: #Iterate over the 18 streams
         stream_name = stream['info']['name'][0] #Obtain the stream name for this respective stream
@@ -168,16 +194,23 @@ def create_dataframes(streams, stream_types):
 def cut_epochs(stream_dataframes, windows):
     """
     Purpose:
-        Cut data into specified windows
+        Cut data the data into epochs of the desired sizes
     Arguments:
-        stream_dataframes: 
-        windows:
+        stream_dataframes: dictionary containing all data in dataframe format (resulting from create_dataframe function)
+        windows: dataframe containing desired epoch sizes (resulting from the create_windows function)
     Return:
+        Dictionary containing:
+            GSR:    *number of epochs* PyTorch tensors containing GSR data. 
+            EEG:    *number of epochs* PyTorch tensors containing EEG data. 
+            PPG:    *number of epochs* PyTorch tensors containing PPG data. 
+            labels: dataframe listing all epochs and their label.
     """
 
     #Extract utilized modalities
     stream_labels = list(stream_dataframes.keys())
-    result = {stream_labels[0]:[], stream_labels[1]:[], stream_labels[2]:[]}
+
+    #Create dict to store values AND append labels df to dict
+    result = {stream_labels[0]:[], stream_labels[1]:[], stream_labels[2]:[], "labels":windows}
 
     #Create a dataset for every stream in every window
     for window in windows.itertuples(): #Iterate over all windows defined in the windows dataframe
@@ -190,30 +223,55 @@ def cut_epochs(stream_dataframes, windows):
             #Select only relevant timestamps
             after_start = dataframe['timestamps'] >= start_ts
             before_end = dataframe['timestamps'] < stop_ts
-            epoch = dataframe[after_start & before_end] 
+            epoch = dataframe[after_start & before_end]
+            epoch = epoch.drop("timestamps", axis=1) #Drop timestamps col
+            
+            #Transfer to PyTorch tensor
+            epoch.tensor = torch.FloatTensor(epoch.values) #Transfer to tensor and store only data
+            result[dataframe_id].append(epoch.tensor) #Append to dict
 
-            #Only including data points in epoch object
-            epoch.tensor = epoch.iloc[:,1]
-
-            #Transfer to Tensor
-            epoch.tensor = torch.FloatTensor(epoch.iloc[:,1].values)
-
-            #Append to dict
-            result[dataframe_id].append(epoch.tensor)     
     return result
 
 
 
-def transformer(filename, event_list, block_start_margin, block_end_margin, window_size, window_overlap, window_exact, stream_types_list): 
+def transformer(filename, event_list, 
+                block_start_margin, block_end_margin, 
+                window_size, window_overlap, 
+                window_exact, stream_types_list, 
+                labels, role): 
+    """
+    Purpose:
+        Function combining and running all previously defined functions 
+    Arguments:
+        filename:               filename (and path) of the data object to be transformed 
+        event_list:             experimental events to create windows out of 
+        block_start_margin:     number of seconds to cut from the start of each block
+        block_end_margin:       number of seconds to cut from the end of each block
+        window_size:            windows size in seconds
+        window_overlap:         window overlap in seconds
+        window_exaxt:           whether or not smaller windows then window_size are used
+        labels:                 labels df object 
+        role:                   experimental role of the data type (Engineer /  Operations / Tactical)
+    Return:
+        Dictionary containing:
+            GSR:    *number of epochs* PyTorch tensors containing GSR data. 
+            EEG:    *number of epochs* PyTorch tensors containing EEG data. 
+            PPG:    *number of epochs* PyTorch tensors containing PPG data. 
+            labels: dataframe listing all epochs and their label.
+    """
+    
     print("filename", filename)
     streams = load_data(filename = filename)
     print('streams', len(streams))
     windows = create_windows(streams = streams, events = event_list, 
                             start_margin = block_start_margin, end_margin = block_end_margin, 
                             window_size = window_size, window_overlap = window_overlap, 
-                            window_exact = window_exact)
+                            window_exact = window_exact, labels = labels, role = role)
     print('windows', windows)
     stream_dataframes = create_dataframes(streams = streams, stream_types = stream_types_list) 
     print('data', stream_dataframes)
     cutted_data = cut_epochs(stream_dataframes, windows)
+    
     return cutted_data
+
+
