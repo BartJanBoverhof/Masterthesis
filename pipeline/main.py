@@ -13,14 +13,14 @@ import pickle
 import os
 import csv
 
-#Setting WD 
+#Setting working directory 
 os.chdir("pipeline")
 
 try: #Importing from subfile
     from transformer import transformer
 except ModuleNotFoundError:
     wd = os.getcwd()
-    print("Please make sure that working directory is set as '../Masterthesis/pipeline'")
+    print("Error: please make sure that working directory is set as '~/Masterthesis/pipeline'")
     print("Current working directory is:", wd)
 
 
@@ -56,7 +56,7 @@ if __name__ == '__main__':
                         stream_types_list = stream_types_list, labels = labels, 
                         role = "Operations") 
 
-    with open('prepared_data/10_1.pickle', 'wb') as handle: #Save as pickle
+    with open('prepared_data/p10op.pickle', 'wb') as handle: #Save as pickle
         pickle.dump(seg1, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     seg2 = transformer(filename = "data/bc10/bci 10 engineering+.xdf", #Second segment
@@ -66,7 +66,7 @@ if __name__ == '__main__':
                         stream_types_list = stream_types_list, labels = labels, 
                         role = "Engineer")
 
-    with open('prepared_data/10_2.pickle', 'wb') as handle: #Save as pickle
+    with open('prepared_data/p10en.pickle', 'wb') as handle: #Save as pickle
         pickle.dump(seg2, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     #Third segment
@@ -77,5 +77,5 @@ if __name__ == '__main__':
                         stream_types_list = stream_types_list, labels = labels, 
                         role = "Tactical")
         
-    with open('prepared_data/10_3.pickle', 'wb') as handle: #Save as pickle
+    with open('prepared_data/p10ta.pickle', 'wb') as handle: #Save as pickle
         pickle.dump(seg3, handle, protocol=pickle.HIGHEST_PROTOCOL)

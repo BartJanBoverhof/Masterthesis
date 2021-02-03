@@ -230,6 +230,20 @@ def cut_epochs(stream_dataframes, windows):
             epoch.tensor = torch.FloatTensor(epoch.values) #Transfer to tensor and store only data
             result[dataframe_id].append(epoch.tensor) #Append to dict
 
+    #Cutting stored epochs into same size
+    lengths = []
+    for i in result["PPG"]:
+        x = len(i)
+        lengths.append(x)
+
+    lowest = min(lengths)
+
+    count = 0
+    for  i in result["PPG"]:
+        if len(i) != lowest:
+            result["PPG"][count] = i.narrow(0,0,1279)
+        count +=1
+
     return result
 
 
