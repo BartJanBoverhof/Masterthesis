@@ -45,18 +45,18 @@ class EegNet(nn.Module):
         return x
 
 #Display network
-eeg_net = EegNet()
-print(eeg_net)
+#eeg_net = EegNet()
+#print(eeg_net)
 
 
 
 ################### PPG Net ###################
 class PpgNet(nn.Module):
     def __init__(self):
-        super(Net, self).__init__()
+        super(PpgNet, self).__init__()
         #Convolutional layers
-        self.conv1 = nn.Conv1d(784, 256)
-        self.conv2 = nn.Conv1d(784, 256)
+        self.conv1 = nn.Conv1d(3, 16, 3, padding=1)
+        self.conv1 = nn.Conv1d(3, 16, 3, padding=1)
 
         #Max pooling layer (3x1)
         self.pool = nn.MaxPool1d(kernel_size = 4, stride = 1) 
@@ -81,17 +81,17 @@ class PpgNet(nn.Module):
         return x
 
 #Display network
-PpgNet()
+#PpgNet()
 
 
 
 ################### GSR Net ###################
 class GsrNet(nn.Module):
     def __init__(self):
-        super(Net, self).__init__()
+        super(GsrNet, self).__init__()
         #Convolutional layers
-        self.conv1 = nn.Conv1d(784, 256)
-        self.conv2 = nn.Conv1d(784, 256)
+        self.conv1 = nn.Conv1d(3, 16, 3, padding=1)
+        self.conv1 = nn.Conv1d(3, 16, 3, padding=1)
 
         #Max pooling layer (3x1)
         self.pool = nn.MaxPool1d(kernel_size = 4, stride = 1) 
@@ -116,9 +116,37 @@ class GsrNet(nn.Module):
         return x
 
 #Display network
-GsrNet()
+#GsrNet()
 
 
 
 ################### Multi-modular Net ###################
 foo = 1
+
+
+
+
+################### Test Net ###################
+class Network(nn.Module):
+    def __init__(self):
+        super().__init__()
+        
+        # Inputs to hidden layer linear transformation
+        self.hidden = nn.Linear(784, 256)
+        # Output layer, 10 units - one for each digit
+        self.output = nn.Linear(256, 10)
+        
+        # Define sigmoid activation and softmax output 
+        self.sigmoid = nn.Sigmoid()
+        self.softmax = nn.Softmax(dim=1)
+        
+    def forward(self, x):
+        # Pass the input tensor through each of our operations
+        x = self.hidden(x)
+        x = self.sigmoid(x)
+        x = self.output(x)
+        x = self.softmax(x)
+        
+        return x
+
+Network()
