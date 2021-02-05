@@ -20,7 +20,6 @@ def load_data(filename):
     """
 
     print("""
-   transforming...
          __
  _(\    |@@|
 (__/\__ \--/ __
@@ -30,6 +29,7 @@ def load_data(filename):
       (--/\--)    \__/
       _)(  )(_
      `---''---`     
+   transforming...
     """)
 
     streams, _ = pyxdf.load_xdf(filename)
@@ -204,13 +204,16 @@ def cut_epochs(stream_dataframes, windows):
             EEG:    *number of epochs* PyTorch tensors containing EEG data. 
             PPG:    *number of epochs* PyTorch tensors containing PPG data. 
             labels: dataframe listing all epochs and their label.
-    """
-
+    """    
     #Extract utilized modalities
     stream_labels = list(stream_dataframes.keys())
 
-    #Create dict to store values AND append labels df to dict
-    result = {stream_labels[0]:[], stream_labels[1]:[], stream_labels[2]:[], "labels":windows}
+    #Creating labels tensor
+    foo = windows["workload"]
+    foo = torch.FloatTensor(foo)
+
+    #Create dict to store values AND append labels tensor to dict
+    result = {stream_labels[0]:[], stream_labels[1]:[], stream_labels[2]:[], "labels":foo}
 
     #Create a dataset for every stream in every window
     for window in windows.itertuples(): #Iterate over all windows defined in the windows dataframe
@@ -243,6 +246,8 @@ def cut_epochs(stream_dataframes, windows):
         if len(i) != lowest:
             result["PPG"][count] = i.narrow(0,0,1279)
         count +=1
+
+    
 
     return result
 
