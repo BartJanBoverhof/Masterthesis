@@ -9,10 +9,10 @@
 ################### 0. Prerequisites ###################
 #Loading packages
 import torch #PyTorch deep-learning library
-from torch import nn, optim #PyTorch additionals and training optimizer
+from torch import optim #PyTorch additionals and training optimizer
 import torch.nn.functional as F #PyTorch library providing a lot of pre-specified functions
-
-
+import torch.nn as nn
+from torchsummary import summary
 
 ################### EEG Net ###################
 class EegNet(nn.Module):
@@ -46,42 +46,44 @@ class EegNet(nn.Module):
 
 #Display network
 #eeg_net = EegNet()
-#print(eeg_net)
-
-
+#summary(eeg_net, (1000,1))
 
 ################### PPG Net ###################
 class PpgNet(nn.Module):
     def __init__(self):
         super(PpgNet, self).__init__()
         #Convolutional layers
-        self.conv1 = nn.Conv1d(3, 16, 3, padding=1)
-        self.conv1 = nn.Conv1d(3, 16, 3, padding=1)
+        self.conv1 = nn.Conv1d(in_channels =  1, out_channels = 32, kernel_size = 3, padding=1)
+        self.conv2 = nn.Conv1d(in_channels = 32, out_channels = 32, kernel_size = 3, padding=1)
 
-        #Max pooling layer (3x1)
-        self.pool = nn.MaxPool1d(kernel_size = 4, stride = 1) 
+        #Max pooling layer (4)
+        self.pool = nn.MaxPool1d(kernel_size = 4, stride = 4) 
 
         #Batch normalization
-        self.batch1 = nn.BatchNorm1d(num_features = 1)
-        self.batch2 = nn.BatchNorm1d(num_features = 1)
+        self.batch1 = nn.BatchNorm1d(num_features = 32)
+        self.batch2 = nn.BatchNorm1d(num_features = 32)
 
         #LSTM layers
-        self.lstm = nn.LSTM(10)
+        self.lstm = nn.LSTM(input_size = 79, hidden_size = 128, num_layers = 2, dropout = 0.1)
+
+        #Flat layer
+        self.flat = nn.Flatten() 
 
         #Dense layer
-        self.dense = nn.Linear(100,10) 
+        self.dense = nn.Linear(4096,1) 
         
         
     def forward(self, x): 
         x = self.pool(F.relu(self.batch1(self.conv1(x)))) #First block
         x = self.pool(F.relu(self.batch2(self.conv2(x)))) #Second block
-        x = self.lstm(x) #Third block
-        x = self.lstm(x) #Fourth block
-        x = F.softmax(self.dense(x)) #Classification block
+        x = self.lstm(x) #Third and fourth block
+        x = self.flat(x[0])
+        x = self.dense(x) #Classification block
+
         return x
 
 #Display network
-#PpgNet()
+#model = PpgNet()
 
 
 
@@ -121,8 +123,6 @@ class GsrNet(nn.Module):
 
 
 ################### Multi-modular Net ###################
-foo = 1
-
 
 
 
@@ -149,4 +149,4 @@ class Network(nn.Module):
         
         return x
 
-Network()
+#Network()
