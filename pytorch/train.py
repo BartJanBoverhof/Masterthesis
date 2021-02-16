@@ -10,7 +10,8 @@
 ################### 0. Prerequisites ###################
 #Loading packages
 import torch 
-from torch import nn, optim #PyTorch additionals and training optimizer
+from torch import optim #PyTorch additionals and training optimizer
+import torch.nn as nn
 import torch.nn.functional as F #PyTorch library providing a lot of pre-specified functions
 import os
 import pickle
@@ -18,73 +19,80 @@ import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 from torch import optim
 
-"""
 try: #Importing network
-    from pytorch.networks import Network
+    from networks import PpgNet
 except ModuleNotFoundError:
     wd = os.getcwd()
     print("Error: please make sure that working directory is set as '~/Masterthesis'")
     print("Current working directory is:", wd)
-"""
 
 
 ################### Create PyTorch dataset ###################
 #Create datasetclass
 class PytorchDataset(Dataset):
-    """ PPG dataset """
     
-    def __init__(self, datapath, modality):
-        self.fulldata = pickle.load(open(datapath, "rb"))
-        self.data = self.fulldata[modality]
-        self.labels = self.fulldata["labels"]
+    def __init__(self, path, modality):
+        
+        self.dat = pickle.load(open(path, "rb")) #Open pickle
+        self.labels = self.dat["labels"] #Saving labels
+        self.dat = self.dat[modality] #Saving only modality of intrest 
+
+        #Cutting stored epochs into same size
+        self.lengths = [] 
+        for i in self.dat: #Determining lowest length tensor
+            x = i.shape[1]
+            self.lengths.append(x)
+
+        lowest = min(self.lengths)
+
+        self.counter = 0
+        for i in self.dat: #Reshaping tensors
+            if len(i) != lowest:
+                self.dat[self.counter] = i.narrow(1,0,lowest)
+            self.counter +=1
+        
+
 
     def __len__(self):
-        return len(self.data)
+        return len(self.dat)
+
 
     def __getitem__(self, idx):
-        
-        epochs = self.data[idx]
+        windows = self.dat[idx]
         labels = self.labels[idx]
 
-        return epochs, labels
+        return windows, labels
 
 #Creating dataset and trainload
-pydata = PytorchDataset(datapath = "pipeline/prepared_data/p10op.pickle", modality = "PPG")
+pydata = PytorchDataset(path = "pipeline/prepared_data/bci10/data.pickle", 
+                        modality = "PPG")
 
 trainloader = torch.utils.data.DataLoader(pydata, 
-                                          batch_size = 64, 
+                                          batch_size = 25, 
                                           shuffle = True)
 
 
-
-
-#labels_int = labels.type(torch.int)
-
-#TRAIN Model
-model = nn.Sequential(nn.Linear(1279, 128),
-                      nn.ReLU(),
-                      nn.Linear(128, 64),
-                      nn.ReLU(),
-                      nn.Linear(64, 20),
-                      nn.Linear(20,1), 
-                      nn.Sigmoid())
-
+#define model
+model = PpgNet()
+print(model)
 
 criterion = nn.MSELoss()
-optimizer = optim.SGD(model.parameters(), lr=0.5)
+optimizer = optim.Adam(model.parameters(), lr=0.01)
 
-iterations = 30
-for i in range(iterations):
+
+#### TRAIN #####
+epochs = 100
+
+for epoch in range(1, epochs+1):
     running_loss = 0
     
-    for epochs, labels in trainloader:
-        #Flatten
-        epoch_flat  = epochs.view(epochs.shape[0], -1)
+    model.train()
+    for windows, labels in trainloader:
 
         #Training pass
         optimizer.zero_grad()
 
-        out = model(epoch_flat)
+        out = model(windows)
         loss = criterion(out, labels)
         loss.backward()
         optimizer.step()
@@ -92,6 +100,7 @@ for i in range(iterations):
         running_loss += loss.item()
     else:
         print(f"Training loss: {running_loss/len(trainloader)}")
+
 
 '''
 ###### TEMPORARY ########
@@ -139,4 +148,7 @@ len(gsr_l)
 
 plt.hist(x=gsr_l)
 plt.show()
+
+
+
 '''

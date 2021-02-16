@@ -8,7 +8,8 @@
 import pyxdf
 import pandas as pd
 import torch
- 
+from matplotlib import pyplot
+
 
 
 def load_data(filename):
@@ -108,10 +109,13 @@ def create_windows(streams, events,
 
                     window_id = 0 #Index the windows by a number
                     
-                    #Select correct label col
+                    #Calculate label
                     counter = counter+1 #Counter +1
-                    foofilter = labels["taskN"] == counter #Create filter
-                    foo = labels[foofilter] #Select correct col
+                    foofilter = labels["taskN"] == counter #Create filter to select correct row
+                    foo = labels[foofilter] #Select correct row
+
+                    workload = (foo["Q01_Mental demand->low|high"] + foo["Q03_Temporal demand->low|high"] +
+                               foo["Q05_Effort->low|high"] + foo["Q06_Frustration->low|high"]) /4
 
                     next_window_start_ts = block_start 
                     
@@ -138,13 +142,11 @@ def create_windows(streams, events,
                                                 'start': window_start_ts,
                                                 'stop': window_end_ts,
                                                 'duration': window_duration,
-                                                'workload': int(foo["Q01_Mental demand->low|high"])},                                
+                                                'workload': float(workload)},                                
                                                  ignore_index=True)
                         window_id += 1
                         next_window_start_ts = window_end_ts - window_overlap
-
-                        
-
+                
             break
     return result
 
@@ -231,8 +233,12 @@ def cut_epochs(stream_dataframes, windows):
             
             #Transfer to PyTorch tensor
             epoch.tensor = torch.FloatTensor(epoch.values) #Transfer to tensor and store only data
+            epoch.tensor = torch.transpose(epoch.tensor, 0,1)
             result[dataframe_id].append(epoch.tensor) #Append to dict
 
+    return result
+
+"""
     #Cutting stored epochs into same size
     lengths = []
     for i in result["PPG"]:
@@ -242,14 +248,18 @@ def cut_epochs(stream_dataframes, windows):
     lowest = min(lengths)
 
     count = 0
-    for  i in result["PPG"]:
+    for i in result["PPG"]:
         if len(i) != lowest:
-            result["PPG"][count] = i.narrow(0,0,1279)
+            result["PPG"][count] = i.narrow(0,0,lowest)
         count +=1
 
     
-
-    return result
+bla = []
+for i in result["PPG"]:
+    bla.append(len(i))
+min(bla)
+max(bla)
+"""
 
 
 
