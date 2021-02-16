@@ -30,59 +30,41 @@ except ModuleNotFoundError:
 ################### Create PyTorch dataset ###################
 #Create datasetclass
 class PytorchDataset(Dataset):
-    """ PPG dataset """
     
-    def __init__(self, op_path, en_path, ta_path, modality):
-        self.opdat = pickle.load(open(op_path, "rb"))
-        self.endat = pickle.load(open(en_path, "rb"))
-        self.tadat = pickle.load(open(ta_path, "rb"))
-
-        #Extract labels
-        self.oplabels = self.opdat["labels"]
-        self.enlabels = self.endat["labels"]
-        self.talabels = self.tadat["labels"]
+    def __init__(self, path, modality):
         
-        #Save only modality of intrest 
-        self.opdat = self.opdat[modality]
-        self.endat = self.endat[modality]
-        self.tadat = self.tadat[modality]
+        self.dat = pickle.load(open(path, "rb")) #Open pickle
+        self.labels = self.dat["labels"] #Saving labels
+        self.dat = self.dat[modality] #Saving only modality of intrest 
 
-        #Concatenate
-        self.alldat = self.opdat + self.endat + self.tadat
-        self.alllabels = torch.cat((self.oplabels, self.enlabels, self.talabels), 0)
-        
         #Cutting stored epochs into same size
-        #Determining lowest length tensor
-        self.lengths = []
-        for i in self.alldat:
+        self.lengths = [] 
+        for i in self.dat: #Determining lowest length tensor
             x = i.shape[1]
             self.lengths.append(x)
 
         lowest = min(self.lengths)
 
-        #Reshaping tensors
         self.counter = 0
-        for i in self.alldat:
+        for i in self.dat: #Reshaping tensors
             if len(i) != lowest:
-                self.alldat[self.counter] = i.narrow(1,0,lowest)
+                self.dat[self.counter] = i.narrow(1,0,lowest)
             self.counter +=1
         
 
 
     def __len__(self):
-        return len(self.opdat) + len(self.endat) + len(self.tadat)
+        return len(self.dat)
 
 
     def __getitem__(self, idx):
-        windows = self.alldat[idx]
-        labels = self.alllabels[idx]
+        windows = self.dat[idx]
+        labels = self.labels[idx]
 
         return windows, labels
 
 #Creating dataset and trainload
-pydata = PytorchDataset(op_path = "pipeline/prepared_data/p10op.pickle", 
-                        en_path = "pipeline/prepared_data/p10en.pickle", 
-                        ta_path = "pipeline/prepared_data/p10ta.pickle", 
+pydata = PytorchDataset(path = "pipeline/prepared_data/bci10/data.pickle", 
                         modality = "PPG")
 
 trainloader = torch.utils.data.DataLoader(pydata, 
