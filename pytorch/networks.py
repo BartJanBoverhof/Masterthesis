@@ -70,7 +70,9 @@ class PpgNet(nn.Module):
         self.flat = nn.Flatten() 
 
         #Dense layer
-        self.dense = nn.Linear(4096,1) 
+        self.dense1 = nn.Linear(4096,1) 
+        self.dense2 = nn.Linear(4096,1) 
+
         
         
     def forward(self, x): 

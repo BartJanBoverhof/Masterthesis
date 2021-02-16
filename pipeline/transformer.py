@@ -230,11 +230,11 @@ def cut_epochs(stream_dataframes, windows):
             before_end = dataframe['timestamps'] < stop_ts
             epoch = dataframe[after_start & before_end]
             epoch = epoch.drop("timestamps", axis=1) #Drop timestamps col
-            
+            epoch = epoch.to_numpy()
+
             #Transfer to PyTorch tensor
-            epoch.tensor = torch.FloatTensor(epoch.values) #Transfer to tensor and store only data
-            epoch.tensor = torch.transpose(epoch.tensor, 0,1)
-            result[dataframe_id].append(epoch.tensor) #Append to dict
+            epoch = torch.from_numpy(epoch)
+            result[dataframe_id].append(epoch) #Append to dict
 
     return result
 

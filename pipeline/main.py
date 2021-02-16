@@ -41,33 +41,25 @@ block_start_margin = 0
 block_end_margin = 0    
 window_size = 8  
 window_overlap = 0     
-window_exact = False     
-
-#TEMP
-eegl = []
-gsrl = []
-ppgl = []
-labelsl = []
-
+window_exact = True     
 
 #Defining list of all included participants
+"""
 participants = ["bci10", "bci12", "bci13", "bci17", "bci20", "bci21", "bci22",
                 "bci23", "bci24", "bci26", "bci27", "bci28", "bci29", "bci30", 
                 "bci31", "bci32", "bci33", "bci34", "bci35", "bci36", "bci37", "bci38", 
                 "bci39", "bci40", "bci41", "bci42", "bci43", "bci44"]
-
+"""
+participants = ["bci10", "bci12"]
 
 ###########################################################################
-############################# RUN FOR ALL PERSONS ############################
+############################ RUN FOR ALL PERSONS ##########################
 ###########################################################################
 for participant in participants: 
     if __name__ == '__main__': 
         
-        #Obtaining person-specific path
-        datapath = "raw_data/"+participant
-
-        #Making person-specific subdirectory
-        os.mkdir("prepared_data/"+participant)
+        datapath = "raw_data/"+participant #Obtaining person-specific path
+        os.mkdir("prepared_data/"+participant) #Creating person-specific subdirectory
 
         operations = transformer(filename = datapath+"/operations.xdf", #First segment
                             event_list = event_list, block_start_margin = block_start_margin, 
@@ -83,14 +75,12 @@ for participant in participants:
                             stream_types_list = stream_types_list, labels = labels, 
                             role = "Engineer")
 
-        #Third segment
-        tactical = transformer(filename = datapath+"/tactical.xdf", #Second segment
+        tactical = transformer(filename = datapath+"/tactical.xdf", #Third segment
                             event_list = event_list, block_start_margin = block_start_margin, 
                             block_end_margin = block_end_margin, window_size = window_size, 
                             window_overlap = window_overlap, window_exact = window_exact, 
                             stream_types_list = stream_types_list, labels = labels, 
                             role = "Tactical")
-            
 
         #Combining all segments into one dict
         combined_labels = torch.cat((operations["labels"], engineering["labels"], tactical["labels"]),0)
@@ -110,14 +100,42 @@ for participant in participants:
         combined_dat["GSR"].extend(operations["GSR"])
         combined_dat["GSR"].extend(engineering["GSR"])
         combined_dat["GSR"].extend(tactical["GSR"])
+
+        """
+        #Cutting stored windows into same size
+        eeglengths = [] 
+        ppglengths = [] 
+        gsrlengths = [] 
         
+        #Determining lowest length tensors for each modality
+        for i in combined_dat["EEG"]: #EEG
+            x = i.shape[1]
+            eeglengths.append(x)
+
+        for i in combined_dat["PPG"]: #PPG
+            x = i.shape[1]
+            ppglengths.append(x)
+
+        for i in combined_dat["GSR"]: #GSR
+            x = i.shape[1]
+            gsrlengths.append(x)
+        
+
         #TEMP
-        eegl.append(len(combined_dat["EEG"]))
-        gsrl.append(len(combined_dat["GSR"]))
-        ppgl.append(len(combined_dat["PPG"]))
-        labelsl.append(len(combined_dat["labels"]))
+        from collections import Counter
+        eegcount = Counter(eeglengths)
+        ppgcount = Counter(ppglengths)
+        gsrcount = Counter(gsrlengths)
+        counters["eeg"].append(eegcount)
+        counters["ppg"].append(ppgcount)
+        counters["gsr"].append(gsrcount)
+
+        counters["ppg"][10]
+        gsrlengths == ppglengths
+        """
 
         with open("prepared_data/"+participant+"/data.pickle", 'wb') as handle: #Save as pickle
             pickle.dump(combined_dat, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
         print(participant+" done!")
+        

@@ -18,6 +18,7 @@ import pickle
 import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 from torch import optim
+from torch.nn.utils.rnn import pad_sequence
 
 try: #Importing network
     from networks import PpgNet
@@ -36,23 +37,7 @@ class PytorchDataset(Dataset):
         self.dat = pickle.load(open(path, "rb")) #Open pickle
         self.labels = self.dat["labels"] #Saving labels
         self.dat = self.dat[modality] #Saving only modality of intrest 
-
-        #Cutting stored epochs into same size
-        self.lengths = [] 
-        for i in self.dat: #Determining lowest length tensor
-            x = i.shape[1]
-            self.lengths.append(x)
-
-        lowest = min(self.lengths)
-
-        self.counter = 0
-        for i in self.dat: #Reshaping tensors
-            if len(i) != lowest:
-                self.dat[self.counter] = i.narrow(1,0,lowest)
-            self.counter +=1
-        
-
-
+        print('x')
     def __len__(self):
         return len(self.dat)
 
@@ -61,15 +46,33 @@ class PytorchDataset(Dataset):
         windows = self.dat[idx]
         labels = self.labels[idx]
 
+
         return windows, labels
 
+class PadSequence:
+    def __call__(self, batch):
+		# Let's assume that each element in "batch" is a tuple (data, label).
+        # Sort the batch in the descending order
+        sorted_batch = sorted(batch, key=lambda x: x[0].shape[0], reverse=True)
+		# Get each sequence and pad it
+        sequences = [x[0] for x in sorted_batch]
+        sequences_padded = torch.nn.utils.rnn.pad_sequence(sequences, batch_first=True)
+		# Don't forget to grab the labels of the *sorted* batch
+        labels = []
+        for i in sorted_batch:
+            labels.append(float(i[1]))
+        labels = torch.tensor(labels)
+        return sequences_padded, labels
+
+
 #Creating dataset and trainload
-pydata = PytorchDataset(path = "pipeline/prepared_data/bci10/data.pickle", 
+pydata = PytorchDataset(path = "pipeline/prepared_data/bci12/data.pickle", 
                         modality = "PPG")
 
 trainloader = torch.utils.data.DataLoader(pydata, 
-                                          batch_size = 25, 
-                                          shuffle = True)
+                                          batch_size = 5, 
+                                          shuffle = True,
+                                          collate_fn = PadSequence())
 
 
 #define model
