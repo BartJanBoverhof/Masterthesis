@@ -23,6 +23,4 @@ In addition to the earlier listed software, specifically the following packages 
 - `pandas`: data science package. 
 - `pickle`: transform data is .pickle file.
 
-## Still to add: 
-- Automate transformer such that it iterates over, and transforms for all respondents. (Look into `list_fies_recursively`)
-- When doing so take notice of automation of the person iterator in windows creation. 
+
