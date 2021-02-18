@@ -205,20 +205,23 @@ def cut_epochs(stream_dataframes, windows):
             GSR:    *number of epochs* PyTorch tensors containing GSR data. 
             EEG:    *number of epochs* PyTorch tensors containing EEG data. 
             PPG:    *number of epochs* PyTorch tensors containing PPG data. 
-            labels: dataframe listing all epochs and their label.
+            labels_GSR : dataframe listing all epochs and their label.
+            labels_EEG : dataframe listing all epochs and their label.
+            labels_PPG : dataframe listing all epochs and their label.
+
     """    
     #Extract utilized modalities
     stream_labels = list(stream_dataframes.keys())
 
     #Creating labels tensor
     foo = windows["workload"]
-    foo = torch.FloatTensor(foo)
 
     #Create dict to store values AND append labels tensor to dict
-    result = {stream_labels[0]:[], stream_labels[1]:[], stream_labels[2]:[], "labels":foo}
+    result = {stream_labels[0]:[], stream_labels[1]:[], stream_labels[2]:[], 
+              "labels_GSR":foo, "labels_EEG":foo, "labels_PPG":foo}
 
     #Create a dataset for every stream in every window
-    for window in windows.itertuples(): #Iterate over all windows defined in the windows dataframe
+    for idx, window in enumerate(windows.itertuples()): #Iterate over all windows defined in the windows dataframe
         print('--- window', window.task, window.tries)
         start_ts = window.start
         stop_ts = window.stop
@@ -232,9 +235,13 @@ def cut_epochs(stream_dataframes, windows):
             epoch = epoch.drop("timestamps", axis=1) #Drop timestamps col
             epoch = epoch.to_numpy()
 
-            #Transfer to PyTorch tensor
-            epoch = torch.from_numpy(epoch)
-            result[dataframe_id].append(epoch) #Append to dict
+            #Throw away empty windows
+            if len(epoch) != 0:
+                epoch = torch.from_numpy(epoch)
+                result[dataframe_id].append(epoch) #Append to dict
+            else:
+                key = "labels_"+dataframe_id #Obtain label list from which element is to be removed           
+                result[key] = result[key].drop(idx)    
 
     return result
 
