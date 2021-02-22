@@ -50,37 +50,50 @@ class EegNet(nn.Module):
 
 ################### PPG Net ###################
 class PpgNet(nn.Module):
-    def __init__(self):
+
+    def __init__(self,
+                 filters = 32,
+                 units = 128):
         super(PpgNet, self).__init__()
+        
         #Convolutional layers
-        self.conv1 = nn.Conv1d(in_channels =  1, out_channels = 32, kernel_size = 3, padding=1)
-        self.conv2 = nn.Conv1d(in_channels = 32, out_channels = 32, kernel_size = 3, padding=1)
+        self.conv1 = nn.Conv1d(in_channels =  1, out_channels = filters, kernel_size = 3, padding=1)
+        self.conv2 = nn.Conv1d(in_channels = filters, out_channels = filters, kernel_size = 3, padding=1)
 
         #Max pooling layer (4)
         self.pool = nn.MaxPool1d(kernel_size = 4, stride = 4) 
 
         #Batch normalization
-        self.batch1 = nn.BatchNorm1d(num_features = 32)
-        self.batch2 = nn.BatchNorm1d(num_features = 32)
-
-        #LSTM layers
-        self.lstm = nn.LSTM(input_size = 79, hidden_size = 128, num_layers = 2, dropout = 0.1)
+        self.batch1 = nn.BatchNorm1d(num_features = filters)
+        self.batch2 = nn.BatchNorm1d(num_features = filters)
 
         #Flat layer
         self.flat = nn.Flatten() 
 
         #Dense layer
-        self.dense1 = nn.Linear(4096,1) 
-        self.dense2 = nn.Linear(4096,1) 
-
+        dens1_in = units*filters
+        dens1_out = int(dens1_in/8)
         
+        self.dense1 = nn.Linear(dens1_in, dens1_out) 
+        self.dense2 = nn.Linear(dens1_out, 1) 
+
+        #Reserve container for later lstm layer allocation
+        self.register_buffer('lstm', None)
         
     def forward(self, x): 
+        #Convolutional block
         x = self.pool(F.relu(self.batch1(self.conv1(x)))) #First block
         x = self.pool(F.relu(self.batch2(self.conv2(x)))) #Second block
-        x = self.lstm(x) #Third and fourth block
+        
+        #LSTM-block
+        if self.lstm is None: #Allocate lstm layer
+            self.lstm = nn.LSTM(input_size = x.shape[2], hidden_size = 128, num_layers = 2, dropout = 0.1)
+        x = self.lstm(x)
+        
+        #Prediction block
         x = self.flat(x[0])
-        x = self.dense(x) #Classification block
+        x = self.dense1(x) #Classification block
+        x = self.dense2(x) #Classification block
 
         return x
 
