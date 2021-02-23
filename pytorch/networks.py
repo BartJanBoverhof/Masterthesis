@@ -86,8 +86,15 @@ class PpgNet(nn.Module):
         x = self.pool(F.relu(self.batch2(self.conv2(x)))) #Second block
         
         #LSTM-block
+        x = torch.transpose(x, 1, 2)
+        
         if self.lstm is None: #Allocate lstm layer
-            self.lstm = nn.LSTM(input_size = x.shape[2], hidden_size = 128, num_layers = 2, dropout = 0.1)
+            self.lstm = nn.LSTM(input_size = x.shape[2], 
+                                hidden_size = 32, 
+                                num_layers = 2, 
+                                dropout = 0.1,
+                                batch_first= True)
+        
         x = self.lstm(x)
         
         #Prediction block
