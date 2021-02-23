@@ -6,8 +6,9 @@
 """
 
 
-
-################### 0. Prerequisites ###################
+###########################################################################################
+###################################### 0. Prerequisites ###################################
+###########################################################################################
 #Loading packages
 import torch 
 from torch import optim #PyTorch additionals and training optimizer
@@ -22,132 +23,110 @@ from torch.nn.utils.rnn import pad_sequence
 import numpy as np
 
 try: #Importing network
-    import networks
+    import networks, dataprep
 except ModuleNotFoundError:
     wd = os.getcwd()
     print("Error: please make sure that working directory is set as '~/Masterthesis'")
     print("Current working directory is:", wd)
 
-################### 1. Create PyTorch dataset & Loader ###################
-#Create datasetclass
-class PytorchDataset(Dataset):
-    
-    def __init__(self, path, modality):
-        """
-        Purpose: 
-            Load pickle object and save only specified data. 
-        """
-        dat = pickle.load(open(path, "rb")) #Open pickle
-        key = "labels_"+modality #Determining right dict key
-        self.labels = dat[key] #Saving labels
-        self.dat = dat[modality] #Saving only modality of interest
-        
-        #Determining the longest window for later use
-        lengths = []
-        for i in self.dat:
-            lengths.append(len(i))
-        longest_window = max(lengths)
+participants = ["bci10", "bci12", "bci13", "bci17", "bci20", "bci21", "bci22",
+                "bci23", "bci24", "bci26", "bci27", "bci28", "bci29", "bci30", 
+                "bci31", "bci32", "bci33", "bci34", "bci35", "bci36", "bci37", "bci38", 
+                "bci39", "bci40", "bci41", "bci42", "bci43", "bci44"]
 
-    def __len__(self):
-        return len(self.dat)
+###########################################################################################
+########################## 1. Create PyTorch dataset & Loader(s) ##########################
+###########################################################################################
+#Create PyTorch dataset definition class
+path = "pipeline/prepared_data/"+participants[0]+"/data.pickle"
+pydata =  dataprep.PytorchDataset(path = path,       #Creating PyTorch dataset
+                                  modality = "PPG")
 
-    def __getitem__(self, idx):
-        windows = self.dat[idx]
-        labels = self.labels[idx]
-
-        return windows, labels
-
-
-class BatchTransformation:
-    def __call__(self, batch):
-        #PADDING
-        sorted_batch = sorted(batch, key=lambda x: x[0].shape[0], reverse=True) #Sort batch in descending
-        sequences = [x[0] for x in sorted_batch] #Get ordered windows
-
-        means = []
-        for tensor in sequences: #Obtain tensor means 
-            means.append(float(torch.mean(tensor)))
-    
-        sequences_padded = torch.nn.utils.rnn.pad_sequence(sequences, batch_first=True, padding_value = 0) #Pad
-    
-        #Obtaining Sorted labels and standardizing them
-        labels = []
-        for i in sorted_batch:
-            label = float(i[1])
-            label = (label-1) / 20
-            labels.append(label)
-        labels = torch.tensor(labels)
-        
-        #TRANSPOSE BATCH 
-        sequences_padded = torch.transpose(sequences_padded, 1, 2)
-
-        return sequences_padded, labels
-
-
-
-
-#Creating dataset and trainloader
-pydata = PytorchDataset(path = "pipeline/prepared_data/bci17/data.pickle", 
-                        modality = "PPG")
-
-
-
-#Paramaters
-#Determining the longest window for later use
-lengths = []
-for i in pydata.dat:
-    lengths.append(len(i))
-longest_window = max(lengths)
-
+#Pre-specification of relevant paramaters
 batch_size = 25
+test_split = .2
+
 validation_split = .2
-dataset_size = len(pydata.dat) #Obtain size dataset
+validation = True
 
-#Split the data in train and test
-indices = list(range(dataset_size)) #Create list of indices
-split = int(np.floor(validation_split * dataset_size)) #Calculate number of windows to use for val/train
+
+padding_length = dataprep.PytorchDataset.__PaddingLength__(pydata) #Determining the longest window for later use
+dataprep.BatchTransformation.transfer(padding_length) #Transfer max padding length var to BatchTransfor class
+
+np.random.seed(3791)
+torch.manual_seed(3791)
+
+#Test split
+indices = list(range(len(pydata.dat))) #Create list of indices
+train_test_split = int(np.floor(test_split * len(pydata))) #Calculate number of windows to use for train/test
 np.random.shuffle(indices) #Shuffle indices.
-train_indices, val_indices = indices[split:], indices[:split] #Splitted indices.
+train_indices, test_indices = indices[train_test_split:], indices[:train_test_split] #Splitted indices.
 
-train_sampler = SubsetRandomSampler(train_indices)
-valid_sampler = SubsetRandomSampler(val_indices)
-
-
-trainloader = torch.utils.data.DataLoader(pydata, 
-                                          batch_size = batch_size, 
-                                          shuffle = False,
-                                          sampler = train_sampler,
-                                          collate_fn = BatchTransformation())
-
-validloader = torch.utils.data.DataLoader(pydata, 
-                                          batch_size = batch_size, 
-                                          shuffle = False,
-                                          sampler = valid_sampler,                                          
-                                          collate_fn = BatchTransformation())
+testloader = torch.utils.data.DataLoader(pydata, #Test loader for later use
+                                    batch_size = len(test_indices), 
+                                    shuffle = False,
+                                    sampler = test_indices,
+                                    collate_fn = dataprep.BatchTransformation())
 
 
 
+#Validation split
+if validation == True: 
+    train_valid_split = int(np.floor(validation_split * len(train_indices))) #Calculate number of windows to use for val/train
+    val_train_indices, val_indices = train_indices[train_valid_split:], train_indices[:train_valid_split] #Splitted indices.
+
+    #Defining samplers
+    train_sampler = SubsetRandomSampler(val_train_indices) #Train sampler
+    valid_sampler = SubsetRandomSampler(val_indices) #Validation sampler
+
+    validloader = torch.utils.data.DataLoader(pydata, #Validation loader
+                                            batch_size = batch_size, 
+                                            shuffle = False,
+                                            sampler = valid_sampler,                                          
+                                            collate_fn = dataprep.BatchTransformation())
+
+    #Defining loaders
+    trainloader = torch.utils.data.DataLoader(pydata, #Training loader
+                                            batch_size = batch_size, 
+                                            shuffle = False,
+                                            sampler = train_sampler,
+                                            collate_fn = dataprep.BatchTransformation())
+else:
+    
+    train_sampler = SubsetRandomSampler(train_indices) #Train sampler
+
+    trainloader = torch.utils.data.DataLoader(pydata, #Training loader
+                                        batch_size = batch_size, 
+                                        shuffle = False,
+                                        sampler = train_indices,
+                                        collate_fn = dataprep.BatchTransformation())
 
 
 
 
 
-################### 2. Defining model ###################
+###########################################################################################
+################################## 2. Defining model ######################################
+###########################################################################################
+#Obtaining network
 model = networks.PpgNet()
 print(model)
 
+#Loss function & Optimizer
 criterion = nn.MSELoss()
 optimizer = optim.Adam(model.parameters(), lr=0.01)
 
 
 
 
-
-
-################### 3. Training  ###################
+###########################################################################################
+########################## 3. Training & Validation loop ##################################
+###########################################################################################
+#Prerequisites
 epochs = 50
 train_list = []
 valid_list = []
+valid_loss_min = np.Inf
 
 for epoch in range(1, epochs+1):
     
@@ -167,28 +146,69 @@ for epoch in range(1, epochs+1):
         loss.backward()
         optimizer.step()
         train_loss += loss.item() * windows.size(0)
-
+    
     ###################
     ##Validation loop##
     ###################
-    model.eval()
-    for windows, labels in validloader:
+    if validation == True:
+
+        model.eval()
+        for windows, labels in validloader:
+            
+            #Validation pass
+            out = model(windows)
+            loss = criterion(out, labels)
+            valid_loss += loss.item()*windows.size(0)
+
+        #Averages losses
+        train_loss = train_loss/len(trainloader.sampler)
+        valid_loss = valid_loss/len(validloader.sampler)
         
-        #Validation pass
-        out = model(windows)
-        loss = criterion(out, labels)
-        valid_loss += loss.item()*windows.size(0)
+        train_list.append(train_loss)
+        valid_list.append(valid_loss)
 
-    #Averages losses
-    train_loss = train_loss/len(trainloader.sampler)
-    valid_loss = valid_loss/len(validloader.sampler)
-
-    train_list.append(train_loss)
-    valid_list.append(valid_loss)
-
-    print('Epoch: {} \tTraining Loss: {:.6f} \tValidation Loss: {:.6f}'.format(
+        print('Epoch: {} \tTraining Loss: {:.6f} \tValidation Loss: {:.6f}'.format(
         epoch, train_loss, valid_loss))
-    
+        
+        # save model if validation loss has decreased
+        if valid_loss <= valid_loss_min:
+            print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
+            valid_loss_min, valid_loss))
+
+            torch.save(model, "pytorch/trained_models/"+participants[0]+"_PPG.pt")
+            valid_loss_min = valid_loss
+
+
+    else: 
+        
+        #Averages losses
+        train_loss = train_loss/len(trainloader.sampler)
+        train_list.append(train_loss)
+
+        print('Epoch: {} \tTraining Loss: {:.6f}'.format(
+            epoch, train_loss))
+
 plt.plot(list(range(epochs-1)), train_list[1:len(train_list)], label = "train")
 plt.plot(list(range(epochs-1)), valid_list[1:len(valid_list)], label = "validation")
 plt.show()
+
+
+
+
+###########################################################################################
+########################## 4. Assessing model performance ##################################
+###########################################################################################
+trained_model = torch.load("pytorch/trained_models/"+participants[0]+"_PPG.pt")
+
+test_loss = 0.0
+
+model.eval()
+for windows, labels in testloader:
+    
+    #Test pass
+    out = model(windows)
+    loss = criterion(out, labels)
+    test_loss += loss.item()*windows.size(0)
+    avg_loss = test_loss / out.shape[0]
+
+    difference = labels - torch.squeeze(out)
