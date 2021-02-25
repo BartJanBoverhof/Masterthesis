@@ -15,33 +15,49 @@ import torch.nn as nn
 from torchsummary import summary
 
 ################### EEG Net ###################
-class EegNet(nn.Module):
-    def __init__(self):
-        super(EegNet, self).__init__()
+class EEGNet(nn.Module):
+    def __init__(self, filters, drop):
+        super(EEGNet, self).__init__()
+
+        self.filters = filters
+        self.drop = drop
+
         #Convolutional layers
-        self.conv1 = nn.Conv1d(3, 16, 3, padding=1)
-        self.conv2 = nn.Conv1d(16, 32, 3, padding=1)
-        self.conv3 = nn.Conv1d(32, 64, 3, padding=1)
-        self.conv4 = nn.Conv1d(3, 16, 3, padding=1)
+        self.conv1 = nn.Conv2d(in_channels = 1, out_channels = 25, kernel_size = 3, padding=1)
+        self.conv2 = nn.Conv2d(in_channels = 25, out_channels = 50, kernel_size = 3, padding=1)
+        self.conv3 = nn.Conv2d(in_channels = 50, out_channels = 100, kernel_size = 3, padding=1)
+        self.conv4 = nn.Conv2d(in_channels = 100, out_channels = 200, kernel_size = 3, padding=1)
 
         #Max pooling layer (3x1)
-        self.pool = nn.MaxPool1d(kernel_size = 3, stride = 1) 
+        self.pool = nn.MaxPool2d(kernel_size = 1, stride = (1,3)) 
 
         #Batch normalization
-        self.batch1 = nn.BatchNorm1d(num_features = 1)
-        self.batch2 = nn.BatchNorm1d(num_features = 1)
-        self.batch3 = nn.BatchNorm1d(num_features = 1)
-        self.batch4 = nn.BatchNorm1d(num_features = 1)
+        self.batch1 = nn.BatchNorm2d(num_features = 25)
+        self.batch2 = nn.BatchNorm2d(num_features = 50)
+        self.batch3 = nn.BatchNorm2d(num_features = 100)
+        self.batch4 = nn.BatchNorm2d(num_features = 200)
 
         #Dense layer
-        self.dense = nn.Linear(100,10) 
+        self.dense1 = nn.Linear(20800,2000) 
+        self.dense2 = nn.Linear(2000,250) 
+        self.dense3 = nn.Linear(250,1) 
+
+        self.dropout = nn.Dropout(0.25)
+
         
     def forward(self, x): 
         x = self.pool(F.elu(self.batch1(self.conv1(x)))) #First block
         x = self.pool(F.elu(self.batch2(self.conv2(x)))) #Second block
         x = self.pool(F.elu(self.batch3(self.conv3(x)))) #Third block
         x = self.pool(F.elu(self.batch4(self.conv4(x)))) #Fourth block
-        x = F.softmax(self.dense(x)) #Classification block
+        
+        x = x.view(-1, x.shape[1]* x.shape[2]* x.shape[3]) #Flatten
+        x = self.dropout(x)
+        x = F.relu(self.dense1(x))
+        x = self.dropout(x)
+        x = F.relu(self.dense2(x))
+        x = self.dense3(x)
+
         return x
 
 #Display network
@@ -49,13 +65,16 @@ class EegNet(nn.Module):
 #summary(eeg_net, (1000,1))
 
 ################### PPG Net ###################
-class PpgNet(nn.Module):
+class PPGNet(nn.Module):
 
-    def __init__(self,
-                 filters = 32,
-                 units = 128):
-        super(PpgNet, self).__init__()
+    def __init__(self, filters , hidden_dim, n_layers =2, drop = 0.1):
+        super(PPGNet, self).__init__()
         
+        self.ip_dim = filters
+        self.hidden_dim = hidden_dim
+        self.n_layers = n_layers
+        self.drop = drop
+
         #Convolutional layers
         self.conv1 = nn.Conv1d(in_channels =  1, out_channels = filters, kernel_size = 3, padding=1)
         self.conv2 = nn.Conv1d(in_channels = filters, out_channels = filters, kernel_size = 3, padding=1)
@@ -66,43 +85,48 @@ class PpgNet(nn.Module):
         #Batch normalization
         self.batch1 = nn.BatchNorm1d(num_features = filters)
         self.batch2 = nn.BatchNorm1d(num_features = filters)
+        self.batch3 = nn.BatchNorm1d(num_features = int(hidden_dim/4))
 
-        #Flat layer
-        self.flat = nn.Flatten() 
+        #Dense & classification layer 
+        self.fc1 = nn.Linear(hidden_dim, int(hidden_dim/4))
+        self.fc2 = nn.Linear(int(hidden_dim/4), 1)
 
-        #Dense layer
-        dens1_in = units*filters
-        dens1_out = int(dens1_in/8)
+
+        #LSTM layer
+        self.lstm = nn.LSTM(input_size = filters, 
+                                hidden_size = hidden_dim, 
+                                num_layers = n_layers, 
+                                dropout = drop,
+                                batch_first= True)
+    
+    def InitHiddenstate(self, batch_size):
+           
+        weight = next(self.parameters()).data
+        hidden = (weight.new(self.n_layers, batch_size, self.hidden_dim).zero_(),
+                  weight.new(self.n_layers, batch_size, self.hidden_dim).zero_())
         
-        self.dense1 = nn.Linear(dens1_in, dens1_out) 
-        self.dense2 = nn.Linear(dens1_out, 1) 
+        return hidden
 
-        #Reserve container for later lstm layer allocation
-        self.register_buffer('lstm', None)
-        
-    def forward(self, x): 
+    def forward(self, x, hidden): 
+
+        batch_size = x.shape[0]
         #Convolutional block
         x = self.pool(F.relu(self.batch1(self.conv1(x)))) #First block
         x = self.pool(F.relu(self.batch2(self.conv2(x)))) #Second block
         
         #LSTM-block
         x = torch.transpose(x, 1, 2)
-        
-        if self.lstm is None: #Allocate lstm layer
-            self.lstm = nn.LSTM(input_size = x.shape[2], 
-                                hidden_size = 32, 
-                                num_layers = 2, 
-                                dropout = 0.1,
-                                batch_first= True)
-        
-        x = self.lstm(x)
-        
-        #Prediction block
-        x = self.flat(x[0])
-        x = self.dense1(x) #Classification block
-        x = self.dense2(x) #Classification block
+        out, hidden = self.lstm(x, hidden)
+        out = out.contiguous().view(-1, self.hidden_dim)
 
-        return x
+        #Prediction block
+        out = F.relu(self.batch3(self.fc1(out)))
+        out = self.fc2(out)
+
+        out = out.view(batch_size, -1)
+        out = out[:,-1]
+
+        return out, hidden
 
 #Display network
 #model = PpgNet()
@@ -110,7 +134,7 @@ class PpgNet(nn.Module):
 
 
 ################### GSR Net ###################
-class GsrNet(nn.Module):
+class GSRNet(nn.Module):
     def __init__(self):
         super(GsrNet, self).__init__()
         #Convolutional layers

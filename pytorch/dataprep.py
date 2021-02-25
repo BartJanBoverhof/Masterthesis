@@ -14,7 +14,8 @@ class PytorchDataset(Dataset):
         key = "labels_"+modality #Determining right dict key
         self.labels = dat[key] #Saving labels
         self.dat = dat[modality] #Saving only modality of interest
-        
+        self.modality = modality
+
         #Determining the longest window for later use
         lengths = []
         for i in self.dat:
@@ -52,6 +53,13 @@ class PytorchDataset(Dataset):
         
         return max(lengths)
 
+    def __ObtainModality__(self):
+        """
+        Purpose:
+            Print modality
+        """
+        
+        return self.modality
 
 
 #Batch transformation class
@@ -62,8 +70,10 @@ class BatchTransformation():
             Transformation of windows per batch (padding & normalizing labels & transposing)
         """
 
-        #PADDING
         padding_length = self.padding_length
+        modality = self.modality
+
+        #PADDING
         sorted_batch = sorted(batch, key=lambda x: x[0].shape[0], reverse=True) #Sort batch in descending
         sequences = [x[0] for x in sorted_batch] #Get ordered windows
         
@@ -72,15 +82,16 @@ class BatchTransformation():
         sequences_padded = sequences_padded[0:len(batch)] #Remove the added window
 
         #Obtaining Sorted labels and standardizing
-        labels = []
-        for i in sorted_batch:
-            label = float(i[1])
-            label = (label-1) / 20
-            labels.append(label)
-        labels = torch.tensor(labels)
+        labels = torch.tensor([x[1] for x in sorted_batch]) #Get ordered windows
+        labels = (labels - 1)/ 20
         
         #TRANSPOSE BATCH 
         sequences_padded = torch.transpose(sequences_padded, 1, 2)
+
+        #EEG prep
+        if modality == "EEG": 
+            sequences_padded = sequences_padded.unsqueeze(1)
+            
 
         return sequences_padded, labels
     
@@ -90,7 +101,7 @@ class BatchTransformation():
             Transfering the earlier obtained padding length to the BatchTransformation class such it can be used
             in the __call__ function.
         """
-        BatchTransformation.padding_length = self
-
+        BatchTransformation.padding_length = self[0]
+        BatchTransformation.modality = self[1]
 
 
