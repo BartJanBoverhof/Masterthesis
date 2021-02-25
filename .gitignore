@@ -6,3 +6,4 @@ masterthesis.code-workspace
 __pycache__
 *.csv
 *.rds
+*.pt
