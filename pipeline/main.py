@@ -39,8 +39,8 @@ stream_types_list = ['PPG', 'GSR', 'EEG']
 #Window creation related parameters
 block_start_margin = 0  
 block_end_margin = 0    
-window_size = 8  
-window_overlap = 0     
+window_size = 5  
+window_overlap = 1     
 window_exact = True     
 
 #Defining list of all included participants
@@ -63,21 +63,21 @@ for participant in participants:
                             block_end_margin = block_end_margin, window_size = window_size, 
                             window_overlap = window_overlap, window_exact = window_exact, 
                             stream_types_list = stream_types_list, labels = labels, 
-                            role = "Operations") 
+                            role = "Operations", participant = participant) 
 
         engineering = transformer(filename = datapath+"/engineering.xdf", #Second segment
                             event_list = event_list, block_start_margin = block_start_margin, 
                             block_end_margin = block_end_margin, window_size = window_size, 
                             window_overlap = window_overlap, window_exact = window_exact, 
                             stream_types_list = stream_types_list, labels = labels, 
-                            role = "Engineer")
+                            role = "Engineer", participant = participant) 
 
         tactical = transformer(filename = datapath+"/tactical.xdf", #Third segment
                             event_list = event_list, block_start_margin = block_start_margin, 
                             block_end_margin = block_end_margin, window_size = window_size, 
                             window_overlap = window_overlap, window_exact = window_exact, 
                             stream_types_list = stream_types_list, labels = labels, 
-                            role = "Tactical")
+                            role = "Tactical", participant = participant) 
 
         #Combining all segments into one dict
         combined_eeg_labels = [operations["labels_EEG"], engineering["labels_EEG"], tactical["labels_EEG"]]

@@ -43,7 +43,7 @@ def load_data(filename):
 def create_windows(streams, events, 
                    start_margin, end_margin, 
                    window_size, window_overlap, window_exact, 
-                   labels, role):
+                   labels, role, participant):
     """
     Purpose:
         Use the marker stream to create windows and summarize these in a pandas df
@@ -77,7 +77,7 @@ def create_windows(streams, events,
     tries = {}
 
     #Create labels df 
-    pfilter = labels["Username"] == "bci10"
+    pfilter = labels["Username"] == participant
     labels = labels[pfilter]
     rolefilter = labels["Role"] == role
     labels = labels[rolefilter]
@@ -89,7 +89,7 @@ def create_windows(streams, events,
             data = stream['time_series'] #Data object: contains the events 
             timestamps = stream['time_stamps'] #Timestamps object: contains all time stamps 
 
-            for index, event in enumerate(data): #For all of the selected events (844)
+            for index, event in enumerate(data): #For all of the selected events 
                 #Only for events that we are interested in
                 if event[0] in events: #If we have an event that is in the list events
                     block_name = event[0] #We make a block
@@ -274,7 +274,7 @@ def transformer(filename, event_list,
                 block_start_margin, block_end_margin, 
                 window_size, window_overlap, 
                 window_exact, stream_types_list, 
-                labels, role): 
+                labels, role, participant): 
     """
     Purpose:
         Function combining and running all previously defined functions 
@@ -302,7 +302,7 @@ def transformer(filename, event_list,
     windows = create_windows(streams = streams, events = event_list, 
                             start_margin = block_start_margin, end_margin = block_end_margin, 
                             window_size = window_size, window_overlap = window_overlap, 
-                            window_exact = window_exact, labels = labels, role = role)
+                            window_exact = window_exact, labels = labels, role = role, participant = participant)
     print('windows', windows)
     stream_dataframes = create_dataframes(streams = streams, stream_types = stream_types_list) 
     print('data', stream_dataframes)

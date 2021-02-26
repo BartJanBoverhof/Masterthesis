@@ -88,10 +88,11 @@ class BatchTransformation():
         #TRANSPOSE BATCH 
         sequences_padded = torch.transpose(sequences_padded, 1, 2)
 
+        """
         #EEG prep
         if modality == "EEG": 
             sequences_padded = sequences_padded.unsqueeze(1)
-            
+        """    
 
         return sequences_padded, labels
     

@@ -30,13 +30,9 @@ except ModuleNotFoundError:
     print("Error: please make sure that working directory is set as '~/Masterthesis'")
     print("Current working directory is:", wd)
 
-participants = ["bci10", "bci12", "bci13", "bci17", "bci20", "bci21", "bci22",
-                "bci23", "bci24", "bci26", "bci27", "bci28", "bci29", "bci30", 
-                "bci31", "bci32", "bci33", "bci34", "bci35", "bci36", "bci37", "bci38", 
-                "bci39", "bci40", "bci41", "bci42", "bci43", "bci44"]
 
-
-def TrainLoop(participant, modality, filters, hidden_dim, n_layers, drop, epochs, trainn):
+def TrainLoop(participant, modality, filters, hidden_dim, n_layers, drop, epochs, trainortest):
+    
     ###########################################################################################
     ########################## 1. Create PyTorch dataset & Loader(s) ##########################
     ###########################################################################################
@@ -45,19 +41,18 @@ def TrainLoop(participant, modality, filters, hidden_dim, n_layers, drop, epochs
     pydata =  dataprep.PytorchDataset(path = path,       #Creating PyTorch dataset
                                       modality = modality)
 
-    #Pre-specification of relevant paramaters
-    batch_size = 25
-    test_split = .2
-    validation_split = .2
-
-
     padding_length = dataprep.PytorchDataset.__PaddingLength__(pydata) #Determining the longest window for later use
     dataprep.BatchTransformation.transfer([padding_length, modality]) #Transfer max padding length & modality vars to BatchTransfor class
+               
+               
+    #Making splits
+    batch_size = 10
+    test_split = .1
+    validation_split = .1
 
-    np.random.seed(3791)
-    torch.manual_seed(3791)
-
-    #Test split
+    ################
+    ## TEST SPLIT ##
+    ################    
     indices = list(range(len(pydata.dat))) #Create list of indices
     train_test_split = int(np.floor(test_split * len(pydata))) #Calculate number of windows to use for train/test
     np.random.shuffle(indices) #Shuffle indices.
@@ -118,7 +113,7 @@ def TrainLoop(participant, modality, filters, hidden_dim, n_layers, drop, epochs
     ########################## 3. Training & Validation loop ##################################
     ###########################################################################################
     
-    if trainn == True:
+    if trainortest == "train":
         #Prerequisites
         clip = 5
         train_list = []
@@ -181,7 +176,7 @@ def TrainLoop(participant, modality, filters, hidden_dim, n_layers, drop, epochs
                         print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
                         valid_loss_min, valid_loss))
 
-                        torch.save(model, "pytorch/trained_models/"+participant+"_"+modality+".pt")
+                        torch.save(model.state_dict(), "pytorch/trained_models/"+participant+"_"+modality+".pt")
                         valid_loss_min = valid_loss
 
         ################
@@ -234,14 +229,14 @@ def TrainLoop(participant, modality, filters, hidden_dim, n_layers, drop, epochs
                     print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
                     valid_loss_min, valid_loss))
 
-                    torch.save(model, "pytorch/trained_models/"+participant+"_"+modality+".pt")
+                    torch.save(model.state_dict(), "pytorch/trained_models/"+participant+"_"+modality+".pt")
                     valid_loss_min = valid_loss
 
 
 
 
-        plt.plot(list(range(epochs-7)), train_list[7:len(train_list)], label = "train")
-        plt.plot(list(range(epochs-7)), valid_list[7:len(valid_list)], label = "validation")
+        plt.plot(list(range(epochs-5)), train_list[5:len(train_list)], label = "train")
+        plt.plot(list(range(epochs-5)), valid_list[5:len(valid_list)], label = "validation")
         plt.show()
         
 
@@ -250,8 +245,8 @@ def TrainLoop(participant, modality, filters, hidden_dim, n_layers, drop, epochs
     ###########################################################################################
     ########################## 4. Assessing model performance ##################################
     ###########################################################################################
-    elif trainn == False:
-        trained_model = torch.load("pytorch/trained_models/"+participant+"_"+modality+".pt")
+    elif trainortest == "test":
+        trained_model = model.load_state_dict(torch.load("pytorch/trained_models/"+participant+"_"+modality+".pt"))
 
         test_loss = 0.0
 
@@ -272,7 +267,7 @@ def TrainLoop(participant, modality, filters, hidden_dim, n_layers, drop, epochs
         elif modality == "EEG":
             
             model.eval()
-            diff = [] 
+            diff = torch.Tensor()
 
             for windows, labels in testloader:
                 
@@ -282,11 +277,16 @@ def TrainLoop(participant, modality, filters, hidden_dim, n_layers, drop, epochs
                 test_loss += loss.item()*windows.size(0)
 
                 foo = (out.squeeze() - labels)
-                for x in foo:
-                    diff.append(float(x))
-                
-            train_loss = test_loss/len(testloader.sampler)
-            sum(diff)/len(testloader.sampler)
-            print("end")
+                diff = torch.cat([diff,foo])
+            
+            test_loss = test_loss/len(testloader.sampler)
+            print("Test los:",test_loss)
+            average_miss = sum(abs(diff))/len(testloader.sampler)
 
+            print("Average Missclasification:", float(average_miss))
+            print("Or on the orignal scale:", float(average_miss*20))
+
+            
+            plt.hist(diff.detach().numpy(), bins= 50)
+            plt.show()
 
