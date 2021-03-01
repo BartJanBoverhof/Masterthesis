@@ -24,8 +24,8 @@ trainortest = "train"
 np.random.seed(3791)
 torch.manual_seed(3791)
 
-"""
-train.TrainLoop(participant = participants[6], modality = "EEG",
+
+train.TrainLoop(participant = participants[6], modality = "PPG",
                 filters = filters, hidden_dim = hidden_dim, n_layers = n_layers, drop = drop,
                 epochs = epochs, trainortest = trainortest)
 """
@@ -42,3 +42,4 @@ for participant in participants:
 import matplotlib.pyplot as plt
 plt.plot(lengths)
 plt.show()
+"""
