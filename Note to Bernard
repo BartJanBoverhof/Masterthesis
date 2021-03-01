@@ -1,0 +1,42 @@
+Hi Bernard, 
+
+Zoals beloofd hier een kort overzichtje van de literatuur waarop de modellen geinspireerd zijn.
+
+Het PPG netwerk & het GSR netwerk zijn beide combinaties tussen convolutional & lstm. Het GSR netwrk is nog niet af, dus het is handig om voor het doorgronden van het LSTM deel eventjes te focusen op het PPG netwerk. Als dit duidelijk is zal die voor GSR ook automatisch duidelijk zijn.
+
+De architectuur van het PPG network is afgeleid van dit paper:
+- https://ieeexplore.ieee.org/abstract/document/8607019 
+Code tecnisch heb ik het LSTM gebasseerd op deze blogpost:
+- https://blog.floydhub.com/long-short-term-memory-from-zero-to-hero-with-pytorch/
+
+
+
+Een samenvatting het netwerk is als volgt:
+- Stap 0: De data wordt gefeed aan het netwerk als 1d tensors van +/- 1300 bij 1. 
+- Stap 1: De data gaat door het eerste Convolutional blok voor feature extraction. Dit blok bestaat uit:
+	- Convolutional layer met als output 32 filters.
+	- Een batch norm layer die de data normaliseert. 
+	- Relu activatie functie.
+	- Max pooling layer van stride 4. 
+- Stap 2: Het tweede convolutional blok. Deze is identiek aan de vorige:
+	- Convolutional layer met als output 32 filters.
+	- Een batch norm layer die de data normaliseert. 
+	- Relu activatie functie.
+	- Max pooling layer van stride 4. 
+- Stap 3: LSTM blok:
+	- deze layer bestaat uit 2 LSTM-layers diep. 
+	- samenvoeging van de filters en de batches (zoals afgeleid van het floydhub voorbeeld). 
+- Stap 4: Prediction blok bestaande uit:
+	- Een fully connected dense layer.
+	- een batch normalisatie layer
+	- een relu activatie
+	- nog een fully connected dense layer.
+- Stap 5: Output (ook zoals afgeleid van het voorbeeld op floydhub):  
+	- Opnieuw verkrijgen van de batches als eerste dimensie.
+	- Voor iedere batch de laatste observatie pakken en vervolgens dit outputten. Daarnaast worden ook de hidden states outgeput. 
+
+* Zoals we besproken hebben is het onduidelijk hoe ik stap 4 & 5 moet vormgeven. Ik heb geen idee of deze manier zo logisch is in ons voorbeeld. 
+* Daarnaast ben ik er niet zeker van of het random sampelen, zoals we nu doen, een goede aanpak is gezien mogelijk de "time series" component wegvalt.
+
+
+

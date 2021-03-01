@@ -73,6 +73,7 @@ def TrainLoop(participant, modality, filters, hidden_dim, n_layers, drop, epochs
                                         drop_last= False,
                                         sampler = test_sampler,
                                         collate_fn = dataprep.BatchTransformation())
+                                        
     validloader = torch.utils.data.DataLoader(pydata, #Validation loader
                                             batch_size = batch_size, 
                                             shuffle = False,
