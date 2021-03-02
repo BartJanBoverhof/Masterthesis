@@ -18,28 +18,13 @@ participants = ["bci10", "bci12", "bci13", "bci17", "bci20", "bci21", "bci22",
 filters = 32
 hidden_dim = 64
 n_layers = 2
-drop = 0.1
-epochs = 1000
-trainortest = "train"
+drop = 0.25
+epochs = 50
+trainortest = "test"
 np.random.seed(3791)
 torch.manual_seed(3791)
 
 
-train.TrainLoop(participant = participants[6], modality = "PPG",
+train.TrainLoop(participant = participants[9], modality = "EEG",
                 filters = filters, hidden_dim = hidden_dim, n_layers = n_layers, drop = drop,
                 epochs = epochs, trainortest = trainortest)
-"""
-
-#TEMP
-#check amount of data for each person
-lengths = np.array([])
-for participant in participants:
-    path = "pipeline/prepared_data/"+participant+"/data.pickle"
-    pydata =  dataprep.PytorchDataset(path = path,       #Creating PyTorch dataset
-                                      modality = "GSR")
-    x = len(pydata)
-    lengths = np.append(lengths, x)
-import matplotlib.pyplot as plt
-plt.plot(lengths)
-plt.show()
-"""
