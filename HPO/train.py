@@ -22,6 +22,7 @@ from torch.utils.data import Dataset, DataLoader, SubsetRandomSampler
 from torch import optim
 from torch.nn.utils.rnn import pad_sequence
 import numpy as np
+import optuna
 
 try: #Importing network
     import dataprep, networks
@@ -31,8 +32,22 @@ except ModuleNotFoundError:
     print("Current working directory is:", wd)
 
 
-def TrainLoop(participant, modality, drop, epochs, trainortest, config):
-    
+
+participants = ["bci10", "bci12", "bci13", "bci17", "bci20", "bci21", "bci22",
+                "bci23", "bci24", "bci26", "bci27", "bci28", "bci29", "bci30", 
+                "bci31", "bci32", "bci33", "bci34", "bci35", "bci36", "bci37", 
+                "bci38", "bci39", "bci40", "bci41", "bci42", "bci43", "bci44"]
+
+drop = 0.25
+epochs = 50
+trainortest = "train"
+participant = participants[4]
+modality = "EEG"
+
+np.random.seed(3791)
+torch.manual_seed(3791)
+
+def objective(trial):    
     ###########################################################################################
     ########################## 1. Create PyTorch dataset & Loader(s) ##########################
     ###########################################################################################
@@ -99,14 +114,20 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, config):
     elif modality == "GSR":
         model = networks.GSRNet(drop = drop)
     elif modality == "EEG":
-        model = networks.EEGNet(tensor_length = padding_length, drop = drop))
+        model = networks.EEGNet(tensor_length = padding_length, drop = drop)
     
     print(model)
 
     #Loss function & Optimizer
-    criterion = nn.MSELoss()
-    optimizer = optim.Adam(model.parameters(), lr= 0.001)
+    optimizer_name = trial.suggest_categorical("optimizer", ["Adam", "RMSprop", "SGD"])
+    lr = trial.suggest_float("lr", 1e-5, 1e-1, log = True)
 
+    optimizer = getattr(optim, optimizer_name)(model.parameters(), lr=lr)
+
+    criterion = nn.MSELoss()
+    """
+    optimizer = optim.Adam(model.parameters(), lr = config["lr"])
+    """
 
 
 
@@ -208,23 +229,33 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, config):
                 ##Validation loop##
                 ###################
                 model.eval()
+                diff = torch.Tensor()
+                
+                predictions = torch.Tensor()
+                labelss = torch.Tensor()
+
                 for windows, labels in validloader:
                     
-                    #Validation pass
+                    #Test pass    
                     out = model(windows)
                     loss = criterion(out.squeeze(), labels)
                     valid_loss += loss.item()*windows.size(0)
 
-                #Averages losses
-                train_loss = train_loss/len(trainloader.sampler)
-                valid_loss = valid_loss/len(validloader.sampler)
-                
-                train_list.append(train_loss)
-                valid_list.append(valid_loss)
+                    foo = (out.squeeze() - labels)
+                    diff = torch.cat([diff,foo])
 
-                print('Epoch: {} \tTraining Loss: {:.6f} \tValidation Loss: {:.6f}'.format(
-                epoch, train_loss, valid_loss))
-                
+                    predictions = torch.cat([predictions, out])
+                    labelss = torch.cat([labelss, labels])
+
+                valid_loss = valid_loss/len(validloader.sampler)
+                print("Test los:",valid_loss)
+                average_miss = sum(abs(diff))/len(validloader.sampler)
+
+                corr = np.corrcoef(predictions.squeeze().detach().numpy(), labelss.detach().numpy())
+                print("Correlation predictions and labels:", float(corr[1][0]))
+
+                corr = float(corr[1][0])
+                """
                 # save model if validation loss has decreased
                 if valid_loss <= valid_loss_min:
                     print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
@@ -232,17 +263,41 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, config):
 
                     torch.save(model.state_dict(), "pytorch/trained_models/"+participant+"_"+modality+".pt")
                     valid_loss_min = valid_loss
+                """
 
+                accuracy = corr
+                
+                trial.report(accuracy, epoch)
 
+                # Handle pruning based on the intermediate value.
+                if trial.should_prune():
+                    raise optuna.exceptions.TrialPruned()
 
-
-        plt.plot(list(range(epochs-5)), train_list[5:len(train_list)], label = "train")
-        plt.plot(list(range(epochs-5)), valid_list[5:len(valid_list)], label = "validation")
-        plt.show()
+    return accuracy
         
 
+if __name__ == "__main__":
+    study = optuna.create_study(direction="maximize")
+    study.optimize(objective, n_trials=100, timeout=600)
 
+    pruned_trials = study.get_trials(deepcopy=False, states=[TrialState.PRUNED])
+    complete_trials = study.get_trials(deepcopy=False, states=[TrialState.COMPLETE])
 
+    print("Study statistics: ")
+    print("  Number of finished trials: ", len(study.trials))
+    print("  Number of pruned trials: ", len(pruned_trials))
+    print("  Number of complete trials: ", len(complete_trials))
+
+    print("Best trial:")
+    trial = study.best_trial
+
+    print("  Value: ", trial.value)
+
+    print("  Params: ")
+    for key, value in trial.params.items():
+        print("    {}: {}".format(key, value))
+
+    """
     ###########################################################################################
     ########################## 4. Assessing model performance ##################################
     ###########################################################################################
@@ -300,3 +355,10 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, config):
             plt.hist(diff.detach().numpy(), bins= 50)
             plt.show()
 
+            
+    """
+"""
+plt.plot(list(range(epochs-5)), train_list[5:len(train_list)], label = "train")
+plt.plot(list(range(epochs-5)), valid_list[5:len(valid_list)], label = "validation")
+plt.show()
+"""

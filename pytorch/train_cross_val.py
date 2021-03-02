@@ -112,7 +112,7 @@ def TrainLoop(participant, modality, filters, hidden_dim, n_layers, drop, epochs
 
         #Loss function & Optimizer
         criterion = nn.MSELoss()
-        optimizer = optim.Adam(model.parameters(), lr=0.001)
+        optimizer = optim.Adam(model.parameters(), lr=0.0001)
 
 
         ###########################################################################################
