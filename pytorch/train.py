@@ -31,7 +31,7 @@ except ModuleNotFoundError:
     print("Current working directory is:", wd)
 
 
-def TrainLoop(participant, modality, drop, epochs, trainortest, config):
+def TrainLoop(participant, modality, drop, epochs, trainortest):
     
     ###########################################################################################
     ########################## 1. Create PyTorch dataset & Loader(s) ##########################
@@ -99,7 +99,7 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, config):
     elif modality == "GSR":
         model = networks.GSRNet(drop = drop)
     elif modality == "EEG":
-        model = networks.EEGNet(tensor_length = padding_length, drop = drop))
+        model = networks.EEGNet(tensor_length = padding_length, drop = drop)
     
     print(model)
 
