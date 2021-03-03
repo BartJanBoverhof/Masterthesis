@@ -39,7 +39,7 @@ stream_types_list = ['PPG', 'GSR', 'EEG']
 #Window creation related parameters
 block_start_margin = 0  
 block_end_margin = 0    
-window_size = 5  
+window_size = 10  
 window_overlap = 1     
 window_exact = True     
 
@@ -56,7 +56,9 @@ for participant in participants:
     if __name__ == '__main__': 
         
         datapath = "raw_data/"+participant #Obtaining person-specific path
-        os.mkdir("prepared_data/"+participant) #Creating person-specific subdirectory
+        folder = os.path.exists("prepared_data/")
+        if folder == False:
+            os.mkdir("prepared_data/") #Creating person-specific subdirectory
 
         operations = transformer(filename = datapath+"/operations.xdf", #First segment
                             event_list = event_list, block_start_margin = block_start_margin, 
@@ -111,7 +113,7 @@ for participant in participants:
         combined_dat["GSR"].extend(engineering["GSR"])
         combined_dat["GSR"].extend(tactical["GSR"])
 
-        with open("prepared_data/"+participant+"/data.pickle", 'wb') as handle: #Save as pickle
+        with open("prepared_data/"+participant+".pickle", 'wb') as handle: #Save as pickle
             pickle.dump(combined_dat, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
         print(participant+" done!")

@@ -17,11 +17,11 @@ participants = ["bci10", "bci12", "bci13", "bci17", "bci20", "bci21", "bci22",
 
 drop = 0.25
 epochs = 50
-trainortest = "train"
+trainortest = "test"
 np.random.seed(3791)
 torch.manual_seed(3791)
 
 
-train.TrainLoop(participant = participants[11], modality = "EEG",
+train.TrainLoop(participant = participants[18], modality = "EEG",
                 drop = drop,
                 epochs = epochs, trainortest = trainortest)

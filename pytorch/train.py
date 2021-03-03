@@ -37,7 +37,7 @@ def TrainLoop(participant, modality, drop, epochs, trainortest):
     ########################## 1. Create PyTorch dataset & Loader(s) ##########################
     ###########################################################################################
     #Create PyTorch dataset definition class
-    path = "pipeline/prepared_data/"+participant+"/data.pickle"
+    path = "pipeline/prepared_data/"+participant+".pickle"
     pydata =  dataprep.PytorchDataset(path = path,       #Creating PyTorch dataset
                                       modality = modality)
 
@@ -296,7 +296,9 @@ def TrainLoop(participant, modality, drop, epochs, trainortest):
             corr = np.corrcoef(predictions.squeeze().detach().numpy(), labelss.detach().numpy())
             print("Correlation predictions and labels:", float(corr[1][0]))
 
-            
+            print(predictions.squeeze()) 
+            print(labelss.squeeze())            
+           
             plt.hist(diff.detach().numpy(), bins= 50)
             plt.show()
 
