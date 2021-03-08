@@ -31,7 +31,7 @@ except ModuleNotFoundError:
     print("Current working directory is:", wd)
 
 
-def TrainLoop(participant, modality, drop, epochs, trainortest):
+def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
     
     ###########################################################################################
     ########################## 1. Create PyTorch dataset & Loader(s) ##########################
@@ -46,46 +46,41 @@ def TrainLoop(participant, modality, drop, epochs, trainortest):
                
                
     #Making splits
-    batch_size = 10
     test_split = .1
     validation_split = .1
 
     ################
     ## TEST SPLIT ##
     ################    
-    indices = list(range(len(pydata.dat))) #Create list of indices
-    train_test_split = int(np.floor(test_split * len(pydata))) #Calculate number of windows to use for train/test
-    np.random.shuffle(indices) #Shuffle indices.
-    train_indices, test_indices = indices[train_test_split:], indices[:train_test_split] #Splitted indices.
+    indices_traintest = list(range(len(pydata.dat))) #Create list of indices
+    test_indices = indices_traintest[::int(test_split*100)]  
+    train_val_indices = [x for x in indices_traintest if x not in test_indices]
 
-    train_valid_split = int(np.floor(validation_split * len(train_indices))) #Calculate number of windows to use for val/train
-    val_train_indices, val_indices = train_indices[train_valid_split:], train_indices[:train_valid_split] #Splitted indices.
+    val_indices = train_val_indices[::int(validation_split*100)]
+    train_indices = [x for x in train_val_indices if x not in val_indices]
+   
+  
+    traindata = [pydata[i] for i in train_indices]
+    valdata = [pydata[i] for i in val_indices]
+    testdata = [pydata[i] for i in test_indices]
 
-    #Defining samplers
-    test_sampler = SubsetRandomSampler(test_indices) #Train sampler
-    train_sampler = SubsetRandomSampler(val_train_indices) #Train sampler
-    valid_sampler = SubsetRandomSampler(val_indices) #Validation sampler
-    
     #Defining loaders
-    testloader = torch.utils.data.DataLoader(pydata, #Test loader 
+    testloader = torch.utils.data.DataLoader(testdata, #Test loader 
                                         batch_size = batch_size, 
-                                        shuffle = False,
+                                        shuffle = True,
                                         drop_last= False,
-                                        sampler = test_sampler,
                                         collate_fn = dataprep.BatchTransformation())
 
-    validloader = torch.utils.data.DataLoader(pydata, #Validation loader
+    validloader = torch.utils.data.DataLoader(valdata, #Validation loader
                                             batch_size = batch_size, 
-                                            shuffle = False,
+                                            shuffle = True,
                                             drop_last= False,
-                                            sampler = valid_sampler,                                          
                                             collate_fn = dataprep.BatchTransformation())
 
-    trainloader = torch.utils.data.DataLoader(pydata, #Training loader
+    trainloader = torch.utils.data.DataLoader(traindata, #Training loader
                                             batch_size = batch_size, 
-                                            shuffle = False,
+                                            shuffle = True,
                                             drop_last= False,
-                                            sampler = train_sampler,
                                             collate_fn = dataprep.BatchTransformation())
 
 
@@ -105,7 +100,7 @@ def TrainLoop(participant, modality, drop, epochs, trainortest):
 
     #Loss function & Optimizer
     criterion = nn.MSELoss()
-    optimizer = optim.Adam(model.parameters(), lr= 0.001)
+    optimizer = optim.Adam(model.parameters(), lr= 0.0001)
 
 
 
@@ -135,6 +130,7 @@ def TrainLoop(participant, modality, drop, epochs, trainortest):
                 #####################
                 h = model.InitHiddenstate(batch_size)
                 model.train()
+                
                 for windows, labels in trainloader:
 
                     h = tuple([e.data for e in h])
@@ -162,23 +158,23 @@ def TrainLoop(participant, modality, drop, epochs, trainortest):
                     loss = criterion(out, labels)
                     valid_loss += loss.item()*windows.size(0)
 
-                    #Averages losses
-                    train_loss = train_loss/len(trainloader.sampler)
-                    valid_loss = valid_loss/len(validloader.sampler)
-                    
-                    train_list.append(train_loss)
-                    valid_list.append(valid_loss)
+                #Averages losses
+                train_loss = train_loss/len(trainloader.sampler)
+                valid_loss = valid_loss/len(validloader.sampler)
+                
+                train_list.append(train_loss)
+                valid_list.append(valid_loss)
 
-                    print('Epoch: {} \tTraining Loss: {:.6f} \tValidation Loss: {:.6f}'.format(
-                    epoch, train_loss, valid_loss))
-                    
-                    # save model if validation loss has decreased
-                    if valid_loss <= valid_loss_min:
-                        print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
-                        valid_loss_min, valid_loss))
+                print('Epoch: {} \tTraining Loss: {:.6f} \tValidation Loss: {:.6f}'.format(
+                epoch, train_loss, valid_loss))
+                
+                # save model if validation loss has decreased
+                if valid_loss <= valid_loss_min:
+                    print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
+                    valid_loss_min, valid_loss))
 
-                        torch.save(model.state_dict(), "pytorch/trained_models/"+participant+"_"+modality+".pt")
-                        valid_loss_min = valid_loss
+                    torch.save(model.state_dict(), "pytorch/trained_models/"+participant+"_"+modality+".pt")
+                    valid_loss_min = valid_loss
 
         ################
         ### EEG LOOP ###
@@ -247,7 +243,7 @@ def TrainLoop(participant, modality, drop, epochs, trainortest):
     ########################## 4. Assessing model performance ##################################
     ###########################################################################################
     elif trainortest == "test":
-        trained_model = model.load_state_dict(torch.load("pytorch/trained_models/"+participant+"_"+modality+".pt"))
+        model.load_state_dict(torch.load("pytorch/trained_models/"+participant+"_"+modality+".pt"))
 
         test_loss = 0.0
 
@@ -255,6 +251,11 @@ def TrainLoop(participant, modality, drop, epochs, trainortest):
             h = model.InitHiddenstate(batch_size)
 
             model.eval()
+            diff = torch.Tensor()
+            
+            predictions = torch.Tensor()
+            labelss = torch.Tensor()
+
             for windows, labels in testloader:
                 
                 #Test pass    
@@ -263,7 +264,27 @@ def TrainLoop(participant, modality, drop, epochs, trainortest):
                 loss = criterion(out.squeeze(), labels)
                 test_loss += loss.item()*windows.size(0)
 
-                difference = labels - torch.squeeze(out)
+                foo = (out.squeeze() - labels)
+                diff = torch.cat([diff,foo])
+
+                predictions = torch.cat([predictions, out])
+                labelss = torch.cat([labelss, labels])
+
+            test_loss = test_loss/len(testloader.sampler)
+            print("Test los:",test_loss)
+            average_miss = sum(abs(diff))/len(testloader.sampler)
+
+            print("Average Missclasification:", float(average_miss))
+            print("Or on the orignal scale:", float(average_miss*20))
+
+            corr = np.corrcoef(predictions.squeeze().detach().numpy(), labelss.detach().numpy())
+            print("Correlation predictions and labels:", float(corr[1][0]))
+
+            print(predictions.squeeze()) 
+            print(labelss.squeeze())            
+           
+            plt.hist(diff.detach().numpy(), bins= 50)
+            plt.show()
 
         elif modality == "EEG":
             

@@ -74,25 +74,17 @@ class BatchTransformation():
         modality = self.modality
 
         #PADDING
-        sorted_batch = sorted(batch, key=lambda x: x[0].shape[0], reverse=True) #Sort batch in descending
-        sequences = [x[0] for x in sorted_batch] #Get ordered windows
-        
+        sequences = [x[0] for x in batch] #Get ordered windows
         sequences.append(torch.ones(padding_length,1)) #Temporary add window of desired padding length
         sequences_padded = torch.nn.utils.rnn.pad_sequence(sequences, batch_first=True, padding_value = 0) #Pad
         sequences_padded = sequences_padded[0:len(batch)] #Remove the added window
 
         #Obtaining Sorted labels and standardizing
-        labels = torch.tensor([x[1] for x in sorted_batch]) #Get ordered windows
+        labels = torch.tensor([x[1] for x in batch]) #Get ordered windows
         labels = (labels - 1)/ 20
         
         #TRANSPOSE BATCH 
         sequences_padded = torch.transpose(sequences_padded, 1, 2)
-
-        """
-        #EEG prep
-        if modality == "EEG": 
-            sequences_padded = sequences_padded.unsqueeze(1)
-        """    
 
         return sequences_padded, labels
     
