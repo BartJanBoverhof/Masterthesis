@@ -4,10 +4,10 @@ import os
 
 
 try: #Importing network
-    import train, dataprep
+    import train_single, train_multi, dataprep, tryout
 except ModuleNotFoundError:
     wd = os.getcwd()
-    print("Error: please make sure that working directory is set as '~/Masterthesis'")
+    print("Error: please make sure that working directory is set as '~/Masterthesis'.")
     print("Current working directory is:", wd)
 
 
@@ -19,12 +19,12 @@ participants = ["bci10", "bci12", "bci13", "bci17", "bci21", "bci22",
 
 drop = 0.25
 epochs = 50
-batch_size = 8
+batch_size = 10
 trainortest = "test"
 np.random.seed(3791)
 torch.manual_seed(3791)
-"""
-train.TrainLoop(participant = participants[3], modality = "EEG",
+
+train_single.TrainLoop(participant = participants[2], modality = "GSR",
                 drop = drop, batch_size = batch_size, 
                 epochs = epochs, trainortest = trainortest)
 """
@@ -40,4 +40,5 @@ for participant in participants:
 import matplotlib.pyplot as plt
 plt.plot(lengths)
 plt.show()
-
+print("ha;;p")
+"""
