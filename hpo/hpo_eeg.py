@@ -33,7 +33,7 @@ class PytorchDataset(Dataset):
         Purpose: 
             Load pickle object and save only specified data. 
         """
-        dat = pickle.load(open("pipeline/prepared_data/"+participant+".pickle", "rb")) #Open pickle
+        dat = pickle.load(open("/floyd/input/data/"+participant+".pickle", "rb")) #Open pickle
         key = "labels_"+modality #Determining right dict key
         self.labels = dat[key] #Saving labels
         self.dat = dat[modality] #Saving only modality of interest
@@ -378,8 +378,8 @@ participants = [
                 "bci31", "bci32", "bci33", "bci34", "bci35", "bci36", "bci37", 
                 "bci38", "bci39", "bci40", "bci41", "bci42", "bci43", "bci44"]
 
-ntrials = 100
-epochs = 80
+ntrials = 1
+epochs = 1
 batch_size = 10
 np.random.seed(3791)
 torch.manual_seed(3791)
@@ -416,6 +416,6 @@ if __name__ == "__main__":
         for key, value in trial.params.items():
             print("    {}: {}".format(key, value))
 
-        with open("/Users/bart-janb/Documents/GitHub/Masterthesis/hpo/hyperparams"+modality+"_"+participant+".pickle", 'wb') as handle: #Save as pickle
+        with open(modality+"_"+participant+".pickle", 'wb') as handle: #Save as pickle
             pickle.dump(study.best_trial, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
