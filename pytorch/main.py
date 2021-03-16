@@ -24,7 +24,7 @@ trainortest = "test"
 np.random.seed(3791)
 torch.manual_seed(3791)
 
-train_single.TrainLoop(participant = participants[2], modality = "GSR",
+train_single.TrainLoop(participant = participants[13], modality = "PPG",
                 drop = drop, batch_size = batch_size, 
                 epochs = epochs, trainortest = trainortest)
 """

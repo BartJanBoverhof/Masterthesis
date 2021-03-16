@@ -188,7 +188,11 @@ def create_dataframes(streams, stream_types):
 
             stream_data = pd.DataFrame(data, columns=labels) #Create a seperate dataframe with the data for each stream
             stream_data.insert(0, "timestamps", timestamps, True) #Add column with timestamps to data
-            result[stream_type] = stream_data
+            
+            if stream_type == "PPG" and len(labels) == 1:
+                result[stream_type] = stream_data
+            elif stream_type == "EEG" or stream_type == "GSR":
+                result[stream_type] = stream_data
     return result
 
 

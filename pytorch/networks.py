@@ -63,9 +63,9 @@ class EEGNet(nn.Module):
 
         return x
 
-class PPGnet(nn.Module):
+class PPGNet(nn.Module):
     def __init__(self, tensor_length, drop = 0.25):
-        super(PPGnet, self).__init__()
+        super(PPGNet, self).__init__()
 
         self.drop = drop
         self.tensor_length = tensor_length
@@ -73,22 +73,22 @@ class PPGnet(nn.Module):
         foo = int(foo /3)         
         foo = int(foo /3)
         foo = int(foo /3)
-        dense_input = 200*foo
+        dense_input = 128*foo
 
         #Convolutional layers
-        self.conv1 = nn.Conv1d(in_channels = 1, out_channels = 25, kernel_size = 3, padding=1)
-        self.conv2 = nn.Conv1d(in_channels = 25, out_channels = 50, kernel_size = 3, padding=1)
-        self.conv3 = nn.Conv1d(in_channels = 50, out_channels = 100, kernel_size = 3, padding=1)
-        self.conv4 = nn.Conv1d(in_channels = 100, out_channels = 200, kernel_size = 3, padding=1)
+        self.conv1 = nn.Conv1d(in_channels = 1, out_channels = 16, kernel_size = 3, padding=1)
+        self.conv2 = nn.Conv1d(in_channels = 16, out_channels = 32, kernel_size = 3, padding=1)
+        self.conv3 = nn.Conv1d(in_channels = 32, out_channels = 64, kernel_size = 3, padding=1)
+        self.conv4 = nn.Conv1d(in_channels = 64, out_channels = 128, kernel_size = 3, padding=1)
 
         #Max pooling layer (3x1)
         self.pool = nn.MaxPool1d(kernel_size = 3, stride = 3) 
 
         #Batch normalization
-        self.batch1 = nn.BatchNorm1d(num_features = 25)
-        self.batch2 = nn.BatchNorm1d(num_features = 50)
-        self.batch3 = nn.BatchNorm1d(num_features = 100)
-        self.batch4 = nn.BatchNorm1d(num_features = 200)
+        self.batch1 = nn.BatchNorm1d(num_features = 16)
+        self.batch2 = nn.BatchNorm1d(num_features = 32)
+        self.batch3 = nn.BatchNorm1d(num_features = 64)
+        self.batch4 = nn.BatchNorm1d(num_features = 128)
 
         #Dense layer
         self.dense1 = nn.Linear(dense_input, int(dense_input/8)) 
@@ -111,9 +111,9 @@ class PPGnet(nn.Module):
 
         return x
 
-class GSRnet(nn.Module):
+class GSRNet(nn.Module):
     def __init__(self, tensor_length, drop = 0.25):
-        super(GSRnet, self).__init__()
+        super(GSRNet, self).__init__()
 
         self.drop = drop
         self.tensor_length = tensor_length
@@ -121,22 +121,22 @@ class GSRnet(nn.Module):
         foo = int(foo /3)         
         foo = int(foo /3)
         foo = int(foo /3)
-        dense_input = 200*foo
+        dense_input = 128*foo
 
         #Convolutional layers
-        self.conv1 = nn.Conv1d(in_channels = 1, out_channels = 25, kernel_size = 3, padding=1)
-        self.conv2 = nn.Conv1d(in_channels = 25, out_channels = 50, kernel_size = 3, padding=1)
-        self.conv3 = nn.Conv1d(in_channels = 50, out_channels = 100, kernel_size = 3, padding=1)
-        self.conv4 = nn.Conv1d(in_channels = 100, out_channels = 200, kernel_size = 3, padding=1)
+        self.conv1 = nn.Conv1d(in_channels = 1, out_channels = 16, kernel_size = 3, padding=1)
+        self.conv2 = nn.Conv1d(in_channels = 16, out_channels = 32, kernel_size = 3, padding=1)
+        self.conv3 = nn.Conv1d(in_channels = 32, out_channels = 64, kernel_size = 3, padding=1)
+        self.conv4 = nn.Conv1d(in_channels = 64, out_channels = 128, kernel_size = 3, padding=1)
 
         #Max pooling layer (3x1)
         self.pool = nn.MaxPool1d(kernel_size = 3, stride = 3) 
 
         #Batch normalization
-        self.batch1 = nn.BatchNorm1d(num_features = 25)
-        self.batch2 = nn.BatchNorm1d(num_features = 50)
-        self.batch3 = nn.BatchNorm1d(num_features = 100)
-        self.batch4 = nn.BatchNorm1d(num_features = 200)
+        self.batch1 = nn.BatchNorm1d(num_features = 16)
+        self.batch2 = nn.BatchNorm1d(num_features = 32)
+        self.batch3 = nn.BatchNorm1d(num_features = 64)
+        self.batch4 = nn.BatchNorm1d(num_features = 128)
 
         #Dense layer
         self.dense1 = nn.Linear(dense_input, int(dense_input/8)) 
@@ -158,7 +158,6 @@ class GSRnet(nn.Module):
         x = self.dense2(x)
 
         return x
-
 
 ################### Multi-modular Net ###################
 
