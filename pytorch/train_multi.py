@@ -18,7 +18,7 @@ import torch.nn.functional as F #PyTorch library providing a lot of pre-specifie
 import os
 import pickle
 import matplotlib.pyplot as plt
-from torch.utils.data import Dataset, DataLoader, SubsetRandomSampler
+from torch.utils.data import Dataset, DataLoader, SubsetRandomSampler, ChainDataset
 from torch import optim
 from torch.nn.utils.rnn import pad_sequence
 import numpy as np
@@ -31,19 +31,35 @@ except ModuleNotFoundError:
     print("Current working directory is:", wd)
 
 
-def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
+def TrainLoop(participant, drop, epochs, trainortest, batch_size):
     
     ###########################################################################################
     ########################## 1. Create PyTorch dataset & Loader(s) ##########################
     ###########################################################################################
     #Create PyTorch dataset definition class
     path = "pipeline/prepared_data/"+participant+".pickle"
-    pydata =  dataprep.PytorchDataset(path = path,       #Creating PyTorch dataset
-                                      modality = modality)
+                                        
+    eegdat =  dataprep.PytorchDataset(path = path,       #Creating PyTorch dataset
+                                       modality = "EEG")
+    ppgdat =  dataprep.PytorchDataset(path = path,       #Creating PyTorch dataset
+                                      modality = "PPG")
+    gsrdat =  dataprep.PytorchDataset(path = path,       #Creating PyTorch dataset
+                                      modality = "GSR")
 
-    padding_length = dataprep.PytorchDataset.__PaddingLength__(pydata) #Determining the longest window for later use
-    dataprep.BatchTransformation.transfer([padding_length, modality]) #Transfer max padding length & modality vars to BatchTransfor class
-               
+    same = len(eegdat) == len(ppgdat) == len(gsrdat)
+    if same == True:
+        print("Amount of windows are equal across modalities")
+    else:
+        print("BEWARE AMOUNT OF WINDOWS DIFFER ACROSS MODALITIES!!!")
+
+    padinglength_eeg = dataprep.PytorchDataset.__PaddingLength__(eegdat) #Determining the longest window for later use
+    padinglength_ppg = dataprep.PytorchDataset.__PaddingLength__(ppgdat) #Determining the longest window for later use
+    padinglength_gsr = dataprep.PytorchDataset.__PaddingLength__(gsrdat) #Determining the longest window for later use
+
+
+    dataprep.BatchTransformation.transfer([padinglength_eeg, "EEG"]) #Transfer max padding length & modality vars to BatchTransfor class               
+    dataprep.BatchTransformation.transfer([padinglength_ppg, "PPG"]) #Transfer max padding length & modality vars to BatchTransfor class
+    dataprep.BatchTransformation.transfer([padinglength_gsr, "GSR"]) #Transfer max padding length & modality vars to BatchTransfor class
                
     #Making splits
     test_split = .1
@@ -52,7 +68,7 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
     ################
     ## TEST SPLIT ##
     ################    
-    indices_traintest = list(range(len(pydata.dat))) #Create list of indices
+    indices_traintest = list(range(len(eegdat.dat))) #Create list of indices
     test_indices = indices_traintest[::int(test_split*100)]  
     train_val_indices = [x for x in indices_traintest if x not in test_indices]
 
@@ -60,47 +76,88 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
     train_indices = [x for x in train_val_indices if x not in val_indices]
    
   
-    traindata = [pydata[i] for i in train_indices]
-    valdata = [pydata[i] for i in val_indices]
-    testdata = [pydata[i] for i in test_indices]
+    eeg_train = [eegdat[i] for i in train_indices]
+    eeg_val = [eegdat[i] for i in val_indices]
+    eeg_test = [eegdat[i] for i in test_indices]
+
+    ppg_train = [ppgdat[i] for i in train_indices]
+    ppg_val = [ppgdat[i] for i in val_indices]
+    ppg_test = [ppgdat[i] for i in test_indices]
+
+    gsr_train = [gsrdat[i] for i in train_indices]
+    gsr_val = [gsrdat[i] for i in val_indices]
+    gsr_test = [gsrdat[i] for i in test_indices]
 
     #Defining loaders
-    testloader = torch.utils.data.DataLoader(testdata, #Test loader 
+    eeg_trainloader = torch.utils.data.DataLoader(eeg_train, #Training loader
+                                            batch_size = batch_size, 
+                                            drop_last= False,
+                                            shuffle = False,
+                                            collate_fn = dataprep.BatchTransformation())
+
+    eeg_validloader = torch.utils.data.DataLoader(eeg_val, #Validation loader
+                                            batch_size = batch_size, 
+                                            drop_last= False,
+                                            shuffle = False,                                            
+                                            collate_fn = dataprep.BatchTransformation())
+
+    eeg_testloader = torch.utils.data.DataLoader(eeg_test, #Test loader 
                                         batch_size = batch_size, 
-                                        shuffle = True,
+                                        shuffle = False,
                                         drop_last= False,
                                         collate_fn = dataprep.BatchTransformation())
 
-    validloader = torch.utils.data.DataLoader(valdata, #Validation loader
+
+
+    ppg_trainloader = torch.utils.data.DataLoader(ppg_train, #Training loader
                                             batch_size = batch_size, 
-                                            shuffle = True,
+                                            shuffle = False,
                                             drop_last= False,
                                             collate_fn = dataprep.BatchTransformation())
 
-    trainloader = torch.utils.data.DataLoader(traindata, #Training loader
+    ppg_validloader = torch.utils.data.DataLoader(ppg_val, #Validation loader
                                             batch_size = batch_size, 
-                                            shuffle = True,
+                                            shuffle = False,
                                             drop_last= False,
                                             collate_fn = dataprep.BatchTransformation())
 
+    ppg_testloader = torch.utils.data.DataLoader(ppg_test, #Test loader 
+                                        batch_size = batch_size, 
+                                        shuffle = False,
+                                        drop_last= False,
+                                        collate_fn = dataprep.BatchTransformation())                                            
+
+    gsr_trainloader = torch.utils.data.DataLoader(gsr_train, #Training loader
+                                            batch_size = batch_size, 
+                                            shuffle = False,
+                                            drop_last= False,
+                                            collate_fn = dataprep.BatchTransformation())
+
+    gsr_validloader = torch.utils.data.DataLoader(gsr_val, #Validation loader
+                                            batch_size = batch_size, 
+                                            shuffle = False,
+                                            drop_last= False,
+                                            collate_fn = dataprep.BatchTransformation())
+
+    gsr_testloader = torch.utils.data.DataLoader(gsr_test, #Test loader 
+                                        batch_size = batch_size, 
+                                        shuffle = False,
+                                        drop_last= False,
+                                        collate_fn = dataprep.BatchTransformation())
 
 
     ###########################################################################################
     ################################## 2. Defining model ######################################
     ###########################################################################################
     #Defining network
-    if modality == "PPG":
-        model = networks.PPGNet(drop = drop)
-    elif modality == "GSR":
-        model = networks.GSRNet(drop = drop)
-    elif modality == "EEG":
-        model = networks.EEGNet(tensor_length = padding_length, drop = drop)
+    multi_model = networks.MULTINet(eegtensor_length = padinglength_eeg,
+                                    ppgtensor_length = padinglength_ppg,
+                                    gsrtensor_length = padinglength_gsr,
+                                    drop = drop)
     
-    print(model)
-
     #Loss function & Optimizer
     criterion = nn.MSELoss()
-    optimizer = optim.Adam(model.parameters(), lr= 0.0001)
+    optimizer = optim.Adam(multi_model.parameters(), lr= 0.0001)
 
 
 
@@ -110,124 +167,58 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
     ###########################################################################################
     
     if trainortest == "train":
-        #Prerequisites
-        clip = 5
+
         train_list = []
         valid_list = []
         valid_loss_min = np.Inf
 
-        ######################
-        ### PPG & GSR LOOP ###
-        ######################
-        if modality == "PPG" or modality == "GSR": #If the network includes an LSTM layer (holds for PPG & GSR) 
-            for epoch in range(1, epochs+1):
-                    
-                train_loss = 0.0
-                valid_loss = 0.0
-
-                #####################
-                ### Training loop ###
-                #####################
-                h = model.InitHiddenstate(batch_size)
-                model.train()
+        for epoch in range(1, epochs+1):
                 
-                for windows, labels in trainloader:
+            train_loss = 0.0
+            valid_loss = 0.0
 
-                    h = tuple([e.data for e in h])
-                    #Training pass
-                    optimizer.zero_grad()
-                    out, h = model(windows, h)
-                    loss = criterion(out.squeeze(), labels)
-                    loss.backward()
-                    nn.utils.clip_grad_norm_(model.parameters(), clip)
-                    optimizer.step()
-                    train_loss += loss.item() * windows.size(0)
+            ###################
+            ###Training loop###
+            ###################
+            multi_model.train()
+            for (eeg_windows, labels), (ppg_windows, labels), (gsr_windows, labels) in zip(eeg_trainloader, ppg_trainloader, gsr_trainloader):
+
+                #Training pass
+                optimizer.zero_grad()
+                out = multi_model(eeg_windows, ppg_windows, gsr_windows)
 
 
-                #####################
-                ## Validation loop ##
-                #####################
-                h = model.InitHiddenstate(batch_size)
-                model.eval()
-                for windows, labels in validloader:
-                    
-                    h = tuple([each.data for each in h])
+                loss = criterion(out.squeeze(), labels)
+                loss.backward()
+                optimizer.step()
+                train_loss += loss.item() * eeg_windows.size(0)
 
-                    #Validation pass
-                    out, h = model(windows, h)
-                    loss = criterion(out, labels)
-                    valid_loss += loss.item()*windows.size(0)
 
-                #Averages losses
-                train_loss = train_loss/len(trainloader.sampler)
-                valid_loss = valid_loss/len(validloader.sampler)
+            ###################
+            ##Validation loop##
+            ###################
+            multi_model.eval()
+            for (eeg_windows, labels), (ppg_windows, labels), (gsr_windows, labels) in zip(eeg_validloader, ppg_validloader, gsr_validloader):
                 
-                train_list.append(train_loss)
-                valid_list.append(valid_loss)
+                #Validation pass
+                out = multi_model(eeg_windows, ppg_windows, gsr_windows)
+                loss = criterion(out.squeeze(), labels)
+                valid_loss += loss.item()*eeg_windows.size(0)
 
-                print('Epoch: {} \tTraining Loss: {:.6f} \tValidation Loss: {:.6f}'.format(
-                epoch, train_loss, valid_loss))
-                
-                # save model if validation loss has decreased
-                if valid_loss <= valid_loss_min:
-                    print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
-                    valid_loss_min, valid_loss))
+            #Averages losses
+            train_loss = train_loss/len(eeg_trainloader.sampler)
+            valid_loss = valid_loss/len(eeg_validloader.sampler)
+            
+            print('Epoch: {} \tTraining Loss: {:.6f} \tValidation Loss: {:.6f}'.format(
+            epoch, train_loss, valid_loss))
+            
+            # save model if validation loss has decreased
+            if valid_loss <= valid_loss_min:
+                print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
+                valid_loss_min, valid_loss))
 
-                    torch.save(model.state_dict(), "pytorch/trained_models/"+participant+"_"+modality+".pt")
-                    valid_loss_min = valid_loss
-
-        ################
-        ### EEG LOOP ###
-        ################
-        elif modality == "EEG": #If the network includes an LSTM layer (holds for PPG & GSR) 
-            for epoch in range(1, epochs+1):
-                    
-                train_loss = 0.0
-                valid_loss = 0.0
-
-                ###################
-                ###Training loop###
-                ###################
-                model.train()
-                for windows, labels in trainloader:
-
-                    #Training pass
-                    optimizer.zero_grad()
-                    out = model(windows)
-                    loss = criterion(out.squeeze(), labels)
-                    loss.backward()
-                    optimizer.step()
-                    train_loss += loss.item() * windows.size(0)
-
-
-                ###################
-                ##Validation loop##
-                ###################
-                model.eval()
-                for windows, labels in validloader:
-                    
-                    #Validation pass
-                    out = model(windows)
-                    loss = criterion(out.squeeze(), labels)
-                    valid_loss += loss.item()*windows.size(0)
-
-                #Averages losses
-                train_loss = train_loss/len(trainloader.sampler)
-                valid_loss = valid_loss/len(validloader.sampler)
-                
-                train_list.append(train_loss)
-                valid_list.append(valid_loss)
-
-                print('Epoch: {} \tTraining Loss: {:.6f} \tValidation Loss: {:.6f}'.format(
-                epoch, train_loss, valid_loss))
-                
-                # save model if validation loss has decreased
-                if valid_loss <= valid_loss_min:
-                    print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
-                    valid_loss_min, valid_loss))
-
-                    torch.save(model.state_dict(), "pytorch/trained_models/"+participant+"_"+modality+".pt")
-                    valid_loss_min = valid_loss
+                torch.save(multi_model.state_dict(), "pytorch/trained_models/"+participant+".pt")
+                valid_loss_min = valid_loss
 
 
 
@@ -235,7 +226,7 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
         plt.plot(list(range(epochs-5)), train_list[5:len(train_list)], label = "train")
         plt.plot(list(range(epochs-5)), valid_list[5:len(valid_list)], label = "validation")
         plt.show()
-        
+    
 
 
 
@@ -243,83 +234,43 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
     ########################## 4. Assessing model performance ##################################
     ###########################################################################################
     elif trainortest == "test":
-        model.load_state_dict(torch.load("pytorch/trained_models/"+participant+"_"+modality+".pt"))
+        multi_model.load_state_dict(torch.load("pytorch/trained_models/"+participant+".pt"))
 
         test_loss = 0.0
 
-        if modality == "GSR" or modality == "PPG":
-            h = model.InitHiddenstate(batch_size)
+        
+        multi_model.eval()
+        diff = torch.Tensor()
+        
+        predictions = torch.Tensor()
+        labelss = torch.Tensor()
 
-            model.eval()
-            diff = torch.Tensor()
+        for (eeg_windows, labels), (ppg_windows, labels), (gsr_windows, labels) in zip(eeg_validloader, ppg_validloader, gsr_validloader):
             
-            predictions = torch.Tensor()
-            labelss = torch.Tensor()
+            #Test pass    
+            out = multi_model(eeg_windows, ppg_windows, gsr_windows)
+            loss = criterion(out.squeeze(), labels)
+            test_loss += loss.item()*eeg_windows.size(0)
 
-            for windows, labels in testloader:
-                
-                #Test pass    
-                h = tuple([each.data for each in h])
-                out, h = model(windows, h)
-                loss = criterion(out.squeeze(), labels)
-                test_loss += loss.item()*windows.size(0)
+            foo = (out.squeeze() - labels)
+            diff = torch.cat([diff,foo])
 
-                foo = (out.squeeze() - labels)
-                diff = torch.cat([diff,foo])
+            predictions = torch.cat([predictions, out])
+            labelss = torch.cat([labelss, labels])
 
-                predictions = torch.cat([predictions, out])
-                labelss = torch.cat([labelss, labels])
+        test_loss = test_loss/len(eeg_testloader.sampler)
+        print("Test los:",test_loss)
+        average_miss = sum(abs(diff))/len(eeg_testloader.sampler)
 
-            test_loss = test_loss/len(testloader.sampler)
-            print("Test los:",test_loss)
-            average_miss = sum(abs(diff))/len(testloader.sampler)
+        print("Average Missclasification:", float(average_miss))
+        print("Or on the orignal scale:", float(average_miss*20))
 
-            print("Average Missclasification:", float(average_miss))
-            print("Or on the orignal scale:", float(average_miss*20))
+        corr = np.corrcoef(predictions.squeeze().detach().numpy(), labelss.detach().numpy())
+        print("Correlation predictions and labels:", float(corr[1][0]))
 
-            corr = np.corrcoef(predictions.squeeze().detach().numpy(), labelss.detach().numpy())
-            print("Correlation predictions and labels:", float(corr[1][0]))
-
-            print(predictions.squeeze()) 
-            print(labelss.squeeze())            
-           
-            plt.hist(diff.detach().numpy(), bins= 50)
-            plt.show()
-
-        elif modality == "EEG":
-            
-            model.eval()
-            diff = torch.Tensor()
-            
-            predictions = torch.Tensor()
-            labelss = torch.Tensor()
-
-            for windows, labels in testloader:
-                
-                #Test pass    
-                out = model(windows)
-                loss = criterion(out.squeeze(), labels)
-                test_loss += loss.item()*windows.size(0)
-
-                foo = (out.squeeze() - labels)
-                diff = torch.cat([diff,foo])
-
-                predictions = torch.cat([predictions, out])
-                labelss = torch.cat([labelss, labels])
-
-            test_loss = test_loss/len(testloader.sampler)
-            print("Test los:",test_loss)
-            average_miss = sum(abs(diff))/len(testloader.sampler)
-
-            print("Average Missclasification:", float(average_miss))
-            print("Or on the orignal scale:", float(average_miss*20))
-
-            corr = np.corrcoef(predictions.squeeze().detach().numpy(), labelss.detach().numpy())
-            print("Correlation predictions and labels:", float(corr[1][0]))
-
-            print(predictions.squeeze()) 
-            print(labelss.squeeze())            
-           
-            plt.hist(diff.detach().numpy(), bins= 50)
-            plt.show()
+        print(predictions.squeeze()) 
+        print(labelss.squeeze())            
+        
+        plt.hist(diff.detach().numpy(), bins= 50)
+        plt.show()
 

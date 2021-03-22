@@ -62,6 +62,7 @@ class PytorchDataset(Dataset):
         return self.modality
 
 
+
 #Batch transformation class
 class BatchTransformation():
     def __call__(self, batch):
@@ -71,7 +72,6 @@ class BatchTransformation():
         """
 
         padding_length = self.padding_length
-        modality = self.modality
 
         #PADDING
         sequences = [x[0] for x in batch] #Get ordered windows
@@ -87,7 +87,8 @@ class BatchTransformation():
         sequences_padded = torch.transpose(sequences_padded, 1, 2)
 
         return sequences_padded, labels
-    
+
+ 
     def transfer(self):
         """
         Purpose:

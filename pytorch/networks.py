@@ -16,9 +16,10 @@ from torchsummary import summary
 
 ################### EEG Net ###################
 class EEGNet(nn.Module):
-    def __init__(self, tensor_length, drop = 0.25):
+    def __init__(self, tensor_length, drop = 0.25, multi = False):
         super(EEGNet, self).__init__()
 
+        self.multi = multi
         self.drop = drop
         self.tensor_length = tensor_length
         foo = int(tensor_length /3)
@@ -57,16 +58,19 @@ class EEGNet(nn.Module):
         x = self.pool(F.elu(self.batch4(self.conv4(x)))) #Fourth block
         
         x = x.view(-1, x.shape[1]* x.shape[2]) #Flatten
-        x = self.dropout(x)
-        x = F.relu(self.dense1(x))
-        x = self.dense2(x)
+        
+        if self.multi == False:
+            x = self.dropout(x)
+            x = F.relu(self.dense1(x))
+            x = self.dense2(x)
 
         return x
 
 class PPGNet(nn.Module):
-    def __init__(self, tensor_length, drop = 0.25):
+    def __init__(self, tensor_length, drop = 0.25, multi = False):
         super(PPGNet, self).__init__()
 
+        self.multi = multi
         self.drop = drop
         self.tensor_length = tensor_length
         foo = int(tensor_length /3)
@@ -105,16 +109,19 @@ class PPGNet(nn.Module):
         x = self.pool(F.elu(self.batch4(self.conv4(x)))) #Fourth block
         
         x = x.view(-1, x.shape[1]* x.shape[2]) #Flatten
-        x = self.dropout(x)
-        x = F.relu(self.dense1(x))
-        x = self.dense2(x)
+        
+        if self.multi == False:
+            x = self.dropout(x)
+            x = F.relu(self.dense1(x))
+            x = self.dense2(x)
 
         return x
 
 class GSRNet(nn.Module):
-    def __init__(self, tensor_length, drop = 0.25):
+    def __init__(self, tensor_length, drop = 0.25, multi = False):
         super(GSRNet, self).__init__()
 
+        self.multi = multi
         self.drop = drop
         self.tensor_length = tensor_length
         foo = int(tensor_length /3)
@@ -153,14 +160,39 @@ class GSRNet(nn.Module):
         x = self.pool(F.elu(self.batch4(self.conv4(x)))) #Fourth block
         
         x = x.view(-1, x.shape[1]* x.shape[2]) #Flatten
-        x = self.dropout(x)
-        x = F.relu(self.dense1(x))
-        x = self.dense2(x)
+
+        if self.multi == False:
+            x = self.dropout(x)
+            x = F.relu(self.dense1(x))
+            x = self.dense2(x)
 
         return x
 
 ################### Multi-modular Net ###################
+class MULTINet(nn.Module):
+    def __init__(self, eegtensor_length, ppgtensor_length, gsrtensor_length, drop = 0.25):
+        super(MULTINet, self).__init__()
 
+        self.drop = drop
+
+        self.eegpart = EEGNet(drop = 0.25, tensor_length = eegtensor_length, multi = True)
+        self.ppgpart = PPGNet(drop = 0.25, tensor_length = ppgtensor_length, multi = True)
+        self.gsrpart = GSRNet(drop = 0.25, tensor_length = gsrtensor_length, multi = True)
+
+        #Dense layers
+        self.dense1 = nn.Linear(14136, int(14136/8)) 
+        self.dense2 = nn.Linear(int(14136/8), 1) 
+        
+    def forward(self, eeg_windows, ppg_windows, gsr_windows): 
+        x = self.eegpart(eeg_windows)
+        y = self.ppgpart(ppg_windows)
+        z = self.gsrpart(gsr_windows)
+
+        out = torch.cat([x,y,z],dim=1)
+        out = self.dense1(out)
+        out = self.dense2(out)
+
+        return out
 
 
 ################### Test Net ###################

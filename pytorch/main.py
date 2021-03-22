@@ -2,9 +2,8 @@ import numpy as np
 import torch
 import os
 
-
 try: #Importing network
-    import train_single, train_multi, dataprep, tryout
+    import train_single, train_multi, dataprep
 except ModuleNotFoundError:
     wd = os.getcwd()
     print("Error: please make sure that working directory is set as '~/Masterthesis'.")
@@ -16,17 +15,49 @@ participants = ["bci10", "bci12", "bci13", "bci17", "bci21", "bci22",
                 "bci31", "bci32", "bci33", "bci34", "bci35", "bci36", "bci37", 
                 "bci38", "bci39", "bci40", "bci41", "bci42", "bci43", "bci44"]
 
+modalities = ["EEG","PPG","GSR"]
+
+
+#############################################################################################
+#############################################################################################
+################################### Single-modality networks ################################
+#############################################################################################
+#############################################################################################
 
 drop = 0.25
 epochs = 50
 batch_size = 10
-trainortest = "test"
+trainortest = "train"
 np.random.seed(3791)
 torch.manual_seed(3791)
+"""
+for i in participants:
+    for modality in modalities:
 
-train_single.TrainLoop(participant = participants[13], modality = "PPG",
+        train_single.TrainLoop(participant = i, modality = modality,
+                        drop = drop, batch_size = batch_size, 
+                        epochs = epochs, trainortest = trainortest)
+"""
+
+
+#############################################################################################
+#############################################################################################
+################################### Multi-modality networks #################################
+#############################################################################################
+#############################################################################################
+
+train_multi.TrainLoop(participant = "bci13",
                 drop = drop, batch_size = batch_size, 
                 epochs = epochs, trainortest = trainortest)
+
+
+
+
+
+
+
+
+
 """
 #TEMP
 #check amount of data for each person
