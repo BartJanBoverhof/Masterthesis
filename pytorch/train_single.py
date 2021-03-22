@@ -110,8 +110,8 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
     ###########################################################################################
     
     if trainortest == "train":
+        
         #Prerequisites
-        clip = 5
         train_list = []
         valid_list = []
         valid_loss_min = np.Inf

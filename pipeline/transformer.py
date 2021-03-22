@@ -9,7 +9,7 @@ import pyxdf
 import pandas as pd
 import torch
 from matplotlib import pyplot
-
+import numpy as np 
 
 
 def load_data(filename):
@@ -239,38 +239,14 @@ def cut_epochs(stream_dataframes, windows):
             epoch = epoch.drop("timestamps", axis=1) #Drop timestamps col
             epoch = epoch.to_numpy()
 
-            #Throw away empty windows
-            if len(epoch) != 0:
-                epoch = torch.from_numpy(epoch)
-                result[dataframe_id].append(epoch) #Append to dict
-            else:
-                key = "labels_"+dataframe_id #Obtain label list from which element is to be removed           
-                result[key] = result[key].drop(idx)    
+            #Check if window is empty
+            if len(epoch) == 0:
+                epoch = np.append(epoch,0)
+            epoch = torch.from_numpy(epoch)
+            result[dataframe_id].append(epoch) #Append to dict
+
 
     return result
-
-"""
-    #Cutting stored epochs into same size
-    lengths = []
-    for i in result["PPG"]:
-        x = len(i)
-        lengths.append(x)
-
-    lowest = min(lengths)
-
-    count = 0
-    for i in result["PPG"]:
-        if len(i) != lowest:
-            result["PPG"][count] = i.narrow(0,0,lowest)
-        count +=1
-
-    
-bla = []
-for i in result["PPG"]:
-    bla.append(len(i))
-min(bla)
-max(bla)
-"""
 
 
 
