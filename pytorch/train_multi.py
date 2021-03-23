@@ -52,14 +52,13 @@ def TrainLoop(participant, drop, epochs, trainortest, batch_size):
     else:
         print("BEWARE AMOUNT OF WINDOWS DIFFER ACROSS MODALITIES!!!")
 
-    padinglength_eeg = dataprep.PytorchDataset.__PaddingLength__(eegdat) #Determining the longest window for later use
-    padinglength_ppg = dataprep.PytorchDataset.__PaddingLength__(ppgdat) #Determining the longest window for later use
-    padinglength_gsr = dataprep.PytorchDataset.__PaddingLength__(gsrdat) #Determining the longest window for later use
+    padinglength_eeg = dataprep.PaddingLength(eegdat) #Determining the longest window for later use
+    padinglength_ppg = dataprep.PaddingLength(ppgdat) #Determining the longest window for later use
+    padinglength_gsr = dataprep.PaddingLength(gsrdat) #Determining the longest window for later use
 
-
-    dataprep.BatchTransformation.transfer([padinglength_eeg, "EEG"]) #Transfer max padding length & modality vars to BatchTransfor class               
-    dataprep.BatchTransformation.transfer([padinglength_ppg, "PPG"]) #Transfer max padding length & modality vars to BatchTransfor class
-    dataprep.BatchTransformation.transfer([padinglength_gsr, "GSR"]) #Transfer max padding length & modality vars to BatchTransfor class
+    dataprep.BatchTransformationEEG.transfer([padinglength_eeg, "EEG"]) #Transfer max padding length & modality vars to BatchTransfor class               
+    dataprep.BatchTransformationPPG.transfer([padinglength_ppg, "PPG"]) #Transfer max padding length & modality vars to BatchTransfor class
+    dataprep.BatchTransformationGSR.transfer([padinglength_gsr, "GSR"]) #Transfer max padding length & modality vars to BatchTransfor class
                
     #Making splits
     test_split = .1
@@ -93,19 +92,19 @@ def TrainLoop(participant, drop, epochs, trainortest, batch_size):
                                             batch_size = batch_size, 
                                             drop_last= False,
                                             shuffle = False,
-                                            collate_fn = dataprep.BatchTransformation())
+                                            collate_fn = dataprep.BatchTransformationEEG())
 
     eeg_validloader = torch.utils.data.DataLoader(eeg_val, #Validation loader
                                             batch_size = batch_size, 
                                             drop_last= False,
                                             shuffle = False,                                            
-                                            collate_fn = dataprep.BatchTransformation())
+                                            collate_fn = dataprep.BatchTransformationEEG())
 
     eeg_testloader = torch.utils.data.DataLoader(eeg_test, #Test loader 
                                         batch_size = batch_size, 
                                         shuffle = False,
                                         drop_last= False,
-                                        collate_fn = dataprep.BatchTransformation())
+                                        collate_fn = dataprep.BatchTransformationEEG())
 
 
 
@@ -113,37 +112,37 @@ def TrainLoop(participant, drop, epochs, trainortest, batch_size):
                                             batch_size = batch_size, 
                                             shuffle = False,
                                             drop_last= False,
-                                            collate_fn = dataprep.BatchTransformation())
+                                            collate_fn = dataprep.BatchTransformationPPG())
 
     ppg_validloader = torch.utils.data.DataLoader(ppg_val, #Validation loader
                                             batch_size = batch_size, 
                                             shuffle = False,
                                             drop_last= False,
-                                            collate_fn = dataprep.BatchTransformation())
+                                            collate_fn = dataprep.BatchTransformationPPG())
 
     ppg_testloader = torch.utils.data.DataLoader(ppg_test, #Test loader 
                                         batch_size = batch_size, 
                                         shuffle = False,
                                         drop_last= False,
-                                        collate_fn = dataprep.BatchTransformation())                                            
+                                        collate_fn = dataprep.BatchTransformationPPG())                                            
 
     gsr_trainloader = torch.utils.data.DataLoader(gsr_train, #Training loader
                                             batch_size = batch_size, 
                                             shuffle = False,
                                             drop_last= False,
-                                            collate_fn = dataprep.BatchTransformation())
+                                            collate_fn = dataprep.BatchTransformationGSR())
 
     gsr_validloader = torch.utils.data.DataLoader(gsr_val, #Validation loader
                                             batch_size = batch_size, 
                                             shuffle = False,
                                             drop_last= False,
-                                            collate_fn = dataprep.BatchTransformation())
+                                            collate_fn = dataprep.BatchTransformationGSR())
 
     gsr_testloader = torch.utils.data.DataLoader(gsr_test, #Test loader 
                                         batch_size = batch_size, 
                                         shuffle = False,
                                         drop_last= False,
-                                        collate_fn = dataprep.BatchTransformation())
+                                        collate_fn = dataprep.BatchTransformationGSR())
 
 
     ###########################################################################################
