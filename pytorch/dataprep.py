@@ -42,17 +42,6 @@ class PytorchDataset(Dataset):
         return windows, labels
     
 
-    def __PaddingLength__(self):
-        """
-        Purpose:
-            Determine padding length
-        """
-        lengths = []
-        for i in self.dat:
-            lengths.append(i.shape[0])
-        
-        return max(lengths)
-
     def __ObtainModality__(self):
         """
         Purpose:
@@ -64,7 +53,7 @@ class PytorchDataset(Dataset):
 
 
 #Batch transformation class
-class BatchTransformation():
+class BatchTransformationEEG():
     def __call__(self, batch):
         """
         Purpose:   
@@ -88,14 +77,90 @@ class BatchTransformation():
 
         return sequences_padded, labels
 
- 
     def transfer(self):
         """
         Purpose:
             Transfering the earlier obtained padding length to the BatchTransformation class such it can be used
             in the __call__ function.
         """
-        BatchTransformation.padding_length = self[0]
-        BatchTransformation.modality = self[1]
+        BatchTransformationEEG.padding_length = self[0]
 
 
+class BatchTransformationPPG():
+    def __call__(self, batch):
+        """
+        Purpose:   
+            Transformation of windows per batch (padding & normalizing labels & transposing)
+        """
+
+        padding_length = self.padding_length
+
+        #PADDING
+        sequences = [x[0] for x in batch] #Get ordered windows
+        sequences.append(torch.ones(padding_length,1)) #Temporary add window of desired padding length
+        sequences_padded = torch.nn.utils.rnn.pad_sequence(sequences, batch_first=True, padding_value = 0) #Pad
+        sequences_padded = sequences_padded[0:len(batch)] #Remove the added window
+
+        #Obtaining Sorted labels and standardizing
+        labels = torch.tensor([x[1] for x in batch]) #Get ordered windows
+        labels = (labels - 1)/ 20
+        
+        #TRANSPOSE BATCH 
+        sequences_padded = torch.transpose(sequences_padded, 1, 2)
+
+        return sequences_padded, labels
+
+    def transfer(self):
+        """
+        Purpose:
+            Transfering the earlier obtained padding length to the BatchTransformation class such it can be used
+            in the __call__ function.
+        """
+        BatchTransformationPPG.padding_length = self[0]
+
+
+
+class BatchTransformationGSR():
+    def __call__(self, batch):
+        """
+        Purpose:   
+            Transformation of windows per batch (padding & normalizing labels & transposing)
+        """
+
+        padding_length = self.padding_length
+
+        #PADDING
+        sequences = [x[0] for x in batch] #Get ordered windows
+        sequences.append(torch.ones(padding_length,1)) #Temporary add window of desired padding length
+        sequences_padded = torch.nn.utils.rnn.pad_sequence(sequences, batch_first=True, padding_value = 0) #Pad
+        sequences_padded = sequences_padded[0:len(batch)] #Remove the added window
+
+        #Obtaining Sorted labels and standardizing
+        labels = torch.tensor([x[1] for x in batch]) #Get ordered windows
+        labels = (labels - 1)/ 20
+        
+        #TRANSPOSE BATCH 
+        sequences_padded = torch.transpose(sequences_padded, 1, 2)
+
+        return sequences_padded, labels
+
+
+    def transfer(self):
+        """
+        Purpose:
+            Transfering the earlier obtained padding length to the BatchTransformation class such it can be used
+            in the __call__ function.
+        """
+        BatchTransformationGSR.padding_length = self[0]
+
+
+def PaddingLength(data):
+    """
+    Purpose:
+        Determine padding length
+    """
+    lengths = []
+    for i in data.dat:
+        lengths.append(i.shape[0])
+    
+    return max(lengths)

@@ -21,7 +21,7 @@ class EEGNet(nn.Module):
 
         self.multi = multi
         self.drop = drop
-        self.tensor_length = tensor_length
+
         foo = int(tensor_length /3)
         foo = int(foo /3)         
         foo = int(foo /3)
@@ -46,6 +46,7 @@ class EEGNet(nn.Module):
         #Dense layer
         self.dense1 = nn.Linear(dense_input, int(dense_input/8)) 
         self.dense2 = nn.Linear(int(dense_input/8), 1) 
+        self.dense3 = nn.Linear(dense_input, dense_input) 
 
         #Dropout layer
         self.dropout = nn.Dropout(drop)
@@ -63,6 +64,8 @@ class EEGNet(nn.Module):
             x = self.dropout(x)
             x = F.relu(self.dense1(x))
             x = self.dense2(x)
+        elif self.multi == True:
+            x = F.relu(self.dense3(x))
 
         return x
 
@@ -97,6 +100,7 @@ class PPGNet(nn.Module):
         #Dense layer
         self.dense1 = nn.Linear(dense_input, int(dense_input/8)) 
         self.dense2 = nn.Linear(int(dense_input/8), 1) 
+        self.dense3 = nn.Linear(dense_input, dense_input) 
 
         #Dropout layer
         self.dropout = nn.Dropout(drop)
@@ -114,6 +118,8 @@ class PPGNet(nn.Module):
             x = self.dropout(x)
             x = F.relu(self.dense1(x))
             x = self.dense2(x)
+        elif self.multi == True:
+            x = F.relu(self.dense3(x))
 
         return x
 
@@ -148,6 +154,7 @@ class GSRNet(nn.Module):
         #Dense layer
         self.dense1 = nn.Linear(dense_input, int(dense_input/8)) 
         self.dense2 = nn.Linear(int(dense_input/8), 1) 
+        self.dense3 = nn.Linear(dense_input, dense_input) 
 
         #Dropout layer
         self.dropout = nn.Dropout(drop)
@@ -165,6 +172,8 @@ class GSRNet(nn.Module):
             x = self.dropout(x)
             x = F.relu(self.dense1(x))
             x = self.dense2(x)
+        elif self.multi == True:
+            x = F.relu(self.dense3(x))
 
         return x
 
@@ -174,25 +183,70 @@ class MULTINet(nn.Module):
         super(MULTINet, self).__init__()
 
         self.drop = drop
+        
+        egg_length = int(eegtensor_length /3)
+        egg_length = int(egg_length /3)         
+        egg_length = int(egg_length /3)
+        egg_length = int(egg_length /3)
+        egg_length = 200*egg_length
 
+        ppg_length = int(ppgtensor_length /3)
+        ppg_length = int(ppg_length /3)         
+        ppg_length = int(ppg_length /3)
+        ppg_length = int(ppg_length /3)
+        ppg_length = 128*ppg_length
+
+        gsr_length = int(gsrtensor_length /3)
+        gsr_length = int(gsr_length /3)         
+        gsr_length = int(gsr_length /3)
+        gsr_length = int(gsr_length /3)
+        gsr_length = 128*gsr_length
+
+        concat = gsr_length+ppg_length+egg_length
+
+        concat_final = round(concat/20)
+        concat_final = round(concat_final/20)
+        concat_final = 40*concat_final
+
+        #Modality specific networks
         self.eegpart = EEGNet(drop = 0.25, tensor_length = eegtensor_length, multi = True)
         self.ppgpart = PPGNet(drop = 0.25, tensor_length = ppgtensor_length, multi = True)
         self.gsrpart = GSRNet(drop = 0.25, tensor_length = gsrtensor_length, multi = True)
+        
+        #Convolutional layers
+        self.convhead1 = nn.Conv1d(in_channels = 1, out_channels = 20, kernel_size = 3, padding=1)
+        self.convhead2 = nn.Conv1d(in_channels = 20, out_channels = 40, kernel_size = 3, padding=1)
+
+        #Pooling layer
+        self.poolhead = nn.MaxPool1d(kernel_size = 3, stride = 20) 
+
+        #Batch normalization
+        self.batchhead1 = nn.BatchNorm1d(num_features = 20)
+        self.batchhead2 = nn.BatchNorm1d(num_features = 40)
+
+        #Dropout
+        self.dropouthead = nn.Dropout(drop)
 
         #Dense layers
-        self.dense1 = nn.Linear(14136, int(14136/8)) 
-        self.dense2 = nn.Linear(int(14136/8), 1) 
-        
+        self.densehead1 = nn.Linear(concat, concat) 
+        self.densehead2 = nn.Linear(concat_final, int(concat_final/8)) 
+        self.densehead3 = nn.Linear(int(concat_final/8), 1) 
+
     def forward(self, eeg_windows, ppg_windows, gsr_windows): 
         x = self.eegpart(eeg_windows)
         y = self.ppgpart(ppg_windows)
         z = self.gsrpart(gsr_windows)
 
         out = torch.cat([x,y,z],dim=1)
-        out = self.dense1(out)
-        out = self.dense2(out)
+        out = out.unsqueeze(1)
+        out = self.densehead1(out)
+
+        out = self.poolhead(F.relu(self.batchhead1(self.convhead1(out))))
+        out = self.poolhead(F.relu(self.batchhead2(self.convhead2(out))))
+
+        out = out.view(-1, out.shape[1]* out.shape[2]) #Flatten
+        out = self.dropouthead(out)
+        out = F.relu(self.densehead2(out))
+        out = self.densehead3(out)
 
         return out
-
-
-################### Test Net ###################
