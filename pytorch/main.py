@@ -25,7 +25,7 @@ modalities = ["EEG","PPG","GSR"]
 #############################################################################################
 
 drop = 0.25
-epochs = 50
+epochs = 30
 batch_size = 10
 trainortest = "train"
 np.random.seed(3791)
@@ -46,7 +46,7 @@ for i in participants:
 #############################################################################################
 #############################################################################################
 
-train_multi.TrainLoop(participant = "bci13",
+train_multi.TrainLoop(participant = "bci21",
                 drop = drop, batch_size = batch_size, 
                 epochs = epochs, trainortest = trainortest)
 

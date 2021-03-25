@@ -241,8 +241,13 @@ def cut_epochs(stream_dataframes, windows):
 
             #Check if window is empty
             if len(epoch) == 0:
-                epoch = np.append(epoch,0)
-            epoch = torch.from_numpy(epoch)
+                if dataframe_id == "EEG":
+                    epoch = torch.ones(1,4)
+                else:
+                    epoch = torch.ones(1,1)
+            else:
+                epoch = torch.from_numpy(epoch)
+                
             result[dataframe_id].append(epoch) #Append to dict
 
 

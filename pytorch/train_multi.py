@@ -244,7 +244,7 @@ def TrainLoop(participant, drop, epochs, trainortest, batch_size):
         predictions = torch.Tensor()
         labelss = torch.Tensor()
 
-        for (eeg_windows, labels), (ppg_windows, labels), (gsr_windows, labels) in zip(eeg_validloader, ppg_validloader, gsr_validloader):
+        for (eeg_windows, labels), (ppg_windows, labels), (gsr_windows, labels) in zip(eeg_testloader, ppg_testloader, gsr_testloader):
             
             #Test pass    
             out = multi_model(eeg_windows, ppg_windows, gsr_windows)

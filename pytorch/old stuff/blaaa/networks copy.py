@@ -13,7 +13,6 @@ from torch import optim #PyTorch additionals and training optimizer
 import torch.nn.functional as F #PyTorch library providing a lot of pre-specified functions
 import torch.nn as nn
 from torchsummary import summary
-import math
 
 ################### EEG Net ###################
 class EEGNet(nn.Module):
@@ -205,9 +204,9 @@ class MULTINet(nn.Module):
 
         concat = gsr_length+ppg_length+egg_length
 
-        concat_final = math.ceil(concat/20)
-        concat_final = math.ceil(concat_final/20)
-        concat_final = 50*concat_final
+        concat_final = round(concat/20)
+        concat_final = round(concat_final/20)
+        concat_final = 40*concat_final
 
         #Modality specific networks
         self.eegpart = EEGNet(drop = 0.25, tensor_length = eegtensor_length, multi = True)
@@ -215,21 +214,21 @@ class MULTINet(nn.Module):
         self.gsrpart = GSRNet(drop = 0.25, tensor_length = gsrtensor_length, multi = True)
         
         #Convolutional layers
-        self.convhead1 = nn.Conv1d(in_channels = 1, out_channels = 25, kernel_size = 3, padding=1)
-        self.convhead2 = nn.Conv1d(in_channels = 25, out_channels = 50, kernel_size = 3, padding=1)
+        self.convhead1 = nn.Conv1d(in_channels = 1, out_channels = 20, kernel_size = 3, padding=1)
+        self.convhead2 = nn.Conv1d(in_channels = 20, out_channels = 40, kernel_size = 3, padding=1)
 
         #Pooling layer
         self.poolhead = nn.MaxPool1d(kernel_size = 3, stride = 20) 
 
         #Batch normalization
-        self.batchhead1 = nn.BatchNorm1d(num_features = 25)
-        self.batchhead2 = nn.BatchNorm1d(num_features = 50)
+        self.batchhead1 = nn.BatchNorm1d(num_features = 20)
+        self.batchhead2 = nn.BatchNorm1d(num_features = 40)
 
         #Dropout
         self.dropouthead = nn.Dropout(drop)
 
         #Dense layers
-        #self.densehead1 = nn.Linear(concat, concat) 
+        self.densehead1 = nn.Linear(concat, concat) 
         self.densehead2 = nn.Linear(concat_final, int(concat_final/8)) 
         self.densehead3 = nn.Linear(int(concat_final/8), 1) 
 
@@ -240,7 +239,7 @@ class MULTINet(nn.Module):
 
         out = torch.cat([x,y,z],dim=1)
         out = out.unsqueeze(1)
-        #out = self.densehead1(out)
+        out = self.densehead1(out)
 
         out = self.poolhead(F.relu(self.batchhead1(self.convhead1(out))))
         out = self.poolhead(F.relu(self.batchhead2(self.convhead2(out))))
