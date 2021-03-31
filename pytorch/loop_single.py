@@ -1,16 +1,13 @@
-#!/usr/bin/env python
 """
 @Author: Bart-Jan Boverhof
 @Last Modified by: Bart-Jan Boverhof
-@Description Loading the data and training all networks.
+@Description This file contains the training-loop function for training the single-modular networks.
 """
-
 
 ###########################################################################################
 ###################################### 0. Prerequisites ###################################
 ###########################################################################################
 #Loading packages
-
 import torch 
 from torch import optim #PyTorch additionals and training optimizer
 import torch.nn as nn
@@ -31,18 +28,27 @@ except ModuleNotFoundError:
     print("Current working directory is:", wd)
 
 
-def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
-    
+def SingleTrainLoop(participant, modality, batch_size, hpo, epochs, trainortest):
+    """
+    Purpose:
+        Central training loop function for the single-modulair network. 
+    Arguments:
+        participant: particpant to select for training.
+        modality: network variation to train (EEG / PPG / GSR / Multi) 
+        batch_size: utilized batch size for training
+        hpo: objtect containing optimized hyperparamaters to utilize for training
+        trainortest: whether to train, or test the already trained model at hand
+    """
+
     ###########################################################################################
     ########################## 1. Create PyTorch dataset & Loader(s) ##########################
     ###########################################################################################
     #Create PyTorch dataset definition class
-    
     path = "pipeline/prepared_data/"+participant+".pickle"
     pydata =  dataprep.PytorchDataset(path = path,       #Creating PyTorch dataset
                                       modality = modality)
 
-    padding_length = dataprep.PytorchDataset.__PaddingLength__(pydata) #Determining the longest window for later use
+    padding_length = dataprep.PaddingLength(pydata) #Determining the longest window for later use
     dataprep.BatchTransformation.transfer([padding_length, modality]) #Transfer max padding length & modality vars to BatchTransfor class
                
                
@@ -90,17 +96,18 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
     ###########################################################################################
     #Defining network
     if modality == "PPG":
-        model = networks.PPGNet(tensor_length = padding_length, drop = drop)
+        model = networks.PPGNet(tensor_length = padding_length, drop = hpo[participant]["dropout_rate"], 
+                                n_units = hpo[participant]["n_units"], multi = False)
     elif modality == "GSR":
-        model = networks.GSRNet(tensor_length = padding_length, drop = drop)
+        model = networks.GSRNet(tensor_length = padding_length, drop = hpo[participant]["dropout_rate"],
+                                n_units = hpo[participant]["n_units"], multi = False)        
     elif modality == "EEG":
-        model = networks.EEGNet(tensor_length = padding_length, drop = drop)
+        model = networks.EEGNet(tensor_length = padding_length, drop = hpo[participant]["dropout_rate"],
+                                n_units = hpo[participant]["n_units"], multi = False)   
     
-    print(model)
-
     #Loss function & Optimizer
     criterion = nn.MSELoss()
-    optimizer = optim.Adam(model.parameters(), lr= 0.0001)
+    optimizer = optim.Adam(model.parameters(), lr= hpo[participant]["lr"])
 
 
 
@@ -108,7 +115,6 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
     ###########################################################################################
     ########################## 3. Training & Validation loop ##################################
     ###########################################################################################
-    
     if trainortest == "train":
         
         #Prerequisites
@@ -162,24 +168,23 @@ def TrainLoop(participant, modality, drop, epochs, trainortest, batch_size):
                 print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
                 valid_loss_min, valid_loss))
 
-                torch.save(model.state_dict(), "pytorch/trained_models/"+participant+"_"+modality+".pt")
+                torch.save(model.state_dict(), "pytorch/trained_models/"+modality+"/"+participant+"_"+modality+".pt")
                 valid_loss_min = valid_loss
 
 
-
-
+        """
         plt.plot(list(range(epochs-5)), train_list[5:len(train_list)], label = "train")
         plt.plot(list(range(epochs-5)), valid_list[5:len(valid_list)], label = "validation")
         plt.show()
-        
+        """
 
 
 
     ###########################################################################################
-    ########################## 4. Assessing model performance ##################################
+    #################################### 4. Test loop #########################################
     ###########################################################################################
     elif trainortest == "test":
-        model.load_state_dict(torch.load("pytorch/trained_models/"+participant+"_"+modality+".pt"))
+        model.load_state_dict(torch.load("pytorch/trained_models/"+modality+"/"+participant+"_"+modality+".pt"))
 
         
         model.eval()

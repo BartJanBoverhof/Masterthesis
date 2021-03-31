@@ -2,15 +2,13 @@
 """
 @Author: Bart-Jan Boverhof
 @Last Modified by: Bart-Jan Boverhof
-@Description Loading the data and training all networks.
+@Description This file contains the central training-loop function for training the multi-modular network.
 """
-
 
 ###########################################################################################
 ###################################### 0. Prerequisites ###################################
 ###########################################################################################
 #Loading packages
-
 import torch 
 from torch import optim #PyTorch additionals and training optimizer
 import torch.nn as nn
@@ -31,8 +29,17 @@ except ModuleNotFoundError:
     print("Current working directory is:", wd)
 
 
-def TrainLoop(participant, drop, epochs, trainortest, batch_size):
-    
+def MultiTrainLoop(participant, drop, epochs, trainortest, batch_size):
+    """
+    Purpose:
+        Central training loop function for the multi-modal network. 
+    Arguments:
+        participant: particpant to select for training.
+        modality: network variation to train (EEG / PPG / GSR / Multi) 
+        batch_size: utilized batch size for training
+        hpo: objtect containing optimized hyperparamaters to utilize for training
+        trainortest: whether to train, or test the already trained model at hand
+    """
     ###########################################################################################
     ########################## 1. Create PyTorch dataset & Loader(s) ##########################
     ###########################################################################################
@@ -244,7 +251,7 @@ def TrainLoop(participant, drop, epochs, trainortest, batch_size):
         predictions = torch.Tensor()
         labelss = torch.Tensor()
 
-        for (eeg_windows, labels), (ppg_windows, labels), (gsr_windows, labels) in zip(eeg_validloader, ppg_validloader, gsr_validloader):
+        for (eeg_windows, labels), (ppg_windows, labels), (gsr_windows, labels) in zip(eeg_testloader, ppg_testloader, gsr_testloader):
             
             #Test pass    
             out = multi_model(eeg_windows, ppg_windows, gsr_windows)
