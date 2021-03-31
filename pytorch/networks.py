@@ -1,10 +1,8 @@
 """
 @Author: Bart-Jan Boverhof
 @Last Modified by: Bart-Jan Boverhof
-@Description Single-modular deep neural network design for the EEG-modality.
+@Description This file contains utilized all deep-neural network definitions.
 """
-
-
 
 ################### 0. Prerequisites ###################
 #Loading packages
@@ -17,7 +15,7 @@ import math
 
 ################### EEG Net ###################
 class EEGNet(nn.Module):
-    def __init__(self, tensor_length, drop = 0.25, multi = False):
+    def __init__(self, tensor_length, drop, multi, n_units):
         super(EEGNet, self).__init__()
 
         self.multi = multi
@@ -45,8 +43,8 @@ class EEGNet(nn.Module):
         self.batch4 = nn.BatchNorm1d(num_features = 200)
 
         #Dense layer
-        self.dense1 = nn.Linear(dense_input, int(dense_input/8)) 
-        self.dense2 = nn.Linear(int(dense_input/8), 1) 
+        self.dense1 = nn.Linear(dense_input, n_units) 
+        self.dense2 = nn.Linear(n_units, 1) 
         self.dense3 = nn.Linear(dense_input, dense_input) 
 
         #Dropout layer
@@ -71,7 +69,7 @@ class EEGNet(nn.Module):
         return x
 
 class PPGNet(nn.Module):
-    def __init__(self, tensor_length, drop = 0.25, multi = False):
+    def __init__(self, tensor_length, drop , multi, n_units):
         super(PPGNet, self).__init__()
 
         self.multi = multi
@@ -99,8 +97,8 @@ class PPGNet(nn.Module):
         self.batch4 = nn.BatchNorm1d(num_features = 128)
 
         #Dense layer
-        self.dense1 = nn.Linear(dense_input, int(dense_input/8)) 
-        self.dense2 = nn.Linear(int(dense_input/8), 1) 
+        self.dense1 = nn.Linear(dense_input, n_units) 
+        self.dense2 = nn.Linear(n_units, 1) 
         self.dense3 = nn.Linear(dense_input, dense_input) 
 
         #Dropout layer
@@ -124,8 +122,10 @@ class PPGNet(nn.Module):
 
         return x
 
+
+
 class GSRNet(nn.Module):
-    def __init__(self, tensor_length, drop = 0.25, multi = False):
+    def __init__(self, tensor_length, drop, multi, n_units):
         super(GSRNet, self).__init__()
 
         self.multi = multi
@@ -153,8 +153,8 @@ class GSRNet(nn.Module):
         self.batch4 = nn.BatchNorm1d(num_features = 128)
 
         #Dense layer
-        self.dense1 = nn.Linear(dense_input, int(dense_input/8)) 
-        self.dense2 = nn.Linear(int(dense_input/8), 1) 
+        self.dense1 = nn.Linear(dense_input, n_units) 
+        self.dense2 = nn.Linear(n_units, 1) 
         self.dense3 = nn.Linear(dense_input, dense_input) 
 
         #Dropout layer
@@ -203,11 +203,10 @@ class MULTINet(nn.Module):
         gsr_length = int(gsr_length /3)
         gsr_length = 128*gsr_length
 
-        concat = gsr_length+ppg_length+egg_length
+        dense1 = gsr_length+ppg_length+egg_length
 
-        concat_final = math.ceil(concat/20)
-        concat_final = math.ceil(concat_final/20)
-        concat_final = 50*concat_final
+        dense2 = int(dense1/10)
+        #dense2 = math.ceil(dense2/10)
 
         #Modality specific networks
         self.eegpart = EEGNet(drop = 0.25, tensor_length = eegtensor_length, multi = True)
@@ -219,19 +218,18 @@ class MULTINet(nn.Module):
         self.convhead2 = nn.Conv1d(in_channels = 25, out_channels = 50, kernel_size = 3, padding=1)
 
         #Pooling layer
-        self.poolhead = nn.MaxPool1d(kernel_size = 3, stride = 20) 
+        self.poolhead = nn.MaxPool1d(kernel_size = 3, stride = 10) 
 
         #Batch normalization
-        self.batchhead1 = nn.BatchNorm1d(num_features = 25)
-        self.batchhead2 = nn.BatchNorm1d(num_features = 50)
+        self.batchhead = nn.BatchNorm1d(num_features = 1)
 
         #Dropout
         self.dropouthead = nn.Dropout(drop)
 
         #Dense layers
-        #self.densehead1 = nn.Linear(concat, concat) 
-        self.densehead2 = nn.Linear(concat_final, int(concat_final/8)) 
-        self.densehead3 = nn.Linear(int(concat_final/8), 1) 
+        self.densehead1 = nn.Linear(dense1, int(dense1/10)) 
+        self.densehead2 = nn.Linear(dense2, int(dense2/8)) 
+        self.densehead3 = nn.Linear(int(dense2/8), 1) 
 
     def forward(self, eeg_windows, ppg_windows, gsr_windows): 
         x = self.eegpart(eeg_windows)
@@ -240,14 +238,12 @@ class MULTINet(nn.Module):
 
         out = torch.cat([x,y,z],dim=1)
         out = out.unsqueeze(1)
-        #out = self.densehead1(out)
-
-        out = self.poolhead(F.relu(self.batchhead1(self.convhead1(out))))
-        out = self.poolhead(F.relu(self.batchhead2(self.convhead2(out))))
-
-        out = out.view(-1, out.shape[1]* out.shape[2]) #Flatten
+        
         out = self.dropouthead(out)
-        out = F.relu(self.densehead2(out))
+        out = F.relu(self.densehead1(out))
+
+        out = F.relu(self.batchhead(self.densehead2(out)))
+
         out = self.densehead3(out)
 
         return out

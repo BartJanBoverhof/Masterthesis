@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """
 @Author: Bart-Jan Boverhof
 @Description: Central script with which data is read, windows are created and windows are constructed.
