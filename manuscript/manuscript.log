@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  30 MAR 2021 12:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  1 APR 2021 14:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -343,7 +343,16 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [18
 
-] [19] (./manuscript.bbl [20]
+] [19]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 302.
+
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 302.
+
+[20] (./manuscript.bbl [21]
 Underfull \hbox (badness 1502) in paragraph at lines 580--598
 []\OT1/cmr/m/n/12 Schirrmeister, R. T., Sprin-gen-berg, J. T., Fiederer, L. D. 
 J., Glasstet-ter, M.,
@@ -355,12 +364,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 643--654
 unit.  \OT1/cmr/m/n/12 Re-trieved from:
  []
 
-[21]) [22] (./manuscript.aux) ) 
+[22]) [23] (./manuscript.aux) ) 
 Here is how much of TeX's memory you used:
- 4255 strings out of 492616
- 64204 string characters out of 6129482
+ 4272 strings out of 492616
+ 64506 string characters out of 6129482
  138776 words of memory out of 5000000
- 8126 multiletter control sequences out of 15000+600000
+ 8140 multiletter control sequences out of 15000+600000
  9873 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,9n,38p,1226b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -374,10 +383,10 @@ msfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmti12.pfb>
-Output written on manuscript.pdf (23 pages, 490960 bytes).
+Output written on manuscript.pdf (24 pages, 492482 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
+ 124 PDF objects out of 1000 (max. 8388607)
+ 82 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -14,16 +14,16 @@ participants = ["bci10", "bci12", "bci13", "bci17", "bci21", "bci22",
                 "bci38", "bci39", "bci40", "bci41", "bci42", "bci43", "bci44"]
 
 #Define modalities
-modalities = ["EEG","PPG","GSR"]
+modalities = ["EEG","PPG","GSR","multi"]
 
 #Combine hyper-parameters
 for modality in modalities:
     combination = {}
     for i in participants:
-        x = pickle.load(open("hpo/hyper_parameters/"+modality+"_"+i+".pickle", "rb"))
+        x = pickle.load(open("hpo/hyper_parameters_notcombined/"+modality+"_"+i+".pickle", "rb"))
         combination[i] = x.params
 
-    with open("hpo/hyper_parameters_combined/"+modality+".pickle", 'wb') as handle: #Save as pickle
+    with open("hpo/hyper_parameters/"+modality+".pickle", 'wb') as handle: #Save as pickle
         pickle.dump(combination, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 

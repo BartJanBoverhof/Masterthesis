@@ -293,6 +293,21 @@ F1-score:                     & \(\frac{2*Sensitivity*PPV}{Sensitivity+PPV}\)   
 
 For each of the three single-modular networks, as well as each of the three multi-modular network variants, these six metrics have been constructed and reported. The network that performed best across the range of these metrics was considered to be the superior performing network. In case of contradictory interpretations, a reference was made back to the mathematical definition and substantive interpretation of the previously delineated performance metrics. To summarize, with the described assessment approach it was aimed to gain insight into multiple dimension of network performance, resulting in a broad and complete assessment of performance altogether.     
 
+\section{Results}
+
+\newpage
+\section{Limitations}
+
+\begin{itemize}
+  \item  More HPO could have been done, to get even better performing models but we had limited computatioal power.   
+  \item This approach costs a lot of computational power to both train and do HPO. Especially since person-specific models are fitted. This upholds mostly for the multi-modal network.
+  \item Due to the sheer size of the trained model and the fact that models are trained person specific, storage sizes of the models are huge. This could be unpractical.  This upholds mostly for the multi-modal network.
+  \item Possibly different window sizes per modality could lead to better results.  * Insert some of the sources here that suggest different window sizes per modality* . This was beyond the scope of this project.
+\end{itemize}
+
+
+
+
 \newpage
 \bibliographystyle{apacite}
 \bibliography{References}

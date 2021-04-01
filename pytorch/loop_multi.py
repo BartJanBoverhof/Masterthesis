@@ -29,7 +29,7 @@ except ModuleNotFoundError:
     print("Current working directory is:", wd)
 
 
-def MultiTrainLoop(participant, drop, epochs, trainortest, batch_size):
+def MultiTrainLoop(participant, hpo, epochs, trainortest, batch_size):
     """
     Purpose:
         Central training loop function for the multi-modal network. 
@@ -159,11 +159,13 @@ def MultiTrainLoop(participant, drop, epochs, trainortest, batch_size):
     multi_model = networks.MULTINet(eegtensor_length = padinglength_eeg,
                                     ppgtensor_length = padinglength_ppg,
                                     gsrtensor_length = padinglength_gsr,
-                                    drop = drop)
+                                    drop = hpo[participant]["dropout_rate"],
+                                    units_1 = hpo[participant]["dense1"],
+                                    units_2 = hpo[participant]["dense2"])
     
     #Loss function & Optimizer
     criterion = nn.MSELoss()
-    optimizer = optim.Adam(multi_model.parameters(), lr= 0.0001)
+    optimizer = optim.Adam(multi_model.parameters(), lr = hpo[participant]["lr"])
 
 
 
@@ -226,13 +228,11 @@ def MultiTrainLoop(participant, drop, epochs, trainortest, batch_size):
                 torch.save(multi_model.state_dict(), "pytorch/trained_models/"+participant+".pt")
                 valid_loss_min = valid_loss
 
-
-
-
+        """
         plt.plot(list(range(epochs-5)), train_list[5:len(train_list)], label = "train")
         plt.plot(list(range(epochs-5)), valid_list[5:len(valid_list)], label = "validation")
         plt.show()
-    
+        """
 
 
 

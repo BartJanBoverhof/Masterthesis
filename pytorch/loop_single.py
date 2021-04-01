@@ -96,14 +96,20 @@ def SingleTrainLoop(participant, modality, batch_size, hpo, epochs, trainortest)
     ###########################################################################################
     #Defining network
     if modality == "PPG":
-        model = networks.PPGNet(tensor_length = padding_length, drop = hpo[participant]["dropout_rate"], 
-                                n_units = hpo[participant]["n_units"], multi = False)
+        model = networks.PPGNet(tensor_length = padding_length, 
+                                drop = hpo[participant]["dropout_rate"], 
+                                n_units = hpo[participant]["n_units"], 
+                                multi = False)
     elif modality == "GSR":
-        model = networks.GSRNet(tensor_length = padding_length, drop = hpo[participant]["dropout_rate"],
-                                n_units = hpo[participant]["n_units"], multi = False)        
+        model = networks.GSRNet(tensor_length = padding_length, 
+                                drop = hpo[participant]["dropout_rate"],
+                                n_units = hpo[participant]["n_units"], 
+                                multi = False)        
     elif modality == "EEG":
-        model = networks.EEGNet(tensor_length = padding_length, drop = hpo[participant]["dropout_rate"],
-                                n_units = hpo[participant]["n_units"], multi = False)   
+        model = networks.EEGNet(tensor_length = padding_length, 
+                                drop = hpo[participant]["dropout_rate"],
+                                n_units = hpo[participant]["n_units"], 
+                                multi = False)   
     
     #Loss function & Optimizer
     criterion = nn.MSELoss()
