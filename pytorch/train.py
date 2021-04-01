@@ -27,15 +27,15 @@ participants = ["bci10", "bci12", "bci13", "bci17", "bci21", "bci22",
                 "bci23", "bci24", "bci26", "bci27", "bci28", "bci29", "bci30", 
                 "bci31", "bci32", "bci33", "bci34", "bci35", "bci36", "bci37", 
                 "bci38", "bci39", "bci40", "bci41", "bci42", "bci43", "bci44"]
-"""
 
 #Modalities
 modalities = ["PPG","GSR","EEG"]
+"""
 
 #Included participants
-participants = ["bci35", "bci36", "bci37", 
+participants = ["bci10", "bci35", "bci36", "bci37", 
                 "bci38", "bci39", "bci40", "bci41", "bci42", "bci43", "bci44"]
-
+modalities = ["GSR"]
 
 
 #############################################################################################
@@ -60,16 +60,22 @@ for modality in modalities:
                         batch_size = batch_size, hpo = hpo,
                         epochs = epochs, trainortest = "train")
 
-"""
+
 #############################################################################################
 #############################################################################################
 ################################### Multi-modality networks #################################
 #############################################################################################
 #############################################################################################
-loop_muilti.MultiTrainLoop(participant = "bci10",
-                drop = drop, batch_size = batch_size, 
-                epochs = epochs, trainortest = trainortest)
-
+"""
+for i in participants:
+    
+    #Select correct hpo file
+    hpo = pickle.load(open("hpo/hyper_parameters/multi.pickle", "rb"))   
+    
+    #Loop
+    loop_multi.MultiTrainLoop(participant = i,
+                    batch_size = batch_size, hpo = hpo,
+                    epochs = epochs, trainortest = "train")
 """
 
 

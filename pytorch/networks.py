@@ -42,13 +42,15 @@ class EEGNet(nn.Module):
         self.batch3 = nn.BatchNorm1d(num_features = 100)
         self.batch4 = nn.BatchNorm1d(num_features = 200)
 
-        #Dense layer
-        self.dense1 = nn.Linear(dense_input, n_units) 
-        self.dense2 = nn.Linear(n_units, 1) 
-        self.dense3 = nn.Linear(dense_input, dense_input) 
+        #Dense and dropout layers
+        if multi == False:
+            self.dense1 = nn.Linear(dense_input, n_units) 
+            self.dense2 = nn.Linear(n_units, 1) 
+            self.dropout = nn.Dropout(drop)
 
-        #Dropout layer
-        self.dropout = nn.Dropout(drop)
+        elif multi == True:
+            self.dense3 = nn.Linear(dense_input, dense_input) 
+
 
         
     def forward(self, x): 
@@ -96,14 +98,14 @@ class PPGNet(nn.Module):
         self.batch3 = nn.BatchNorm1d(num_features = 64)
         self.batch4 = nn.BatchNorm1d(num_features = 128)
 
-        #Dense layer
-        self.dense1 = nn.Linear(dense_input, n_units) 
-        self.dense2 = nn.Linear(n_units, 1) 
-        self.dense3 = nn.Linear(dense_input, dense_input) 
+        #Dense and dropout layers
+        if multi == False:
+            self.dense1 = nn.Linear(dense_input, n_units) 
+            self.dense2 = nn.Linear(n_units, 1) 
+            self.dropout = nn.Dropout(drop)
 
-        #Dropout layer
-        self.dropout = nn.Dropout(drop)
-
+        elif multi == True:
+            self.dense3 = nn.Linear(dense_input, dense_input) 
         
     def forward(self, x): 
         x = self.pool(F.elu(self.batch1(self.conv1(x)))) #First block
@@ -152,13 +154,14 @@ class GSRNet(nn.Module):
         self.batch3 = nn.BatchNorm1d(num_features = 64)
         self.batch4 = nn.BatchNorm1d(num_features = 128)
 
-        #Dense layer
-        self.dense1 = nn.Linear(dense_input, n_units) 
-        self.dense2 = nn.Linear(n_units, 1) 
-        self.dense3 = nn.Linear(dense_input, dense_input) 
+        #Dense and dropout layers
+        if multi == False:
+            self.dense1 = nn.Linear(dense_input, n_units) 
+            self.dense2 = nn.Linear(n_units, 1) 
+            self.dropout = nn.Dropout(drop)
 
-        #Dropout layer
-        self.dropout = nn.Dropout(drop)
+        elif multi == True:
+            self.dense3 = nn.Linear(dense_input, dense_input) 
 
         
     def forward(self, x): 
@@ -180,7 +183,7 @@ class GSRNet(nn.Module):
 
 ################### Multi-modular Net ###################
 class MULTINet(nn.Module):
-    def __init__(self, eegtensor_length, ppgtensor_length, gsrtensor_length, drop = 0.25):
+    def __init__(self, eegtensor_length, ppgtensor_length, gsrtensor_length, drop, units_1, units_2):
         super(MULTINet, self).__init__()
 
         self.drop = drop
@@ -209,9 +212,9 @@ class MULTINet(nn.Module):
         #dense2 = math.ceil(dense2/10)
 
         #Modality specific networks
-        self.eegpart = EEGNet(drop = 0.25, tensor_length = eegtensor_length, multi = True)
-        self.ppgpart = PPGNet(drop = 0.25, tensor_length = ppgtensor_length, multi = True)
-        self.gsrpart = GSRNet(drop = 0.25, tensor_length = gsrtensor_length, multi = True)
+        self.eegpart = EEGNet(drop = None, tensor_length = eegtensor_length, multi = True, n_units = None)
+        self.ppgpart = PPGNet(drop = None, tensor_length = ppgtensor_length, multi = True, n_units = None)
+        self.gsrpart = GSRNet(drop = None, tensor_length = gsrtensor_length, multi = True, n_units = None)
         
         #Convolutional layers
         self.convhead1 = nn.Conv1d(in_channels = 1, out_channels = 25, kernel_size = 3, padding=1)
@@ -227,9 +230,9 @@ class MULTINet(nn.Module):
         self.dropouthead = nn.Dropout(drop)
 
         #Dense layers
-        self.densehead1 = nn.Linear(dense1, int(dense1/10)) 
-        self.densehead2 = nn.Linear(dense2, int(dense2/8)) 
-        self.densehead3 = nn.Linear(int(dense2/8), 1) 
+        self.densehead1 = nn.Linear(dense1, units_1) 
+        self.densehead2 = nn.Linear(units_1, units_2) 
+        self.densehead3 = nn.Linear(units_2, 1) 
 
     def forward(self, eeg_windows, ppg_windows, gsr_windows): 
         x = self.eegpart(eeg_windows)
