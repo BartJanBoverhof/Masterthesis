@@ -103,6 +103,7 @@ class PPGNet(nn.Module):
             self.dense1 = nn.Linear(dense_input, n_units) 
             self.dense2 = nn.Linear(n_units, 1) 
             self.dropout = nn.Dropout(drop)
+            self.dense3 = nn.Linear(dense_input, dense_input) 
 
         elif multi == True:
             self.dense3 = nn.Linear(dense_input, dense_input) 
@@ -159,6 +160,7 @@ class GSRNet(nn.Module):
             self.dense1 = nn.Linear(dense_input, n_units) 
             self.dense2 = nn.Linear(n_units, 1) 
             self.dropout = nn.Dropout(drop)
+            self.dense3 = nn.Linear(dense_input, dense_input) 
 
         elif multi == True:
             self.dense3 = nn.Linear(dense_input, dense_input) 

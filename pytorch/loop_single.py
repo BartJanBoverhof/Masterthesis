@@ -178,14 +178,6 @@ def SingleTrainLoop(participant, modality, batch_size, hpo, epochs, trainortest)
                 valid_loss_min = valid_loss
 
 
-        """
-        plt.plot(list(range(epochs-5)), train_list[5:len(train_list)], label = "train")
-        plt.plot(list(range(epochs-5)), valid_list[5:len(valid_list)], label = "validation")
-        plt.show()
-        """
-
-
-
     ###########################################################################################
     #################################### 4. Test loop #########################################
     ###########################################################################################
@@ -199,8 +191,8 @@ def SingleTrainLoop(participant, modality, batch_size, hpo, epochs, trainortest)
 
         diff = torch.Tensor()
         
-        predictions = torch.Tensor()
-        labelss = torch.Tensor()
+        predictions_concat = torch.Tensor()
+        labels_concat = torch.Tensor()
 
         for windows, labels in testloader:
             
@@ -212,22 +204,7 @@ def SingleTrainLoop(participant, modality, batch_size, hpo, epochs, trainortest)
             foo = (out.squeeze() - labels)
             diff = torch.cat([diff,foo])
 
-            predictions = torch.cat([predictions, out])
-            labelss = torch.cat([labelss, labels])
+            predictions_concat = torch.cat([predictions_concat, out])
+            labels_concat = torch.cat([labels_concat, labels])
 
-        test_loss = test_loss/len(testloader.sampler)
-        print("Test los:",test_loss)
-        average_miss = sum(abs(diff))/len(testloader.sampler)
-
-        print("Average Missclasification:", float(average_miss))
-        print("Or on the orignal scale:", float(average_miss*20))
-
-        corr = np.corrcoef(predictions.squeeze().detach().numpy(), labelss.detach().numpy())
-        print("Correlation predictions and labels:", float(corr[1][0]))
-
-        print(predictions.squeeze()) 
-        print(labelss.squeeze())            
-        
-        plt.hist(diff.detach().numpy(), bins= 50)
-        plt.show()
-        print('dd')
+    return predictions_concat, labels_concat
