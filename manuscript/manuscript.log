@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  1 APR 2021 14:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  6 APR 2021 15:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -168,18 +168,18 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 (./manuscript.aux)
 \openout1 = `manuscript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
 \c@maskedRefs=\count106
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/apacite/english.apc
@@ -293,7 +293,7 @@ e
 File: ./figures/experimental_setup.png Graphic file (type png)
 <use ./figures/experimental_setup.png>
 Package pdftex.def Info: ./figures/experimental_setup.png  used on input line 1
-19.
+20.
 (pdftex.def)             Requested size: 398.28094pt x 210.38226pt.
  [8]
 
@@ -308,15 +308,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: ./figures/single_model_architecture.png Graphic file (type png)
 <use ./figures/single_model_architecture.png>
 Package pdftex.def Info: ./figures/single_model_architecture.png  used on input
- line 195.
+ line 196.
 (pdftex.def)             Requested size: 473.74773pt x 412.61899pt.
 
-Overfull \hbox (18.50365pt too wide) in paragraph at lines 195--197
+Overfull \hbox (18.50365pt too wide) in paragraph at lines 196--198
 [][]
  []
 
 
-Overfull \hbox (2.68045pt too wide) in paragraph at lines 199--200
+Overfull \hbox (2.68045pt too wide) in paragraph at lines 200--201
 []\OT1/cmr/m/n/12 The uti-lized net-work for the EEG modal-ity was a Con-vNet a
 s pro-posed by []Schirrmeister
  []
@@ -326,10 +326,10 @@ s pro-posed by []Schirrmeister
 File: ./figures/multi_model_architecture.png Graphic file (type png)
 <use ./figures/multi_model_architecture.png>
 Package pdftex.def Info: ./figures/multi_model_architecture.png  used on input 
-line 211.
+line 212.
 (pdftex.def)             Requested size: 474.47545pt x 514.50021pt.
 
-Overfull \hbox (19.23137pt too wide) in paragraph at lines 211--213
+Overfull \hbox (19.23137pt too wide) in paragraph at lines 212--214
 [][]
  []
 
@@ -344,15 +344,97 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [18
 
 ] [19]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 302.
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(31.2982pt, 551.6986pt, 31.2982pt)
+* v-part:(T,H,B)=(31.2982pt, 732.37358pt, 31.2982pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=551.6986pt
+* \textheight=732.37358pt
+* \oddsidemargin=-40.97179pt
+* \evensidemargin=-40.97179pt
+* \topmargin=-77.97179pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
+<./figures/mae_hist.png, id=82, 807.015pt x 630.355pt>
+File: ./figures/mae_hist.png Graphic file (type png)
+<use ./figures/mae_hist.png>
+Package pdftex.def Info: ./figures/mae_hist.png  used on input line 303.
+(pdftex.def)             Requested size: 540.69725pt x 422.33565pt.
+ [20 <./figures/mae_hist.png>]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(31.2982pt, 551.6986pt, 31.2982pt)
+* v-part:(T,H,B)=(31.2982pt, 732.37358pt, 31.2982pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=551.6986pt
+* \textheight=732.37358pt
+* \oddsidemargin=-40.97179pt
+* \evensidemargin=-40.97179pt
+* \topmargin=-77.97179pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+<./figures/mae_scatter.png, id=87, 795.97375pt x 626.34pt>
+File: ./figures/mae_scatter.png Graphic file (type png)
+<use ./figures/mae_scatter.png>
+Package pdftex.def Info: ./figures/mae_scatter.png  used on input line 314.
+(pdftex.def)             Requested size: 533.29965pt x 419.64561pt.
+ [21 <./figures/mae_scatter.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 322.
+
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 302.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 322.
+ [22
 
-[20] (./manuscript.bbl [21]
+
+
+
+]
+(./manuscript.bbl [23]
 Underfull \hbox (badness 1502) in paragraph at lines 580--598
 []\OT1/cmr/m/n/12 Schirrmeister, R. T., Sprin-gen-berg, J. T., Fiederer, L. D. 
 J., Glasstet-ter, M.,
@@ -364,12 +446,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 643--654
 unit.  \OT1/cmr/m/n/12 Re-trieved from:
  []
 
-[22]) [23] (./manuscript.aux) ) 
+[24]) [25] (./manuscript.aux) ) 
 Here is how much of TeX's memory you used:
- 4272 strings out of 492616
- 64506 string characters out of 6129482
- 138776 words of memory out of 5000000
- 8140 multiletter control sequences out of 15000+600000
+ 4284 strings out of 492616
+ 64790 string characters out of 6129482
+ 138794 words of memory out of 5000000
+ 8150 multiletter control sequences out of 15000+600000
  9873 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,9n,38p,1226b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -383,10 +465,10 @@ msfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmti12.pfb>
-Output written on manuscript.pdf (24 pages, 492482 bytes).
+Output written on manuscript.pdf (26 pages, 843054 bytes).
 PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
+ 135 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
