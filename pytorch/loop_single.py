@@ -182,7 +182,7 @@ def SingleTrainLoop(participant, modality, batch_size, hpo, epochs, trainortest)
     #################################### 4. Test loop #########################################
     ###########################################################################################
     elif trainortest == "test":
-        model.load_state_dict(torch.load("pytorch/trained_models/"+modality+"/"+participant+"_"+modality+".pt"))
+        model.load_state_dict(torch.load("pytorch/trained_models/"+modality+"/"+participant+"_"+modality+".pt", map_location = "cpu"))
 
         
         model.eval()

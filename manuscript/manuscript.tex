@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage[textwidth=160mm, textheight=210mm, hmarginratio=1:1]{geometry}
+\usepackage{geometry}
 
 
 %Prerequisite statements
@@ -295,7 +296,26 @@ For each of the three single-modular networks, as well as each of the three mult
 
 \section{Results}
 
+\newgeometry{margin=1.1cm}
+\begin{figure}
+\caption{Mean Absolute Error (MAE) per modality}
+\bigskip
+\includegraphics[scale=0.67]{mae_hist.png}
+\label{fig:mae_hist}
+\end{figure}
+\restoregeometry
+
 \newpage
+
+\newgeometry{margin=1.1cm}
+\begin{figure}
+\caption{Mean Absolute Error (MAE) against label size}
+\bigskip
+\includegraphics[scale=0.67]{mae_scatter.png}
+\label{fig:mae_scatter}
+\end{figure}
+\restoregeometry
+
 \section{Limitations}
 
 \begin{itemize}
@@ -303,7 +323,10 @@ For each of the three single-modular networks, as well as each of the three mult
   \item This approach costs a lot of computational power to both train and do HPO. Especially since person-specific models are fitted. This upholds mostly for the multi-modal network.
   \item Due to the sheer size of the trained model and the fact that models are trained person specific, storage sizes of the models are huge. This could be unpractical.  This upholds mostly for the multi-modal network.
   \item Possibly different window sizes per modality could lead to better results.  * Insert some of the sources here that suggest different window sizes per modality* . This was beyond the scope of this project.
+   \item How generizable is this to other situations for the same person (since things such as PPG are context dependent (like for example regarding how one ate).
+   \item Long runtimes,  even when testing. This upholds only for the multi network. The reason is likely the sheer size of these networks, which for some persons are blown up due to device lagging. 
 \end{itemize}
+
 
 
 

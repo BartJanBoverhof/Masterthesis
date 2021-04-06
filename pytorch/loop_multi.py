@@ -53,11 +53,7 @@ def MultiTrainLoop(participant, hpo, epochs, trainortest, batch_size):
     gsrdat =  dataprep.PytorchDataset(path = path,       #Creating PyTorch dataset
                                       modality = "GSR")
 
-    same = len(eegdat) == len(ppgdat) == len(gsrdat)
-    if same == True:
-        print("Amount of windows are equal across modalities")
-    else:
-        print("BEWARE AMOUNT OF WINDOWS DIFFER ACROSS MODALITIES!!!")
+    print(participant)
 
     padinglength_eeg = dataprep.PaddingLength(eegdat) #Determining the longest window for later use
     padinglength_ppg = dataprep.PaddingLength(ppgdat) #Determining the longest window for later use
@@ -228,19 +224,13 @@ def MultiTrainLoop(participant, hpo, epochs, trainortest, batch_size):
                 torch.save(multi_model.state_dict(), "pytorch/trained_models/"+participant+".pt")
                 valid_loss_min = valid_loss
 
-        """
-        plt.plot(list(range(epochs-5)), train_list[5:len(train_list)], label = "train")
-        plt.plot(list(range(epochs-5)), valid_list[5:len(valid_list)], label = "validation")
-        plt.show()
-        """
-
 
 
     ###########################################################################################
     ########################## 4. Assessing model performance ##################################
     ###########################################################################################
     elif trainortest == "test":
-        multi_model.load_state_dict(torch.load("pytorch/trained_models/"+participant+".pt"))
+        multi_model.load_state_dict(torch.load("pytorch/trained_models/multi/"+participant+"_multi.pt", map_location= "cpu"))
 
         test_loss = 0.0
 
@@ -248,8 +238,8 @@ def MultiTrainLoop(participant, hpo, epochs, trainortest, batch_size):
         multi_model.eval()
         diff = torch.Tensor()
         
-        predictions = torch.Tensor()
-        labelss = torch.Tensor()
+        predictions_concat = torch.Tensor()
+        labels_concat = torch.Tensor()
 
         for (eeg_windows, labels), (ppg_windows, labels), (gsr_windows, labels) in zip(eeg_testloader, ppg_testloader, gsr_testloader):
             
@@ -261,22 +251,8 @@ def MultiTrainLoop(participant, hpo, epochs, trainortest, batch_size):
             foo = (out.squeeze() - labels)
             diff = torch.cat([diff,foo])
 
-            predictions = torch.cat([predictions, out])
-            labelss = torch.cat([labelss, labels])
+            predictions_concat = torch.cat([predictions_concat, out])
+            labels_concat = torch.cat([labels_concat, labels])
 
-        test_loss = test_loss/len(eeg_testloader.sampler)
-        print("Test los:",test_loss)
-        average_miss = sum(abs(diff))/len(eeg_testloader.sampler)
-
-        print("Average Missclasification:", float(average_miss))
-        print("Or on the orignal scale:", float(average_miss*20))
-
-        corr = np.corrcoef(predictions.squeeze().detach().numpy(), labelss.detach().numpy())
-        print("Correlation predictions and labels:", float(corr[1][0]))
-
-        print(predictions.squeeze()) 
-        print(labelss.squeeze())            
-        
-        plt.hist(diff.detach().numpy(), bins= 50)
-        plt.show()
+    return predictions_concat, labels_concat
 
