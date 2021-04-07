@@ -79,7 +79,7 @@ def HistGrid():
     median = x[round(len(predictions)*0.5)]
 
     #Plot
-    ax1.hist(x, bins = 70, color = "dodgerblue")
+    ax1.hist(x, bins = 70, color = "#0092cb")
     ax1.set_title("EEG-Networks", fontsize = 10, fontstyle = "italic") 
     ax1.vlines((lowerbound, median, upperbound), 0, 71, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
     ax1.set(ylabel='Count')
@@ -99,7 +99,7 @@ def HistGrid():
     median = x[round(len(predictions)*0.5)]
 
     #Plot
-    ax2.hist(x, bins = 70, color = "dodgerblue")
+    ax2.hist(x, bins = 70, color = "#0092cb")
     ax2.set_title("PPG-Networks", fontsize = 10, fontstyle = "italic") 
     ax2.vlines((lowerbound, median, upperbound), 0, 68, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
 
@@ -119,7 +119,7 @@ def HistGrid():
     median = x[round(len(predictions)*0.5)]
 
     #Plot
-    ax3.hist(x, bins = 70, color = "dodgerblue")
+    ax3.hist(x, bins = 70, color = "#0092cb")
     ax3.set_title("GSR-Networks", fontsize = 10, fontstyle = "italic") 
     ax3.vlines((lowerbound, median, upperbound), 0, 69, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
     ax3.set(ylabel='Count', xlabel = 'MAE')
@@ -140,7 +140,7 @@ def HistGrid():
     median = x[round(len(predictions)*0.5)]
 
     #Plot
-    ax4.hist(x, bins = 70, color = "dodgerblue")
+    ax4.hist(x, bins = 70, color = "#0092cb")
     ax4.set_title("Multi-Modular Networks", fontsize = 10, fontstyle = "italic") 
     ax4.vlines((lowerbound, median, upperbound), 0, 51, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
     ax4.set(xlabel='MAE')
@@ -300,5 +300,5 @@ modalities = ["PPG", "GSR", "EEG", "multi"]
 for modality in modalities:
     Performance(modality)
 
-#HistGrid()
+HistGrid()
 Scatter()

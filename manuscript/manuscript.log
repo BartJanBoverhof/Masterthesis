@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  6 APR 2021 15:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  7 APR 2021 15:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -288,77 +288,86 @@ e
 [1
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[1] [2] [3] [4] [5] [6] [7]
-<./figures/experimental_setup.png, id=31, 995.72pt x 525.965pt>
+[1] [2] [3] [4] [5] [6]
+<./figures/experimental_setup.png, id=28, 995.72pt x 525.965pt>
 File: ./figures/experimental_setup.png Graphic file (type png)
 <use ./figures/experimental_setup.png>
 Package pdftex.def Info: ./figures/experimental_setup.png  used on input line 1
-20.
+17.
 (pdftex.def)             Requested size: 398.28094pt x 210.38226pt.
- [8]
+ [7]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9 <./figures/experimental_setup.png>] [10]
+[8 <./figures/experimental_setup.png>] [9]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[11]
-<./figures/single_model_architecture.png, id=50, 653.44125pt x 569.12625pt>
+[10]
+<./figures/single_model_architecture.png, id=47, 653.44125pt x 569.12625pt>
 File: ./figures/single_model_architecture.png Graphic file (type png)
 <use ./figures/single_model_architecture.png>
 Package pdftex.def Info: ./figures/single_model_architecture.png  used on input
- line 196.
+ line 193.
 (pdftex.def)             Requested size: 473.74773pt x 412.61899pt.
 
-Overfull \hbox (18.50365pt too wide) in paragraph at lines 196--198
+Overfull \hbox (18.50365pt too wide) in paragraph at lines 193--195
 [][]
  []
 
 
-Overfull \hbox (2.68045pt too wide) in paragraph at lines 200--201
+Overfull \hbox (2.68045pt too wide) in paragraph at lines 197--198
 []\OT1/cmr/m/n/12 The uti-lized net-work for the EEG modal-ity was a Con-vNet a
 s pro-posed by []Schirrmeister
  []
 
-[12] [13 <./figures/single_model_architecture.png>]
-<./figures/multi_model_architecture.png, id=59, 654.445pt x 709.65125pt>
+[11] [12 <./figures/single_model_architecture.png>]
+<./figures/multi_model_architecture.png, id=56, 654.445pt x 709.65125pt>
 File: ./figures/multi_model_architecture.png Graphic file (type png)
 <use ./figures/multi_model_architecture.png>
 Package pdftex.def Info: ./figures/multi_model_architecture.png  used on input 
-line 212.
+line 209.
 (pdftex.def)             Requested size: 474.47545pt x 514.50021pt.
 
-Overfull \hbox (19.23137pt too wide) in paragraph at lines 212--214
+Overfull \hbox (19.23137pt too wide) in paragraph at lines 209--211
 [][]
  []
 
-[14] [15 <./figures/multi_model_architecture.png>]
+[13] [14 <./figures/multi_model_architecture.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16] [17]
+[15] [16]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[18
+[17
 
-] [19]
+] [18]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 298.
+
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 298.
+
+[19]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(31.2982pt, 551.6986pt, 31.2982pt)
-* v-part:(T,H,B)=(31.2982pt, 732.37358pt, 31.2982pt)
+* h-part:(L,W,R)=(39.83368pt, 534.62764pt, 39.83368pt)
+* v-part:(T,H,B)=(39.83368pt, 715.30263pt, 39.83368pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=551.6986pt
-* \textheight=732.37358pt
-* \oddsidemargin=-40.97179pt
-* \evensidemargin=-40.97179pt
-* \topmargin=-77.97179pt
+* \textwidth=534.62764pt
+* \textheight=715.30263pt
+* \oddsidemargin=-32.43631pt
+* \evensidemargin=-32.43631pt
+* \topmargin=-69.43631pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=12.0pt
@@ -376,11 +385,11 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./figures/mae_hist.png, id=82, 807.015pt x 630.355pt>
+<./figures/mae_hist.png, id=82, 723.70375pt x 620.3175pt>
 File: ./figures/mae_hist.png Graphic file (type png)
 <use ./figures/mae_hist.png>
-Package pdftex.def Info: ./figures/mae_hist.png  used on input line 303.
-(pdftex.def)             Requested size: 540.69725pt x 422.33565pt.
+Package pdftex.def Info: ./figures/mae_hist.png  used on input line 331.
+(pdftex.def)             Requested size: 506.58917pt x 434.2193pt.
  [20 <./figures/mae_hist.png>]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
@@ -417,44 +426,35 @@ Package pdftex.def Info: ./figures/mae_hist.png  used on input line 303.
 <./figures/mae_scatter.png, id=87, 795.97375pt x 626.34pt>
 File: ./figures/mae_scatter.png Graphic file (type png)
 <use ./figures/mae_scatter.png>
-Package pdftex.def Info: ./figures/mae_scatter.png  used on input line 314.
+Package pdftex.def Info: ./figures/mae_scatter.png  used on input line 342.
 (pdftex.def)             Requested size: 533.29965pt x 419.64561pt.
- [21 <./figures/mae_scatter.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 322.
-
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 322.
- [22
+ [21 <./figures/mae_scatter.png>] [22
 
 
 
 
 ]
 (./manuscript.bbl [23]
-Underfull \hbox (badness 1502) in paragraph at lines 580--598
+Underfull \hbox (badness 1502) in paragraph at lines 641--659
 []\OT1/cmr/m/n/12 Schirrmeister, R. T., Sprin-gen-berg, J. T., Fiederer, L. D. 
 J., Glasstet-ter, M.,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 643--654
+Underfull \hbox (badness 10000) in paragraph at lines 704--715
 []\OT1/cmr/m/n/12 Shimmer-research.  (n.d.[]).  \OT1/cmr/m/it/12 Shim-mer3 gsr 
 unit.  \OT1/cmr/m/n/12 Re-trieved from:
  []
 
 [24]) [25] (./manuscript.aux) ) 
 Here is how much of TeX's memory you used:
- 4284 strings out of 492616
- 64790 string characters out of 6129482
- 138794 words of memory out of 5000000
- 8150 multiletter control sequences out of 15000+600000
+ 4290 strings out of 492616
+ 64934 string characters out of 6129482
+ 139069 words of memory out of 5000000
+ 8156 multiletter control sequences out of 15000+600000
  9873 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,38p,1226b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,38p,1282b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pu
@@ -465,7 +465,7 @@ msfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmti12.pfb>
-Output written on manuscript.pdf (26 pages, 843054 bytes).
+Output written on manuscript.pdf (26 pages, 839782 bytes).
 PDF statistics:
  135 PDF objects out of 1000 (max. 8388607)
  87 compressed objects within 1 object stream
