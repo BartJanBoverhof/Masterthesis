@@ -47,19 +47,16 @@ January 7, 2021\\
 
 %Introduction section
 \section{Introduction}
-The topic of mental workload is a widely studied phenomenon across a variety of different fields, amongst others the field of ergonomics \cite{young2015state}, human factors \cite{pretorius2007development} and neurosciences \cite{shuggi2017mental}. A widely utilized definition of mental workload, hereafter referred to as simply "workload", is the demand placed upon individuals whilst they carry out a certain task. As rightfully pointed out by \citeA{de1996measurement}, the aforementioned definition is lacking, for it defines workload solely as a phenomenon external to the individual. Workload needs to be recognized as a person-specific construct. The amount of perceived workload ushered by a given task may vary across individuals due to how well one is able to cope with that particular task \cite{de1996measurement}. 
+The topic of mental workload is a widely studied phenomenon across a variety of different fields, amongst others the field of ergonomics \cite{young2015state}, human factors \cite{pretorius2007development} and cognitive neurosciences \cite{shuggi2017mental}. A commonly utilized definition of mental workload, hereafter referred to as simply "workload", is the demand placed upon individuals whilst carrying out a particular task. As rightfully pointed out by \citeA{de1996measurement}, the aforementioned definition is lacking, for it defines workload solely as a phenomenon external to the individual. Workload requires to be recognized as a person-specific construct, for the amount of perceived workload ushered by a given task may vary substantially across individuals. \cite{de1996measurement}. 
 
-A commonly employed method for the assessment of person-specific workload is the well established NASA-Task Load Index questionnaire. This questionnaire inquires into the amount of perceived workload,  and embodies six different dimensions \cite{hart2006nasa}. Such an assessment is usually conducted post-experiment, which might in certain situations be undesirable. Consider for example an experiment in which it is aimed to assess workload of a pilot in flight. An insightful learning approach towards such an experiment would be to measure the degree of perceived workload at different phases of the flight. However, only after the flight is concluded, a measurement in the form of a questionnaire can be administrated. In such a situation, utilizing a post-experiment assessment well after the action took place is prone to generate biases, such as for example the observer-bias, which advocates that participants in an experiment tend to overexaggerate the treatment effect, i.e. the amount of perceived workload, when having to report it post-experiment \cite{mahtani2018catalogue}.
+A commonly employed method for the assessment of workload is the well established NASA-Task Load Index questionnaire. This method inquires into the amount of perceived workload,  embodying six different dimensions \cite{hart2006nasa}. Due to practical considerations such an assessment is usually conducted post-experiment, which can in certain situations be deemed suboptimal. Consider for example an experiment, in which is aimed to assess the perceived workload of a pilot in flight. An insightful  approach towards such an experiment would be to measure the degree of perceived workload at different phases of the flight, such that can be determined which specific manoeuvres tend to embark an increase in perceived workload.  However, only after the flight is concluded, a questionnaire-based assessment such as the NASA-Task Load Index can be administrated. In such a situation, utilizing a post-experiment assessment well after the action took place is prone to generate biases. One example of such a bias is the observer-bias, which advocates that participants in an experiment tend to overexaggerate the treatment effect, i.e. the amount of perceived workload, when having to report it post-experiment \cite{mahtani2018catalogue}.
 
-An alternative approach to the assessment of workload is to collect physiological bio-signals during the experiment, and utilize these inputs to predict the degree of experienced workload. Examples of such bio-signals, hereafter referred to as "modalities", include techniques such as electroencephalography, eye-tracking, galvanic skin response, functional near-infrared spectroscopy, etc. The advantage of utilizing multiple bio-signals is that complementary information streams, each stemming from a different modality, can all be interpreted simultaneously \cite{ramachandram2017deep}. Doing so poses the potential of yielding a rich and multifaceted prediction of a mental construct such as workload. However most importantly, it is renders possible to train a separate model for each individual, with which can be catered towards the person-specific nature inherent to workload, the importance of which was pointed out by \citeA{de1996measurement}. This approach, however, comes at the cost of an increase in complexity. This resides in the need to construct a complex framework that inputs the data from each of the utilized modalities, and ultimately outputs a prediction
+An alternative approach to the assessment of workload is to collect physiological bio-signals during the experiment, and utilize these inputs to predict the degree of experienced workload.  The advantage of utilizing multiple bio-signals is that complementary information streams, each stemming from a different modality, can all be interpreted simultaneously \cite{ramachandram2017deep}. Doing so poses the theoretical potential of yielding a rich and multifaceted assessment of a mental construct such as workload. Additionally by taking a physiological bio-signal approach, it renders possible to train a model for each individual separately,  hereby acknowledging the between-personal differences inherent to workload, the importance of which was stressed by \citeA{de1996measurement} and touched upon in the opening paragraph of this research. 
 
-Three modalities are utilized in the current research. The first of which is the technique of electroencephalography
-, hereafter referred to as "EEG". The second is the technique of galvanic skin response, hereafter referred to as "GSR". Lastly, the third technique is called photoplethysmography, hereafter referred to as "PPG". The objective of the current study is to construct a framework with which real-time prediction of a mental construct such as workload can be managed, and to which modalities of choice can easily be added in future research endeavors. Consequently, one of two design principles on which the architecture of the framework reclines is the principle of modularity. Modularity refers to the extent to which different modalities can freely be added and/or removed towards the framework, without the necessity of re-architecting and rebuilding it entirely. The second design principle is the principle of generalizability, prescribing that the framework should not merely be utilizable for the classification of workload, but for the classification of other mental constructs as well. 
+In the current research we explore the previously delineated approach to workload assessment by means of various physiological bio-signals, that is a multi-modular approach. We do so by combining data-streams stemming from three different modalities, being electroencephalography, photoplethysmography and galvanic skin response. Electroencephalography,  hereafter referred to as "EEG", is often utilized in the assessment of workload \cite{craik2019deep} and found to amongst the most adequately performing techniques within this field \cite{hogervorst2014combining}. Galvanic skin response, hereafter referred to as "GSR", equally so is a widely adopted approach towards workload investigation \cite{nourbakhsh2012using}. Lastly, heart-rate is a widely recognized indicator of workload, mostly obtained through photoplethysmography, hereafter referred to as "PPG"\cite{zhang2018evaluating}. 
 
-A deep-learning approach towards the construction of a real-time multi-modular framework is adopted. Considering the complexity and sheer size of such a deep-neural network, an important point of attention is prediction speed. The challenge in real-time prediction with deep-learning is often not reaching adequate performance, but rather to attain adequate speed of prediction. Deep neural networks easily constitute thousands of calculations to be made simultaneously, which is even more true for a multi-modular approach such as the current. In order for real-time prediction to work, prediction cannot take too long, for otherwise it is not real-time anymore and the previously delineated benefit of a real-time approach dissipates. As a consequence, multiple networks are considered and contrasted in terms of performance and their ability to predict in real-time. Firstly, for each of the three modalities individually, a single-modular network is constructed. and assessed.  Secondly, a multi-modular network is architected combining all three modalities into one. These networks were created in Python, by utilizing the deep-learning toolbox PyTorch \cite{paszke2017automatic}
+A deep-learning approach towards model construction is utilized. A range of four different neural networks are constructed and contrasted in performance: one of which is a multi-modular network combining all three modalities, and three of which are networks solely utilizing either the EEG, GSR or PPG modality. With this research we endeavor on the one side to explore which modalities are most adequate predictors of workload in an experimental setting, and whether a multi-modular combination of all three previously delineated modalities is preferable over the three simpler (but much less computationally demanding) single-modular models. This assessment will be propelled by model performance, but whilst taking into consideration computational costs. All networks were constructed in Python, by utilizing the deep-learning toolbox PyTorch \cite{paszke2017automatic}. 
 
-
-The aim of the current research is to explore the circumstances under which a multi-modular approach by means of deep-learning is capable of real-time classification of workload, whilst still ensuring ample and adequate performance. The objective is to provide a framework with which the previously delineated is possible, whilst satisfying the principles of modularity and generalizability. Ultimately, this line of research pursues the ability to conduct a dynamic experiment for multiple people simultaneously, and of which the state can be altered in real-time. 
 
 %Method section
 \newpage
@@ -294,13 +291,44 @@ F1-score:                     & \(\frac{2*Sensitivity*PPV}{Sensitivity+PPV}\)   
 
 For each of the three single-modular networks, as well as each of the three multi-modular network variants, these six metrics have been constructed and reported. The network that performed best across the range of these metrics was considered to be the superior performing network. In case of contradictory interpretations, a reference was made back to the mathematical definition and substantive interpretation of the previously delineated performance metrics. To summarize, with the described assessment approach it was aimed to gain insight into multiple dimension of network performance, resulting in a broad and complete assessment of performance altogether.     
 
+\newpage
 \section{Results}
+Results EEG networks 
+\begin{itemize}
+\item Correlation predictions and labels: 0.68788.
+\item Mean asbsolute error: 0.11029.
+\item Mean absolute error on the original scale: 2.20586.
+\end{itemize}
+\bigskip
 
-\newgeometry{margin=1.1cm}
+Results PPG networks 
+\begin{itemize}
+\item Correlation predictions and labels: 0.52998.
+\item Mean asbsolute error: 0.13587.
+\item Mean absolute error on the original scale: 2.71747.
+\end{itemize}
+\bigskip
+
+Results GSR networks 
+\begin{itemize}
+\item Correlation predictions and labels: 0.65339.
+\item Mean asbsolute error: 0.11883.
+\item Mean absolute error on the original scale: 2.37665.
+\end{itemize}
+\bigskip
+
+Results Multi-Modality networks 
+\begin{itemize}
+\item Correlation predictions and labels: 0.60864.
+\item Mean asbsolute error: 0.12848.
+\item Mean absolute error on the original scale: 2.56964.
+\end{itemize}
+
+\newgeometry{margin=1.4cm}
 \begin{figure}
 \caption{Mean Absolute Error (MAE) per modality}
 \bigskip
-\includegraphics[scale=0.67]{mae_hist.png}
+\includegraphics[scale=0.7]{mae_hist.png}
 \label{fig:mae_hist}
 \end{figure}
 \restoregeometry
@@ -325,6 +353,7 @@ For each of the three single-modular networks, as well as each of the three mult
   \item Possibly different window sizes per modality could lead to better results.  * Insert some of the sources here that suggest different window sizes per modality* . This was beyond the scope of this project.
    \item How generizable is this to other situations for the same person (since things such as PPG are context dependent (like for example regarding how one ate).
    \item Long runtimes,  even when testing. This upholds only for the multi network. The reason is likely the sheer size of these networks, which for some persons are blown up due to device lagging. 
+   \item hardware failure?
 \end{itemize}
 
 

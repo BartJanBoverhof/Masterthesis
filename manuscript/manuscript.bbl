@@ -319,6 +319,35 @@ Hart, S\BPBI G.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Hogervorst%
+, Brouwer%
+\BCBL {}\ \BBA {} Van~Erp%
+}{%
+Hogervorst%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+hogervorst2014combining}
+\APACinsertmetastar {%
+hogervorst2014combining}%
+\begin{APACrefauthors}%
+Hogervorst, M\BPBI A.%
+, Brouwer, A\BHBI M.%
+\BCBL {}\ \BBA {} Van~Erp, J\BPBI B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Combining and comparing EEG, peripheral physiology and
+  eye-related measures for the assessment of mental workload} {Combining and
+  comparing eeg, peripheral physiology and eye-related measures for the
+  assessment of mental workload}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Frontiers in neuroscience}{8}{}{322}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Ioffe%
 \ \BBA {} Szegedy%
 }{%
@@ -449,6 +478,38 @@ Muse-incorperation.%
   headband.}
 \newblock
 \APAChowpublished {Retrieved from: https://choosemuse.com/muse-2/}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Nourbakhsh%
+, Wang%
+, Chen%
+\BCBL {}\ \BBA {} Calvo%
+}{%
+Nourbakhsh%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2012}}%
+}]{%
+nourbakhsh2012using}
+\APACinsertmetastar {%
+nourbakhsh2012using}%
+\begin{APACrefauthors}%
+Nourbakhsh, N.%
+, Wang, Y.%
+, Chen, F.%
+\BCBL {}\ \BBA {} Calvo, R\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Using galvanic skin response for cognitive load
+  measurement in arithmetic and reading tasks} {Using galvanic skin response
+  for cognitive load measurement in arithmetic and reading tasks}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings of the 24th Australian Computer-Human
+  Interaction Conference} {Proceedings of the 24th australian computer-human
+  interaction conference}\ (\BPGS\ 420--423).
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
