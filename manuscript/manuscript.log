@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  7 APR 2021 15:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  13 APR 2021 14:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -165,22 +165,60 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutvoffset=\dimen128
 \Gm@dimlist=\toks22
 )
+(/usr/local/texlive/2019/texmf-dist/tex/latex/floatrow/floatrow.sty
+Package: floatrow 2008/08/02 v0.3b floatrow: float package extension
+\c@float@type=\count106
+\float@exts=\toks23
+\float@box=\box29
+\@floatcapt=\box30
+Package floatrow Info: Modified float package code loaded on input line 455.
+Package floatrow Info: Modified rotfloat package code loaded on input line 473.
+
+\FR@everyfloat=\toks24
+\flrow@foot=\insert199
+\FB@wd=\dimen129
+\FBo@wd=\dimen130
+\FBc@wd=\dimen131
+\FBo@ht=\skip51
+\FBc@ht=\skip52
+\FBf@ht=\skip53
+\FBo@max=\skip54
+\FBc@max=\skip55
+\FBf@max=\skip56
+\c@FBl@b=\count107
+\floatbox@depth=\count108
+\c@FRobj=\count109
+\c@FRsobj=\count110
+\Xhsize=\skip57
+\sXhsize=\skip58
+\Zhsize=\skip59
+\sZhsize=\skip60
+\flrow@rowbox=\box31
+\FR@Zunitlength=\dimen132
+\c@FBcnt=\count111
+\FPOScnt=\count112
+\LTleft=\skip61
+\LTright=\skip62
+\LTleft=\skip63
+\LTright=\skip64
+\flrow@types=\toks25
+)
 (./manuscript.aux)
 \openout1 = `manuscript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-\c@maskedRefs=\count106
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+\c@maskedRefs=\count113
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/apacite/english.apc
 File: english.apc 2013/07/21 v6.03 apacite language file
@@ -188,21 +226,23 @@ LaTeX Info: Redefining \BPBI on input line 129.
 LaTeX Info: Redefining \BHBI on input line 130.
 )
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: floatrow package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count107
-\scratchdimen=\dimen129
-\scratchbox=\box29
-\nofMPsegments=\count108
-\nofMParguments=\count109
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count110
-\MPscratchDim=\dimen130
-\MPnumerator=\count111
-\makeMPintoPDFobject=\count112
-\everyMPtoPDFconversion=\toks24
+\scratchcounter=\count114
+\scratchdimen=\dimen133
+\scratchbox=\box32
+\nofMPsegments=\count115
+\nofMParguments=\count116
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count117
+\MPscratchDim=\dimen134
+\MPnumerator=\count118
+\makeMPintoPDFobject=\count119
+\everyMPtoPDFconversion=\toks27
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -285,74 +325,161 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-[1
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
 
-{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[1] [2] [3] [4] [5] [6]
-<./figures/experimental_setup.png, id=28, 995.72pt x 525.965pt>
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+) [1
+
+{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] [2]
+<./figures/experimental_setup.png, id=15, 1192.455pt x 521.95pt>
 File: ./figures/experimental_setup.png Graphic file (type png)
 <use ./figures/experimental_setup.png>
-Package pdftex.def Info: ./figures/experimental_setup.png  used on input line 1
-17.
-(pdftex.def)             Requested size: 398.28094pt x 210.38226pt.
- [7]
+Package pdftex.def Info: ./figures/experimental_setup.png  used on input line 7
+7.
+(pdftex.def)             Requested size: 417.36551pt x 182.68523pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+[3] [4 <./figures/experimental_setup.png>] [5] [6] [7] [8] [9] [10]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(56.9055pt, 500.484pt, 56.9055pt)
+* v-part:(T,H,B)=(56.9055pt, 681.15898pt, 56.9055pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=500.484pt
+* \textheight=681.15898pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-52.36449pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-[8 <./figures/experimental_setup.png>] [9]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[10]
-<./figures/single_model_architecture.png, id=47, 653.44125pt x 569.12625pt>
+<./figures/single_model_architecture.png, id=45, 727.71875pt x 631.35875pt>
 File: ./figures/single_model_architecture.png Graphic file (type png)
 <use ./figures/single_model_architecture.png>
 Package pdftex.def Info: ./figures/single_model_architecture.png  used on input
- line 193.
-(pdftex.def)             Requested size: 473.74773pt x 412.61899pt.
+ line 144.
+(pdftex.def)             Requested size: 509.39964pt x 441.9481pt.
 
-Overfull \hbox (18.50365pt too wide) in paragraph at lines 193--195
-[][]
+Overfull \hbox (8.91565pt too wide) in paragraph at lines 144--147
+ [][] 
  []
 
+[11 <./figures/single_model_architecture.png>]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(45.52458pt, 523.24583pt, 45.52458pt)
+* v-part:(T,H,B)=(45.52458pt, 703.92082pt, 45.52458pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=523.24583pt
+* \textheight=703.92082pt
+* \oddsidemargin=-26.7454pt
+* \evensidemargin=-26.7454pt
+* \topmargin=-63.7454pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Overfull \hbox (2.68045pt too wide) in paragraph at lines 197--198
-[]\OT1/cmr/m/n/12 The uti-lized net-work for the EEG modal-ity was a Con-vNet a
-s pro-posed by []Schirrmeister
- []
+ [12
 
-[11] [12 <./figures/single_model_architecture.png>]
-<./figures/multi_model_architecture.png, id=56, 654.445pt x 709.65125pt>
+
+
+] [13
+
+]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(56.9055pt, 500.484pt, 56.9055pt)
+* v-part:(T,H,B)=(56.9055pt, 681.15898pt, 56.9055pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=500.484pt
+* \textheight=681.15898pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-52.36449pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+<./figures/multi_model_architecture.png, id=59, 726.715pt x 787.94376pt>
 File: ./figures/multi_model_architecture.png Graphic file (type png)
 <use ./figures/multi_model_architecture.png>
 Package pdftex.def Info: ./figures/multi_model_architecture.png  used on input 
-line 209.
-(pdftex.def)             Requested size: 474.47545pt x 514.50021pt.
+line 197.
+(pdftex.def)             Requested size: 508.69702pt x 551.55687pt.
 
-Overfull \hbox (19.23137pt too wide) in paragraph at lines 209--211
-[][]
+Overfull \hbox (8.21303pt too wide) in paragraph at lines 197--200
+ [][] 
  []
 
-[13] [14 <./figures/multi_model_architecture.png>]
+[14 <./figures/multi_model_architecture.png>] [15
 
-LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15] [16]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[17
-
-] [18]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 298.
-
- (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 298.
-
-[19]
+]
+<./figures/labels.png, id=71, 654.445pt x 505.89pt>
+File: ./figures/labels.png Graphic file (type png)
+<use ./figures/labels.png>
+Package pdftex.def Info: ./figures/labels.png  used on input line 241.
+(pdftex.def)             Requested size: 274.86502pt x 212.47234pt.
+ [16 <./figures/labels.png>]
+[17]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: <default>
@@ -385,12 +512,12 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./figures/mae_hist.png, id=82, 723.70375pt x 620.3175pt>
+<./figures/mae_hist.png, id=79, 723.70375pt x 620.3175pt>
 File: ./figures/mae_hist.png Graphic file (type png)
 <use ./figures/mae_hist.png>
-Package pdftex.def Info: ./figures/mae_hist.png  used on input line 331.
+Package pdftex.def Info: ./figures/mae_hist.png  used on input line 252.
 (pdftex.def)             Requested size: 506.58917pt x 434.2193pt.
- [20 <./figures/mae_hist.png>]
+ [18 <./figures/mae_hist.png>]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: <default>
@@ -423,52 +550,63 @@ Package pdftex.def Info: ./figures/mae_hist.png  used on input line 331.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./figures/mae_scatter.png, id=87, 795.97375pt x 626.34pt>
+<./figures/mae_scatter.png, id=85, 795.97375pt x 626.34pt>
 File: ./figures/mae_scatter.png Graphic file (type png)
 <use ./figures/mae_scatter.png>
-Package pdftex.def Info: ./figures/mae_scatter.png  used on input line 342.
+Package pdftex.def Info: ./figures/mae_scatter.png  used on input line 263.
 (pdftex.def)             Requested size: 533.29965pt x 419.64561pt.
- [21 <./figures/mae_scatter.png>] [22
+ [19 <./figures/mae_scatter.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 273.
+
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 273.
+ [20
 
 
 
 
-]
-(./manuscript.bbl [23]
-Underfull \hbox (badness 1502) in paragraph at lines 641--659
+] [21]
+(./manuscript.bbl [22]
+Underfull \hbox (badness 1502) in paragraph at lines 702--720
 []\OT1/cmr/m/n/12 Schirrmeister, R. T., Sprin-gen-berg, J. T., Fiederer, L. D. 
 J., Glasstet-ter, M.,
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 704--715
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 765--776
 []\OT1/cmr/m/n/12 Shimmer-research.  (n.d.[]).  \OT1/cmr/m/it/12 Shim-mer3 gsr 
 unit.  \OT1/cmr/m/n/12 Re-trieved from:
  []
 
-[24]) [25] (./manuscript.aux) ) 
+) [24] (./manuscript.aux) ) 
 Here is how much of TeX's memory you used:
- 4290 strings out of 492616
- 64934 string characters out of 6129482
- 139069 words of memory out of 5000000
- 8156 multiletter control sequences out of 15000+600000
- 9873 words of font info for 35 fonts, out of 8000000 for 9000
+ 4860 strings out of 492616
+ 73293 string characters out of 6129482
+ 151491 words of memory out of 5000000
+ 8715 multiletter control sequences out of 15000+600000
+ 10219 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,9n,38p,1282b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmti12.pfb>
-Output written on manuscript.pdf (26 pages, 839782 bytes).
+ 41i,9n,38p,1430b,443s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2019/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmti10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mti12.pfb>
+Output written on manuscript.pdf (25 pages, 973123 bytes).
 PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
+ 142 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

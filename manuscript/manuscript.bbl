@@ -63,6 +63,39 @@ Bergstra, J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Berka%
+\ \protect \BOthers {.}}{%
+Berka%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2005}}%
+}]{%
+berka2005evaluation}
+\APACinsertmetastar {%
+berka2005evaluation}%
+\begin{APACrefauthors}%
+Berka, C.%
+, Levendowski, D\BPBI J.%
+, Ramsey, C\BPBI K.%
+, Davis, G.%
+, Lumicao, M\BPBI N.%
+, Stanney, K.%
+\BDBL {}Stibler, K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2005}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Evaluation of an EEG workload model in an Aegis
+  simulation environment} {Evaluation of an eeg workload model in an aegis
+  simulation environment}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Biomonitoring for Physiological and Cognitive
+  Performance during Military Operations} {Biomonitoring for physiological and
+  cognitive performance during military operations}\ (\BVOL\ 5797, \BPGS\
+  90--99).
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Biswas%
 \ \protect \BOthers {.}}{%
 Biswas%
@@ -372,6 +405,34 @@ Ioffe, S.%
   network training by reducing internal covariate shift}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{arXiv preprint arXiv:1502.03167}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Jimenez-Molina%
+, Retamal%
+\BCBL {}\ \BBA {} Lira%
+}{%
+Jimenez-Molina%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+jimenez2018using}
+\APACinsertmetastar {%
+jimenez2018using}%
+\begin{APACrefauthors}%
+Jimenez-Molina, A.%
+, Retamal, C.%
+\BCBL {}\ \BBA {} Lira, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Using psychophysiological sensors to assess mental
+  workload during web browsing} {Using psychophysiological sensors to assess
+  mental workload during web browsing}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Sensors}{18}{2}{458}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -916,6 +977,35 @@ Zhang, X.%
 \newblock
 \APACjournalVolNumPages{International Journal of Human--Computer
   Interaction}{34}{8}{695--706}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Zhou%
+, Jung%
+\BCBL {}\ \BBA {} Chen%
+}{%
+Zhou%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+zhou2015dynamic}
+\APACinsertmetastar {%
+zhou2015dynamic}%
+\begin{APACrefauthors}%
+Zhou, J.%
+, Jung, J\BPBI Y.%
+\BCBL {}\ \BBA {} Chen, F.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Dynamic workload adjustments in human-machine systems
+  based on GSR features} {Dynamic workload adjustments in human-machine systems
+  based on gsr features}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {IFIP Conference on Human-Computer Interaction} {Ifip
+  conference on human-computer interaction}\ (\BPGS\ 550--558).
 \PrintBackRefs{\CurrentBib}
 
 \end{thebibliography}

@@ -30,7 +30,7 @@ def Performance(modality):
 
 
     #Open results
-    results = pickle.load(open("results/model_performance/predictions/"+modality+".pickle", "rb"))  
+    results = pickle.load(open("results/predictions/"+modality+".pickle", "rb"))  
     
     predictions = results["predictions"]
     labels = results["labels"]
@@ -66,7 +66,7 @@ def HistGrid():
     
     #EEG plot
     #Open results
-    results = pickle.load(open("results/model_performance/predictions/EEG.pickle", "rb"))  
+    results = pickle.load(open("results/predictions/EEG.pickle", "rb"))  
     
     predictions = results["predictions"]
     labels = results["labels"]
@@ -86,7 +86,7 @@ def HistGrid():
 
     #PPG plot
     #Open results
-    results = pickle.load(open("results/model_performance/predictions/PPG.pickle", "rb"))  
+    results = pickle.load(open("results/predictions/PPG.pickle", "rb"))  
     
     predictions = results["predictions"]
     labels = results["labels"]
@@ -106,7 +106,7 @@ def HistGrid():
 
     #GSR plot
     #Open results
-    results = pickle.load(open("results/model_performance/predictions/GSR.pickle", "rb"))  
+    results = pickle.load(open("results/predictions/GSR.pickle", "rb"))  
     
     predictions = results["predictions"]
     labels = results["labels"]
@@ -127,7 +127,7 @@ def HistGrid():
 
     #Multi plot
     #Open results
-    results = pickle.load(open("results/model_performance/predictions/multi.pickle", "rb"))  
+    results = pickle.load(open("results/predictions/multi.pickle", "rb"))  
     
     predictions = results["predictions"]
     labels = results["labels"]
@@ -180,7 +180,7 @@ def Scatter():
 
     #EEG
     #Open results
-    results = pickle.load(open("results/model_performance/predictions/EEG.pickle", "rb"))  
+    results = pickle.load(open("results/predictions/EEG.pickle", "rb"))  
 
     df = pd.DataFrame(data = [(results["predictions"]), (results["labels"])])
     df = df.transpose()
@@ -206,7 +206,7 @@ def Scatter():
 
     #PPG
     #Open results
-    results = pickle.load(open("results/model_performance/predictions/PPG.pickle", "rb"))  
+    results = pickle.load(open("results/predictions/PPG.pickle", "rb"))  
 
     df = pd.DataFrame(data = [(results["predictions"]), (results["labels"])])
     df = df.transpose()
@@ -231,7 +231,7 @@ def Scatter():
 
     #GSR
     #Open results
-    results = pickle.load(open("results/model_performance/predictions/GSR.pickle", "rb"))  
+    results = pickle.load(open("results/predictions/GSR.pickle", "rb"))  
 
     df = pd.DataFrame(data = [(results["predictions"]), (results["labels"])])
     df = df.transpose()
@@ -256,7 +256,7 @@ def Scatter():
 
     #EEG
     #Open results
-    results = pickle.load(open("results/model_performance/predictions/multi.pickle", "rb"))  
+    results = pickle.load(open("results/predictions/multi.pickle", "rb"))  
 
     df = pd.DataFrame(data = [(results["predictions"]), (results["labels"])])
     df = df.transpose()
@@ -282,9 +282,27 @@ def Scatter():
 
     plt.show()
 
+def LabelPlot():
+    
+    labels = np.array([])
 
+    for participant in participants:
+        path = "pipeline/prepared_data/"+participant+".pickle"
+        dat = pickle.load(open(path, "rb")) #Open pickle
+        labels = np.append(labels,dat["labels_EEG"].numpy())
 
+    labels = labels-1
+    labels = np.sort(labels)
+    lowerbound = labels[round(len(labels)*0.1)]
+    upperbound = labels[round(len(labels)*0.9)]
+    median = labels[round(len(labels)*0.5)]
 
+    plt.hist(labels, bins = 22, color = "#0092cb")
+    plt.vlines((lowerbound, median, upperbound), 0, 1026, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
+    plt.ylabel(ylabel='Count')
+    plt.xlabel(xlabel = 'Label Value')
+    plt.xticks([0, round(lowerbound, 1), round(median, 1), 10, round(upperbound,1) , 15, 20])
+    plt.show()
 
 
 #Included participants
@@ -296,6 +314,14 @@ participants = ["bci10", "bci12", "bci13", "bci17", "bci21", "bci22",
 #Modalities
 modalities = ["PPG", "GSR", "EEG", "multi"]
 
+
+
+
+LabelPlot()
+
+Performance("EEG")
+Performance("GSR")
+Performance("PPG")
 
 for modality in modalities:
     Performance(modality)
