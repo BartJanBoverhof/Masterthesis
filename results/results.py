@@ -82,6 +82,10 @@ def HistGrid():
     ax1.hist(x, bins = 70, color = "#0092cb")
     ax1.set_title("EEG-Networks", fontsize = 10, fontstyle = "italic") 
     ax1.vlines((lowerbound, median, upperbound), 0, 71, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
+    ax1.text(lowerbound-0.05, 60, round(lowerbound,2), horizontalalignment='right', verticalalignment='center', 
+            color = "black", fontstyle = "italic", fontsize = 10)
+    ax1.text(upperbound+0.05, 60, round(upperbound,2), horizontalalignment='left', verticalalignment='center', 
+            color = "black", fontstyle = "italic", fontsize = 10)
     ax1.set(ylabel='Count')
 
     #PPG plot
@@ -102,7 +106,10 @@ def HistGrid():
     ax2.hist(x, bins = 70, color = "#0092cb")
     ax2.set_title("PPG-Networks", fontsize = 10, fontstyle = "italic") 
     ax2.vlines((lowerbound, median, upperbound), 0, 68, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
-
+    ax2.text(lowerbound-0.05, 60, round(lowerbound,2), horizontalalignment='right', verticalalignment='center', 
+            color = "black", fontstyle = "italic", fontsize = 10)
+    ax2.text(upperbound+0.05, 60, round(upperbound,2), horizontalalignment='left', verticalalignment='center', 
+            color = "black", fontstyle = "italic", fontsize = 10)
 
     #GSR plot
     #Open results
@@ -122,8 +129,11 @@ def HistGrid():
     ax3.hist(x, bins = 70, color = "#0092cb")
     ax3.set_title("GSR-Networks", fontsize = 10, fontstyle = "italic") 
     ax3.vlines((lowerbound, median, upperbound), 0, 69, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
-    ax3.set(ylabel='Count', xlabel = 'MAE')
-
+    ax3.set(ylabel='Count', xlabel = 'Prediction Error')
+    ax3.text(lowerbound-0.05, 60, round(lowerbound,2), horizontalalignment='right', verticalalignment='center', 
+            color = "black", fontstyle = "italic", fontsize = 10)
+    ax3.text(upperbound+0.05, 60, round(upperbound,2), horizontalalignment='left', verticalalignment='center', 
+            color = "black", fontstyle = "italic", fontsize = 10)
 
     #Multi plot
     #Open results
@@ -143,8 +153,12 @@ def HistGrid():
     ax4.hist(x, bins = 70, color = "#0092cb")
     ax4.set_title("Multi-Modular Networks", fontsize = 10, fontstyle = "italic") 
     ax4.vlines((lowerbound, median, upperbound), 0, 51, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
-    ax4.set(xlabel='MAE')
-    
+    ax4.set(xlabel='Prediction Error')
+    ax4.text(lowerbound-0.05, 36, round(lowerbound,2), horizontalalignment='right', verticalalignment='center', 
+            color = "black", fontstyle = "italic", fontsize = 10)
+    ax4.text(upperbound+0.05, 36, round(upperbound,2), horizontalalignment='left', verticalalignment='center', 
+            color = "black", fontstyle = "italic", fontsize = 10)
+   
     plt.show()
 
 
@@ -188,7 +202,7 @@ def Scatter():
     df.insert(2, "difference", abs(df["predictions"]- df["labels"]))
 
     corr = np.corrcoef(df["labels"], df["difference"])
-    text = "r = "+str(round(corr[0][1],2))
+    text = "\u03C1 = "+str(round(corr[0][1],2))
     m, b = np.polyfit(df["predictions"], df["difference"], 1)
 
 
@@ -200,7 +214,7 @@ def Scatter():
                    ec=(1., 0.5, 0.5),
                    fc=(1., 0.8, 0.8),
                    ))
-    ax1.set(ylabel = "MAE")
+    ax1.set(ylabel = "Prediction Error")
     ax1.set_title("EEG-Networks", fontsize = 10, fontstyle = "italic")
 
 
@@ -251,7 +265,7 @@ def Scatter():
                    ec=(1., 0.5, 0.5),
                    fc=(1., 0.8, 0.8),
                    ))
-    ax3.set(ylabel = "MAE", xlabel = "Label")
+    ax3.set(ylabel = "Prediction Error", xlabel = "Label Value")
     ax3.set_title("GSR-Networks", fontsize = 10, fontstyle = "italic") 
 
     #EEG
@@ -276,7 +290,7 @@ def Scatter():
                    ec=(1., 0.5, 0.5),
                    fc=(1., 0.8, 0.8),
                    ))
-    ax4.set(xlabel = "Label")
+    ax4.set(xlabel = "Label Value")
     ax4.set_title("Multi-Modular Networks", fontsize = 10, fontstyle = "italic") 
 
 
@@ -312,19 +326,11 @@ participants = ["bci10", "bci12", "bci13", "bci17", "bci21", "bci22",
                 "bci38", "bci39", "bci40", "bci41", "bci42", "bci43", "bci44"]
 
 #Modalities
-modalities = ["PPG", "GSR", "EEG", "multi"]
-
-
-
-
-LabelPlot()
-
-Performance("EEG")
-Performance("GSR")
-Performance("PPG")
+modalities = ["EEG", "PPG", "GSR", "multi"]
 
 for modality in modalities:
     Performance(modality)
 
+#LabelPlot()
 HistGrid()
 Scatter()
