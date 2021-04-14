@@ -10,7 +10,7 @@
 \usepackage[textwidth=160mm, textheight=210mm, hmarginratio=1:1]{geometry}
 \usepackage{geometry}
 \usepackage[capposition=top]{floatrow}
-
+\usepackage{showframe}
 
 %Prerequisite statements
 \DeclareCaptionLabelSeparator*{spaced}{\\[2ex]} %Declare the caption and title seperator spacing
@@ -141,7 +141,7 @@ Consistent with training, HPO was equally so done for each respondent individual
 \begin{figure}
 \caption{The Three Single-modular Network Architectures}
 \bigskip
-\includegraphics[scale=0.7]{single_model_architecture}
+\includegraphics[scale=0.69]{single_model_architecture}
 \label{fig:singlearchitecture}
 \floatfoot{\emph{Note:} Each network constitutes a convolutional part of four convolutional blocks, and a classification part of two fully connected dense layers. }
 \end{figure}
@@ -194,7 +194,7 @@ Again, consistent with training, HPO was equally so done for each respondent ind
 \begin{figure}
 \caption{The Multi-modular Network Architecture}
 \bigskip
-\includegraphics[scale=0.7]{multi_model_architecture}
+\includegraphics[scale=0.69]{multi_model_architecture}
 \label{fig:multiarchitecture}
 \floatfoot{\emph{Note:} The network constitutes a convolutional part of four convolutional blocks for each of distinct parts of the networks. All three distinct parts were flatenned, after which concatenation was possible.  The prediction part of the network constitutes several dense layers.}
 \end{figure}
@@ -204,7 +204,7 @@ Again, consistent with training, HPO was equally so done for each respondent ind
 \subsection{Model Evaluation}
 The performance of the networks has been assessed and contrasted by means of several performance metrics. When assessing performance in deep/machine-learning, it is of importance to realize that each performance metric may favor one approach over the other, simply and solely due to the mathematical nature in which both the metric and the model are defined \cite{gunawardana2009survey}. For this reason, we consider a conglomerate of different metrics. 
 
-Mean Absolute Error, hereafter referred to as "MAE",  of a DNN is the first utilized performance metric, defined as Equation \ref{eq:mae},
+The Mean Absolute Error, hereafter referred to as "MAE",  of a DNN is the first utilized performance metric, defined as Equation \ref{eq:mae},
 
 \begin{equation}
 \label{eq:mae}
@@ -213,7 +213,7 @@ Mean Absolute Error, hereafter referred to as "MAE",  of a DNN is the first util
 where $n$ refers to the amount of windows utilized for testing, $x_i$ to the predicted value for window $i$ and $y_i$ to the true label of window $i$.
 The MAE constitutes the most straightforward metric for the assessment in performance of a DNN, especially since the value can simply be interpreted as the average amount by which the prediction was off.
 
-Root Mean Squared Error, hereafter referred to as RMSE, is the second utilized performance metric, defined as Equation \ref{eq:rmse},
+The Root Mean Squared Error, hereafter referred to as RMSE, is the second utilized performance metric, defined as Equation \ref{eq:rmse},
 
 \begin{equation}
 \label{eq:rmse}
@@ -225,83 +225,76 @@ Finally, the Pearson Correlation Coefficient, hereafter referred to as simply "c
 
 \begin{equation}
 \label{eq:corr}
-\rho_{X,Y} = \frac{cov(X,Y)}{\sigma_{X} \sigma_{Y}}
+r_{X,Y} = \frac{cov(X,Y)}{\sigma_{X} \sigma_{Y}}
 \end{equation}
 where $x$ refers to the predicted values for the test windows,  $y$ to the true labels of test windows and $\sigma_{X}\, \& \,\sigma_{Y}$ refer to the standard deviation of $x$ and $y$ respectively.  Conceptually, correlation indicates the coherence between predictions and labels, hereby posing an alternative model performance metric. 
 
 \newpage
 \section{Results}
-Before illustrating results,  a short elaboration on the testing procedure will be provided.  Windows of eight seconds each were cut, resulting in a total of 9474 windows over all respondents, i.e. on average about 351 windows per respondent. For each network for each respondent individually,  80\% of all windows have been used for training, 10\% for validation within the training process and 10\% for assessing performance of the trained DNN's. This results in an average of 35 windows for assessing DNN performance per respondent, i.e. a total of 969 windows in total.  Partitioning windows into train-, validation- and testing -sets was done systematically by selecting every \textit{n-th} window, such that windows over the entire duration of the experiment were represented equally in each partition.
+Before illustrating results,  a short elaboration on the testing procedure will be provided.  Windows of eight seconds each were cut, resulting in a total of 9474 windows over all respondents, i.e. on average about 351 windows per respondent. For each network for each respondent individually,  80\% of all windows have been used for training, 10\% for validation within the training process and 10\% for the assessment of performance. This results in an average of 35 windows for assessing DNN performance per respondent, i.e. a total of 969 windows in total.  Partitioning windows into train-, validation- and testing -sets was done systematically by selecting every \textit{n-th} window, such that windows over the entire duration of the experiment were represented equally in each partition.  These partitions compromise exactly the same windows across the four networks. 
 
-The distribution of all 9474 window labels, aggregated for all respondents,  is depicted as Figure \ref{fig:labels}. It becomes readily apparent that distribution of the window labels displays a noticeably right-skewed tendency, with a median of 5.75 and a 12.75 90\% upper-bound, implying that higher workload windows are relatively uncommon within both train and test partitions.  
-\vspace{0.2cm}
+The distribution of all 9474 window labels, aggregated for all respondents,  is depicted as Figure \ref{fig:labels}. It becomes readily apparent that distribution of the window labels displays a noticeably right-skewed tendency, with a median of 5.75 and a 12.75 90\% upper-bound quantatile, implying that higher workload windows are relatively uncommon within both train and test partitions.  
+\vspace{0.1cm}
 
 \begin{figure}[h]
 \caption{Distribution Window Labels}
-\includegraphics[scale=0.42]{labels.png}
+\includegraphics[scale=0.39]{labels.png}
 \label{fig:labels}
 \floatfoot{\emph{Note:} The solid line represents the median, whereas the two dashed line represent the 10\% and 90\% quantiles respectively.}
 \end{figure}
 
-\subsection{Single-modular Network Performance}
+\subsection{Deep Neural Network Performance}
+Depicted in Table \ref{table:results} are the performance metrics for each of the trained DNN's. The most conspicuous result that becomes apparent is that the multi-modality networks performs consistently worse on all metrics as compared with both the single-modular EEG and GSR networks.
 
-\newgeometry{margin=1.4cm}
-\begin{figure}
-\caption{Mean Absolute Error (MAE) per modality}
+\vspace{0.3cm}
+\bgroup
+\def\arraystretch{1.6}%  
+\begin{table}[h]
+\caption{Deep Neural Network performance metrics}
+\label{table:results}
+\begin{tabular}{lllll}
+\hline
+                                                                               & EEG\hspace{0.5cm} & PPG\hspace{0.5cm} & GSR\hspace{0.5cm} & Multi\hspace{0.5cm} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Mean Absolute Error\\ \hspace{1.2cm}(\textit{0-1 scale})\end{tabular} & 0.110 & 0.136 & 0.119 & 0.128  \\
+\begin{tabular}[c]{@{}l@{}}Mean Absolute Error\\ \hspace{0.25cm}(\textit{original 0-20 scale})\end{tabular} & 2.206 & 2.717 & 2.377 & 2.570 \\
+Root Mean Square Error                                                         & 0.154 & 0.180 & 0.159 & 0.167 \\
+Pearson Correlation                                                                    & 0.688 & 0.530 & 0.653 & 0.609 \\ \hline
+\end{tabular}
+\end{table}
+
+Performance in terms of MAE of the EEG networks is superior over all other networks, with $MAE = 0.110$ with a standard deviation of $\sigma = 0.154$.  The DNN's demonstrating the next best performance are the GSR networks, closely pursuing the EGG networks,  and displaying $MAE = 0.119$ with a standard deviation of $\sigma = 0.159$.  Surprisingly, the multi-modular networks check out on the third place, displaying $MAE = 0.128$ with a standard deviation of $\sigma = 0.167$.  The PPG networks can clearly be considered the worst performing networks, displaying $MAE = 0.136$ with a standard deviation of $\sigma = 0.179$.  
+
+A similar pattern can be observed when observing the RMSE.This is not surprising, given the RMSE is very similar to the MAE. The difference is that the RMSE values for all networks reside slightly higher, which is not surprising for the punishes high deviations more severely. 
+
+The correlation between predictions and labels are indicative of a similar pattern as compared with the other metrics. Although patterns are similar, an interesting disparity is, however, that the differences across the four architectures is more substantial. The value for the EEG networks are observed to be $r=0.688$, which is interpretable as a rather strong correlation. Equally so, the GSR networks display a fairly strong correlation of $r=0.653$. Again, Both the multi and GSR networks are the least accurately performing, displaying a correlation of $r=0.609$ and $r=530$ respectively. 
+
+A graphical visualization of the prediction errors for each of the four network architectures is depicted as Figure \ref{fig:mae_hist}. 
+
+\vspace{0.3cm}
+\begin{figure}[h]
+\caption{Error per modality}
 \bigskip
-\includegraphics[scale=0.7]{mae_hist.png}
+\includegraphics[scale=0.6]{error_hist.png}
 \label{fig:mae_hist}
-\floatfoot{\emph{Note:} The solid line represents the medians, whereas the two dashed line represent the 10\% and 90\% quantiles respectively.}
+\floatfoot{\emph{Note:} The solid line represents the medians, whereas the two dashed line represent the 10\% and 90\% quantiles respectively. The displayed numbers are the values of the quantiles.}
 \end{figure}
-\restoregeometry
 
+In line with the previously delineated results, it becomes readily apparent that the distribution of the prediction errors for the EEG networks approximates the normal distribution most closely, as indicative by the strong accumulation around 0 error and relatively flat tails. Not surprisingly, the two worst performing DNN's, being the multi-modular and PPG networks, display much thicker tails, and are observed to have a less accumulation around the 0 error mark (i.e. visually "less-peaked"). This is equally so demonstrated by the 10\% and 90\% quantiles, residing farthest from the median.  All distributions are observed to be slightly left-skewed, as indicated firstly by shape and secondly by the fact that 10\% quantiles are farther removed from the median as compared with the 90\% quantiles. Despite that this left-leaning tendency is observable for all network architectures, it is most profound for the PPG and multi-modular networks.  These previously delineated anomalies indicate that all networks are less accurate in predicting high-labeled windows, and that this seems to be more profound for the PPG and multi-modular networks.
 
-\newgeometry{margin=1.1cm}
-\begin{figure}
-\caption{Mean Absolute Error (MAE) against label size}
-\bigskip
-\includegraphics[scale=0.67]{mae_scatter.png}
+Figure \ref{fig:mae_scatter} helps explore this notion into more detail,  by plotting prediction error of each window against its label value,  in addition to their linear relationship and correlation coefficient.
+
+\vspace{0.3cm}
+\begin{figure}[h]
+\caption{Window Prediction Error as opposed to Window Label Value}
+\includegraphics[scale=0.64]{mae_scatter.png}
 \label{fig:mae_scatter}
+\floatfoot{\emph{Note:} The red lines represent the linear relationship between prediction error and label value. The values \textit{r} represent their Pearson Correlation Coefficient.}
 \end{figure}
-\restoregeometry
 
-\subsection{Multi-modular Network Performance}
+Firstly, it becomes immediately apparent that higher labeled windows are substantially less prevailing, as indicative by the thin spreading of dots for the higher labels, conform to the conclusion drawn from the earlier depicted Figure \ref{fig:labels}. Noteworthy is that, for each the four network architectures, a relationship can be observed between the height of the absolute value of the prediction error and the height of the label. This is indicative by the moderately ascending slope, as well as the correlation coefficients. Substantively, this implies that all network architectures are observed to be considerably less accurate when predicting high labeled windows.  This tendency upholds the most for the multi-modular and PPG networks, with an observable correlation coefficients as high as $r=0.37$ for the multi-modular networks specifically.  A, less severe, but still noteworthy relationship between prediction error and label size is observable for both the GSR and EEG architectures,  with a correlation coefficients of $r=0.24$ and $r=0.28$ respectively.
 
-
-Results EEG networks 
-\begin{itemize}
-\item Correlation predictions and labels: 0.68788.
-\item Mean asbsolute error: 0.11029.
-\item Mean absolute error on the original scale: 2.20586.
-\end{itemize}
-\bigskip
-
-Results PPG networks 
-\begin{itemize}
-\item Correlation predictions and labels: 0.52998.
-\item Mean asbsolute error: 0.13587.
-\item Mean absolute error on the original scale: 2.71747.
-\end{itemize}
-\bigskip
-
-Results GSR networks 
-\begin{itemize}
-\item Correlation predictions and labels: 0.65339.
-\item Mean asbsolute error: 0.11883.
-\item Mean absolute error on the original scale: 2.37665.
-\end{itemize}
-\bigskip
-
-Results Multi-Modality networks 
-\begin{itemize}
-\item Correlation predictions and labels: 0.60864.
-\item Mean asbsolute error: 0.12848.
-\item Mean absolute error on the original scale: 2.56964.
-\end{itemize}
-
-
-
-\section{Limitations}
+\section{Conclusion and Discussion}
+It can be concluded that the single-modular EEG networks consistently exhibit the best performance,  with a rather noteworthy difference on the correlations in particular.  The single-modular GSR networks, although being worse as compared with the EEG networks, also were observed to exhibit fairly adequate performance.  Most surprising is that the multi-modular networks performed substantially worse as the previously mentioned, especially as compared with the EEG networks. This was not expected, for one is enticed to expect that the network combining information from multiple modalities would yield more adequate performance as compared with networks solely using a single of these modalities. Apparently  
 
 \begin{itemize}
   \item  More HPO could have been done, to get even better performing models but we had limited computatioal power.   
