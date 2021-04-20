@@ -242,33 +242,6 @@ Dolmans, T.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Fujita%
-\ \BBA {} Suzuki%
-}{%
-Fujita%
-\ \BBA {} Suzuki%
-}{%
-{\protect \APACyear {2019}}%
-}]{%
-fujita2019evaluation}
-\APACinsertmetastar {%
-fujita2019evaluation}%
-\begin{APACrefauthors}%
-Fujita, D.%
-\BCBT {}\ \BBA {} Suzuki, A.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2019}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Evaluation of the possible use of PPG waveform features
-  measured at low sampling rate} {Evaluation of the possible use of ppg
-  waveform features measured at low sampling rate}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{IEEE Access}{7}{}{58361--58367}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Gunawardana%
 \ \BBA {} Shani%
 }{%
@@ -719,39 +692,6 @@ Schirrmeister, R\BPBI T.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Shi%
-, Ruiz%
-, Taib%
-, Choi%
-\BCBL {}\ \BBA {} Chen%
-}{%
-Shi%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2007}}%
-}]{%
-shi2007galvanic}
-\APACinsertmetastar {%
-shi2007galvanic}%
-\begin{APACrefauthors}%
-Shi, Y.%
-, Ruiz, N.%
-, Taib, R.%
-, Choi, E.%
-\BCBL {}\ \BBA {} Chen, F.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2007}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Galvanic skin response (GSR) as an index of cognitive
-  load} {Galvanic skin response (gsr) as an index of cognitive load}.{\BBCQ}
-\newblock
-\BIn{} \APACrefbtitle {CHI'07 extended abstracts on Human factors in computing
-  systems} {Chi'07 extended abstracts on human factors in computing systems}\
-  (\BPGS\ 2651--2656).
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Shimmer-research%
 }{%
 Shimmer-research%
@@ -803,34 +743,6 @@ Shuggi, I\BPBI M.%
   movements under various levels of task difficulty}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Neuroscience}{360}{}{166--179}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Srinivasan%
-, Tucker%
-\BCBL {}\ \BBA {} Murias%
-}{%
-Srinivasan%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {1998}}%
-}]{%
-srinivasan1998estimating}
-\APACinsertmetastar {%
-srinivasan1998estimating}%
-\begin{APACrefauthors}%
-Srinivasan, R.%
-, Tucker, D\BPBI M.%
-\BCBL {}\ \BBA {} Murias, M.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1998}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Estimating the spatial Nyquist of the human EEG}
-  {Estimating the spatial nyquist of the human eeg}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Behavior Research Methods, Instruments, \&
-  Computers}{30}{1}{8--19}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -891,33 +803,36 @@ Tabar, Y\BPBI R.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Weiergraeber%
-, Papazoglou%
-, Broich%
-\BCBL {}\ \BBA {} Mueller%
+Yin%
+, Zhao%
+, Wang%
+, Yang%
+\BCBL {}\ \BBA {} Zhang%
 }{%
-Weiergraeber%
+Yin%
 \ \protect \BOthers {.}}{%
-{\protect \APACyear {2016}}%
+{\protect \APACyear {2017}}%
 }]{%
-weiergraeber2016sampling}
+yin2017recognition}
 \APACinsertmetastar {%
-weiergraeber2016sampling}%
+yin2017recognition}%
 \begin{APACrefauthors}%
-Weiergraeber, M.%
-, Papazoglou, A.%
-, Broich, K.%
-\BCBL {}\ \BBA {} Mueller, R.%
+Yin, Z.%
+, Zhao, M.%
+, Wang, Y.%
+, Yang, J.%
+\BCBL {}\ \BBA {} Zhang, J.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2016}{}{}.
+\APACrefYearMonthDay{2017}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Sampling rate, signal bandwidth and related pitfalls in
-  EEG analysis} {Sampling rate, signal bandwidth and related pitfalls in eeg
-  analysis}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Recognition of emotions using multimodal physiological
+  signals and an ensemble deep learning model} {Recognition of emotions using
+  multimodal physiological signals and an ensemble deep learning model}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Journal of neuroscience methods}{268}{}{53--55}.
+\APACjournalVolNumPages{Computer methods and programs in
+  biomedicine}{140}{}{93--110}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

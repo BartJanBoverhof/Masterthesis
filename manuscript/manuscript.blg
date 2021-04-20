@@ -19,45 +19,45 @@ I'm skipping whatever remains of this entry
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
 Warning--No journal in dolmans2020perceived
 Warning--No journal in paszke2017automatic
-You've used 35 entries,
+You've used 32 entries,
             6951 wiz_defined-function locations,
-            1479 strings with 17969 characters,
-and the built_in function-call counts, 73393 in all, are:
-= -- 8971
-> -- 726
-< -- 3549
-+ -- 3712
-- -- 80
-* -- 4736
-:= -- 13221
-add.period$ -- 152
-call.type$ -- 35
-change.case$ -- 587
+            1462 strings with 17450 characters,
+and the built_in function-call counts, 67493 in all, are:
+= -- 8228
+> -- 664
+< -- 3290
++ -- 3460
+- -- 74
+* -- 4382
+:= -- 12239
+add.period$ -- 138
+call.type$ -- 32
+change.case$ -- 535
 chr.to.int$ -- 0
-cite$ -- 72
-duplicate$ -- 2114
-empty$ -- 2762
-format.name$ -- 1246
-if$ -- 13836
+cite$ -- 66
+duplicate$ -- 1945
+empty$ -- 2526
+format.name$ -- 1149
+if$ -- 12668
 int.to.chr$ -- 0
-int.to.str$ -- 105
+int.to.str$ -- 96
 missing$ -- 0
-newline$ -- 931
-num.names$ -- 280
-pop$ -- 1328
+newline$ -- 852
+num.names$ -- 256
+pop$ -- 1215
 preamble$ -- 1
-purify$ -- 138
+purify$ -- 126
 quote$ -- 0
-skip$ -- 4574
+skip$ -- 4159
 stack$ -- 0
-substring$ -- 4065
-swap$ -- 1216
-text.length$ -- 118
+substring$ -- 3780
+swap$ -- 1112
+text.length$ -- 105
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 3184
+type$ -- 2880
 warning$ -- 2
-while$ -- 421
+while$ -- 387
 width$ -- 0
-write$ -- 1230
+write$ -- 1125
 (There was 1 error message)

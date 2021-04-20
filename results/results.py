@@ -14,6 +14,8 @@ import pickle
 import math
 import matplotlib.pyplot as plt
 import pandas as pd
+import scipy
+from scipy.stats import t
 
 
 def Performance(modality):
@@ -202,7 +204,7 @@ def Scatter():
     df.insert(2, "difference", abs(df["predictions"]- df["labels"]))
 
     corr = np.corrcoef(df["labels"], df["difference"])
-    text = "\u03C1 = "+str(round(corr[0][1],2))
+    text = "r = "+str(round(corr[0][1],2))
     m, b = np.polyfit(df["predictions"], df["difference"], 1)
 
 
@@ -318,6 +320,52 @@ def LabelPlot():
     plt.xticks([0, round(lowerbound, 1), round(median, 1), 10, round(upperbound,1) , 15, 20])
     plt.show()
 
+def TTests():
+    eeg = pickle.load(open("results/predictions/EEG.pickle", "rb"))  
+    gsr = pickle.load(open("results/predictions/GSR.pickle", "rb"))  
+    ppg = pickle.load(open("results/predictions/PPG.pickle", "rb"))  
+    multi = pickle.load(open("results/predictions/multi.pickle", "rb"))  
+
+    eegmean = sum(abs(eeg["predictions"] - eeg["labels"])) / len(eeg["predictions"])
+    gsrmean = sum(abs(gsr["predictions"] - gsr["labels"])) / len(gsr["predictions"])
+    multimean = sum(abs(multi["predictions"] - multi["labels"])) / len(multi["predictions"])
+    ppgmean = sum(abs(ppg["predictions"] - ppg["labels"])) / len(ppg["predictions"])
+
+    #Calculate sd
+    eegsd, gsrsd, ppgsd, multisd = scipy.std(eeg["predictions"], ddof=1), scipy.std(gsr["predictions"], ddof=1), scipy.std(ppg["predictions"], ddof=1), scipy.std(multi["predictions"], ddof=1)
+
+    #Calculate se
+    eegse, gsrse, ppgse, multise = eegsd/ np.sqrt(len(eeg["predictions"])), gsrsd/ np.sqrt(len(gsr["predictions"])), ppgsd/ np.sqrt(len(ppg["predictions"])), multisd/ np.sqrt(len(multi["predictions"]))
+
+    #Calculate sed
+    sed_eegmulti = np.sqrt(eegse**2 + multise**2)
+    sed_eeggsr = np.sqrt(eegse**2 + gsrse**2)
+    sed_gsrmulti = np.sqrt(multise**2 + gsrse**2)
+    sed_ppgmulti = np.sqrt(multise**2 + ppgse**2)
+    sed_gsrppg = np.sqrt(gsrse**2 + ppgse**2)
+
+    #T stat & df
+    t_eegmulti = (eegmean - multimean) / sed_eegmulti
+    t_eeggsr = (eegmean - gsrmean) / sed_eeggsr
+    t_gsrmulti= (gsrmean - multimean) / sed_gsrmulti
+    t_ppgmulti= (multimean - ppgmean) / sed_ppgmulti
+    t_gsrppg= (gsrmean - ppgmean) / sed_gsrppg
+
+    df = len(eeg["predictions"]) + len(eeg["predictions"]) - 2
+
+    #p-value
+    p_eegmulti = (1 - t.cdf(abs(t_eegmulti), df)) *2
+    p_eeggsr = (1 - t.cdf(abs(t_eeggsr), df)) *2
+    p_gsrmulti = (1 - t.cdf(abs(t_gsrmulti), df)) *2
+    p_ppgmulti = (1 - t.cdf(abs(t_ppgmulti), df)) *2
+    p_gsrppg = (1 - t.cdf(abs(t_gsrppg), df)) *2
+
+    #Print results
+    print("T-Test EEG and Multimodal:\t t-value = "+ str(round(t_eegmulti,3))+ "\tp = "+ str(round(p_eegmulti,3))+"\tdf = "+ str(df))
+    print("T-Test EEG and GSR: \t\t t-value = "+ str(round(t_eeggsr,3))+ "\tp = "+ str(round(p_eeggsr,3))+"\tdf = "+ str(df))
+    print("T-Test GSR and Multimodal:\t t-value = "+ str(round(t_gsrmulti,3))+ "\tp = "+ str(round(p_gsrmulti,3))+"\tdf = "+ str(df))
+    print("T-Test PPG and Multimodal:\t t-value = "+ str(round(t_ppgmulti,3))+ "\tp = "+ str(round(p_ppgmulti,3))+"\tdf = "+ str(df))
+    print("T-Test GSR and PPG:\t\t t-value = "+ str(round(t_gsrppg,3))+ "\tp = "+ str(round(p_gsrppg,3))+"\tdf = "+ str(df))
 
 #Included participants
 participants = ["bci10", "bci12", "bci13", "bci17", "bci21", "bci22",
@@ -331,6 +379,7 @@ modalities = ["EEG", "PPG", "GSR", "multi"]
 for modality in modalities:
     Performance(modality)
 
-#LabelPlot()
+TTests()
+LabelPlot()
 HistGrid()
 Scatter()
