@@ -21,7 +21,7 @@ from torch.nn.utils.rnn import pad_sequence
 import numpy as np
 
 try: #Importing network
-    import dataprep, networks
+    import utility, networks
 except ModuleNotFoundError:
     wd = os.getcwd()
     print("Error: please make sure that working directory is set as '~/Masterthesis'")
@@ -45,11 +45,11 @@ def SingleTrainLoop(participant, modality, batch_size, hpo, epochs, trainortest)
     ###########################################################################################
     #Create PyTorch dataset definition class
     path = "pipeline/prepared_data/"+participant+".pickle"
-    pydata =  dataprep.PytorchDataset(path = path,       #Creating PyTorch dataset
+    pydata =  utility.PytorchDataset(path = path,       #Creating PyTorch dataset
                                       modality = modality)
 
-    padding_length = dataprep.PaddingLength(pydata) #Determining the longest window for later use
-    dataprep.BatchTransformation.transfer([padding_length, modality]) #Transfer max padding length & modality vars to BatchTransfor class
+    padding_length = utility.PaddingLength(pydata) #Determining the longest window for later use
+    utility.BatchTransformation.transfer([padding_length, modality]) #Transfer max padding length & modality vars to BatchTransfor class
                
                
     #Making splits
@@ -76,19 +76,19 @@ def SingleTrainLoop(participant, modality, batch_size, hpo, epochs, trainortest)
                                         batch_size = batch_size, 
                                         shuffle = True,
                                         drop_last= False,
-                                        collate_fn = dataprep.BatchTransformation())
+                                        collate_fn = utility.BatchTransformation())
 
     validloader = torch.utils.data.DataLoader(valdata, #Validation loader
                                             batch_size = batch_size, 
                                             shuffle = True,
                                             drop_last= False,
-                                            collate_fn = dataprep.BatchTransformation())
+                                            collate_fn = utility.BatchTransformation())
 
     trainloader = torch.utils.data.DataLoader(traindata, #Training loader
                                             batch_size = batch_size, 
                                             shuffle = True,
                                             drop_last= False,
-                                            collate_fn = dataprep.BatchTransformation())
+                                            collate_fn = utility.BatchTransformation())
 
 
     ###########################################################################################
