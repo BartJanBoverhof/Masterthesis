@@ -1,11 +1,5 @@
 # LaTeX manuscript
-This subsection of the repository contains the LaTeX manuscript. 
-
----
-
-![Status](https://img.shields.io/static/v1?label=Code+Status&message=Unfinished+but+Excecutable&color=yellow) 
-
----
+This subsection of the repository contains the LaTeX manuscript and all nescessary materials to recompile the document. 
 
 
 This subsection of the repository contains the following objects/folders: 

@@ -15,7 +15,7 @@ import pickle
 
 #Import local files
 try:
-    import loop_single, loop_multi, dataprep
+    import loop_single, loop_multi, utility
 except ModuleNotFoundError:
     wd = os.getcwd()
     print("Error: please make sure that working directory is set as '~/Masterthesis'.")
