@@ -12,7 +12,7 @@ This subsection of the repository contains the following objects:
     - `cut_epochs`: cuts the data into epochs based on the selected time windows.
     - `transformer`: function that combines all of the above functions. 
 * `main.py`: central script from which the data transformation is conducted.
-* `raw_data (folder)`: folder that contains the raw daat to be transformed (not posted on GitHub)
+* `raw_data (folder)`: folder that contains the raw data to be transformed AND the label data (not posted on GitHub)
 * `prepared_data (folder)`: folder that contains the prepared data resulting from the above mentioned scripts (not posted on GitHub).
 
 ### Subfolder objective

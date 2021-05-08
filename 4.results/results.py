@@ -16,9 +16,38 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import scipy
 from scipy.stats import t
+import csv
 
+def Descriptives():
+    """
+    Purpose:
+        Calculates and print several demographic descriptive information
+    """    
+    
+    #Open data
+    with open("4.results/descriptives/Demographics.csv") as csvfile:
+        data = pd.read_csv(csvfile)
 
-def Performance(modality):
+        #Remove participants that were not included in the final analysis
+        participants = ["bci 10", "bci 12", "bci 13", "bci 17", "bci 21", "bci 22",
+                "bci 23", "bci 24", "bci 26", "bci 27", "bci 28", "bci 29", "bci 30", 
+                "bci 31", "bci 32", "bci 33", "bci 34", "bci 35", "bci 36", "bci 37", 
+                "bci 38", "bci 39", "bci 40", "bci 41", "bci 42", "bci 43", "bci 44"]
+        participants = pd.DataFrame(participants)
+        participants = participants.rename(columns = {0:"User full name"})
+        data = data[data["User full name"].isin(participants["User full name"])]
+
+        #Print desriptives
+        print("---------------------------------------------------")
+        print("The total number of cases is N = "+str(len(data)))
+        print("---------------------------------------------------")
+        print("Number of Females = "+str(data["What is your gender?"].value_counts()["Female"]))
+        print("Number of Males = "+str(data["What is your gender?"].value_counts()["Male"]))
+        print("---------------------------------------------------")
+        print("Mean Age = "+str(round(sum(data['What is your age?<span class="boundaries"></span>']) / len(data))))
+        print("Standard Deviation Age = "+str(round(np.std(data['What is your age?<span class="boundaries"></span>']),1)))
+
+def Performance(modality, data):
     """
     Purpose:
         Calculates and print several performance statistics
@@ -32,8 +61,11 @@ def Performance(modality):
 
 
     #Open results
-    results = pickle.load(open("results/predictions/"+modality+".pickle", "rb"))  
-    
+    if data == "test":
+        results = pickle.load(open("4.results/predictions/"+modality+".pickle", "rb"))  
+    elif data == "train":
+        results = pickle.load(open("4.results/predictions_traindat/"+modality+".pickle", "rb"))  
+
     predictions = results["predictions"]
     labels = results["labels"]
 
@@ -52,9 +84,10 @@ def Performance(modality):
     rmse = math.sqrt(sum((predictions - labels) **2) / len(predictions))
     print("Root mean error "+modality+"_networks:", round(float(rmse), 5))
 
-    #Metric 4: SE
+    #Metric 4: sd
     stdev = np.std(predictions - labels)
-    print("Standard deviation "+modality+"_networks:", round(float(stdev), 5))
+    print("Standard deviation 0-1 "+modality+"_networks:", round(float(stdev), 5))
+    print("Standard deviation 0-20 "+modality+"_networks:", round(float(stdev*20), 5))
 
 
 def HistGrid():
@@ -68,7 +101,7 @@ def HistGrid():
     
     #EEG plot
     #Open results
-    results = pickle.load(open("results/predictions/EEG.pickle", "rb"))  
+    results = pickle.load(open("4.results/predictions/EEG.pickle", "rb"))  
     
     predictions = results["predictions"]
     labels = results["labels"]
@@ -92,7 +125,7 @@ def HistGrid():
 
     #PPG plot
     #Open results
-    results = pickle.load(open("results/predictions/PPG.pickle", "rb"))  
+    results = pickle.load(open("4.results/predictions/PPG.pickle", "rb"))  
     
     predictions = results["predictions"]
     labels = results["labels"]
@@ -115,7 +148,7 @@ def HistGrid():
 
     #GSR plot
     #Open results
-    results = pickle.load(open("results/predictions/GSR.pickle", "rb"))  
+    results = pickle.load(open("4.results/predictions/GSR.pickle", "rb"))  
     
     predictions = results["predictions"]
     labels = results["labels"]
@@ -139,7 +172,7 @@ def HistGrid():
 
     #Multi plot
     #Open results
-    results = pickle.load(open("results/predictions/multi.pickle", "rb"))  
+    results = pickle.load(open("4.results/predictions/multi.pickle", "rb"))  
     
     predictions = results["predictions"]
     labels = results["labels"]
@@ -173,7 +206,7 @@ def DataPlot(modality):
     """   
 
     #Read in data and select windows to plot
-    dat = pickle.load(open('pipeline/prepared_data/bci13.pickle', "rb")) #Open pickle
+    dat = pickle.load(open('1.pipeline/prepared_data/bci13.pickle', "rb")) #Open pickle
     windows = dat[modality][50].squeeze().detach().numpy()
 
     if modality == "EEG":
@@ -196,7 +229,7 @@ def Scatter():
 
     #EEG
     #Open results
-    results = pickle.load(open("results/predictions/EEG.pickle", "rb"))  
+    results = pickle.load(open("4.results/predictions/EEG.pickle", "rb"))  
 
     df = pd.DataFrame(data = [(results["predictions"]), (results["labels"])])
     df = df.transpose()
@@ -211,7 +244,7 @@ def Scatter():
     ax1.scatter(df["labels"], df["difference"], s = 8, c = df["labels"], cmap = "winter")
     ax1.plot(df["labels"], m*df["labels"] + b, color = "red", linewidth = 3)
     ax1.text(0.5, 0.6, text, horizontalalignment='center', verticalalignment='center', 
-            color = "black", fontstyle = "italic", fontsize = 22,
+            color = "black", fontstyle = "italic", fontsize = 16,
             bbox=dict(boxstyle="round", alpha = 0.68,
                    ec=(1., 0.5, 0.5),
                    fc=(1., 0.8, 0.8),
@@ -222,7 +255,7 @@ def Scatter():
 
     #PPG
     #Open results
-    results = pickle.load(open("results/predictions/PPG.pickle", "rb"))  
+    results = pickle.load(open("4.results/predictions/PPG.pickle", "rb"))  
 
     df = pd.DataFrame(data = [(results["predictions"]), (results["labels"])])
     df = df.transpose()
@@ -237,7 +270,7 @@ def Scatter():
     ax2.scatter(df["labels"], df["difference"], s = 8, c = df["labels"], cmap = "winter")
     ax2.plot(df["labels"], m*df["labels"] + b, color = "red", linewidth = 3)
     ax2.text(0.5, 0.6, text, horizontalalignment='center', verticalalignment='center', 
-            color = "black", fontstyle = "italic", fontsize = 22,
+            color = "black", fontstyle = "italic", fontsize = 16,
             bbox=dict(boxstyle="round", alpha = 0.68,
                    ec=(1., 0.5, 0.5),
                    fc=(1., 0.8, 0.8),
@@ -247,7 +280,7 @@ def Scatter():
 
     #GSR
     #Open results
-    results = pickle.load(open("results/predictions/GSR.pickle", "rb"))  
+    results = pickle.load(open("4.results/predictions/GSR.pickle", "rb"))  
 
     df = pd.DataFrame(data = [(results["predictions"]), (results["labels"])])
     df = df.transpose()
@@ -262,7 +295,7 @@ def Scatter():
     ax3.scatter(df["labels"], df["difference"], s = 8, c = df["labels"], cmap = "winter")
     ax3.plot(df["labels"], m*df["labels"] + b, color = "red", linewidth = 3)
     ax3.text(0.5, 0.6, text, horizontalalignment='center', verticalalignment='center', 
-            color = "black", fontstyle = "italic", fontsize = 22,
+            color = "black", fontstyle = "italic", fontsize = 16,
             bbox=dict(boxstyle="round", alpha = 0.68,
                    ec=(1., 0.5, 0.5),
                    fc=(1., 0.8, 0.8),
@@ -272,7 +305,7 @@ def Scatter():
 
     #EEG
     #Open results
-    results = pickle.load(open("results/predictions/multi.pickle", "rb"))  
+    results = pickle.load(open("4.results/predictions/multi.pickle", "rb"))  
 
     df = pd.DataFrame(data = [(results["predictions"]), (results["labels"])])
     df = df.transpose()
@@ -287,7 +320,7 @@ def Scatter():
     ax4.scatter(df["labels"], df["difference"], s = 8, c = df["labels"], cmap = "winter")
     ax4.plot(df["labels"], m*df["labels"] + b, color = "red", linewidth = 3)
     ax4.text(0.5, 0.6, text, horizontalalignment='center', verticalalignment='center', 
-            color = "black", fontstyle = "italic", fontsize = 22,
+            color = "black", fontstyle = "italic", fontsize = 16,
             bbox=dict(boxstyle="round", alpha = 0.68,
                    ec=(1., 0.5, 0.5),
                    fc=(1., 0.8, 0.8),
@@ -303,11 +336,12 @@ def LabelPlot():
     labels = np.array([])
 
     for participant in participants:
-        path = "pipeline/prepared_data/"+participant+".pickle"
+        path = "1.pipeline/prepared_data/"+participant+".pickle"
         dat = pickle.load(open(path, "rb")) #Open pickle
         labels = np.append(labels,dat["labels_EEG"].numpy())
 
     labels = labels-1
+    labels = labels/20
     labels = np.sort(labels)
     lowerbound = labels[round(len(labels)*0.1)]
     upperbound = labels[round(len(labels)*0.9)]
@@ -317,14 +351,17 @@ def LabelPlot():
     plt.vlines((lowerbound, median, upperbound), 0, 1026, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
     plt.ylabel(ylabel='Count')
     plt.xlabel(xlabel = 'Label Value')
-    plt.xticks([0, round(lowerbound, 1), round(median, 1), 10, round(upperbound,1) , 15, 20])
+    plt.text(lowerbound-0.02, 850, round(lowerbound,2), horizontalalignment='right', verticalalignment='center', 
+            color = "black", fontstyle = "italic", fontsize = 11)
+    plt.text(upperbound+0.02, 850, round(upperbound,2), horizontalalignment='left', verticalalignment='center', 
+            color = "black", fontstyle = "italic", fontsize = 11)
     plt.show()
 
 def TTests():
-    eeg = pickle.load(open("results/predictions/EEG.pickle", "rb"))  
-    gsr = pickle.load(open("results/predictions/GSR.pickle", "rb"))  
-    ppg = pickle.load(open("results/predictions/PPG.pickle", "rb"))  
-    multi = pickle.load(open("results/predictions/multi.pickle", "rb"))  
+    eeg = pickle.load(open("4.results/predictions/EEG.pickle", "rb"))  
+    gsr = pickle.load(open("4.results/predictions/GSR.pickle", "rb"))  
+    ppg = pickle.load(open("4.results/predictions/PPG.pickle", "rb"))  
+    multi = pickle.load(open("4.results/predictions/multi.pickle", "rb"))  
 
     eegmean = sum(abs(eeg["predictions"] - eeg["labels"])) / len(eeg["predictions"])
     gsrmean = sum(abs(gsr["predictions"] - gsr["labels"])) / len(gsr["predictions"])
@@ -374,12 +411,18 @@ participants = ["bci10", "bci12", "bci13", "bci17", "bci21", "bci22",
                 "bci38", "bci39", "bci40", "bci41", "bci42", "bci43", "bci44"]
 
 #Modalities
-modalities = ["EEG", "PPG", "GSR", "multi"]
+modalities = ["EEG", "GSR", "PPG", "multi"]
+
 
 for modality in modalities:
-    Performance(modality)
+    Performance(modality, "test") #Performance statistics per modality
 
-TTests()
-LabelPlot()
-HistGrid()
-Scatter()
+for modality in modalities:
+    Performance(modality, "train") #
+
+
+Descriptives() #Print descriptives
+TTests() #Print T-Test results
+LabelPlot() #Plot label hist
+HistGrid() #Plot grid of error hists
+Scatter() #Plot grid of scatterplots

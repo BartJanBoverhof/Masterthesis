@@ -14,7 +14,7 @@ import csv
 import torch
 
 #Setting working directory 
-os.chdir("pipeline")
+os.chdir("1.pipeline")
 
 try: #Importing from subfile
     from transformer import transformer

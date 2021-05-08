@@ -12,52 +12,55 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: References.bib
-Repeated entry---line 287 of file References.bib
- : @article{paszke2017automatic
- :                             ,
-I'm skipping whatever remains of this entry
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
+Warning--No journal in akiba2019optuna
+Warning--No journal in berka2005evaluation
 Warning--No journal in dolmans2020perceived
+Warning--No journal in hart2006nasa
+Warning--No journal in lemay2014application
+Warning--No journal in lever2016points
+Warning--No journal in nourbakhsh2012using
 Warning--No journal in paszke2017automatic
-You've used 33 entries,
+Warning--No journal in zhou2015dynamic
+You've used 34 entries,
             6951 wiz_defined-function locations,
-            1465 strings with 17572 characters,
-and the built_in function-call counts, 69333 in all, are:
-= -- 8450
-> -- 683
-< -- 3377
-+ -- 3543
-- -- 76
-* -- 4495
-:= -- 12566
-add.period$ -- 143
-call.type$ -- 33
-change.case$ -- 552
+            1494 strings with 18404 characters,
+and the built_in function-call counts, 71143 in all, are:
+= -- 8449
+> -- 694
+< -- 3580
++ -- 3763
+- -- 72
+* -- 4843
+:= -- 13178
+add.period$ -- 134
+call.type$ -- 34
+change.case$ -- 578
 chr.to.int$ -- 0
-cite$ -- 68
-duplicate$ -- 1999
-empty$ -- 2604
-format.name$ -- 1181
-if$ -- 13026
+cite$ -- 77
+duplicate$ -- 2110
+empty$ -- 2688
+format.name$ -- 1262
+if$ -- 13121
 int.to.chr$ -- 0
-int.to.str$ -- 99
+int.to.str$ -- 102
 missing$ -- 0
-newline$ -- 878
-num.names$ -- 264
-pop$ -- 1289
+newline$ -- 955
+num.names$ -- 272
+pop$ -- 1002
 preamble$ -- 1
-purify$ -- 130
+purify$ -- 136
 quote$ -- 0
-skip$ -- 4240
+skip$ -- 4373
 stack$ -- 0
-substring$ -- 3869
-swap$ -- 1138
-text.length$ -- 107
+substring$ -- 4035
+swap$ -- 1204
+text.length$ -- 73
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 2960
-warning$ -- 2
-while$ -- 399
+type$ -- 2720
+warning$ -- 9
+while$ -- 421
 width$ -- 0
-write$ -- 1160
-(There was 1 error message)
+write$ -- 1256
+(There were 9 warnings)
