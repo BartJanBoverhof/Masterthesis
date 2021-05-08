@@ -1,6 +1,29 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
+Aggarwal%
+}{%
+Aggarwal%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+aggarwal2018neural}
+\APACinsertmetastar {%
+aggarwal2018neural}%
+\begin{APACrefauthors}%
+Aggarwal, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2018}.
+\newblock
+\APACrefbtitle {Neural networks and deep learning} {Neural networks and deep
+  learning}\ (\BVOL~10).
+\newblock
+\APACaddressPublisher{}{Springer}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Akiba%
 , Sano%
 , Yanase%
@@ -29,10 +52,9 @@ Akiba, T.%
   framework} {Optuna: A next-generation hyperparameter optimization
   framework}.{\BBCQ}
 \newblock
-\BIn{} \APACrefbtitle {Proceedings of the 25th ACM SIGKDD International
-  Conference on Knowledge Discovery \& Data Mining} {Proceedings of the 25th
-  acm sigkdd international conference on knowledge discovery \& data mining}\
-  (\BPGS\ 2623--2631).
+\APACjournalVolNumPages{}{}{}{2623--2631}.
+\newblock
+\begin{APACrefDOI} \doi{10.1145/3292500.3330701} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -89,10 +111,9 @@ Berka, C.%
   simulation environment} {Evaluation of an eeg workload model in an aegis
   simulation environment}.{\BBCQ}
 \newblock
-\BIn{} \APACrefbtitle {Biomonitoring for Physiological and Cognitive
-  Performance during Military Operations} {Biomonitoring for physiological and
-  cognitive performance during military operations}\ (\BVOL\ 5797, \BPGS\
-  90--99).
+\APACjournalVolNumPages{}{5797}{}{90--99}.
+\newblock
+\begin{APACrefDOI} \doi{10.1117/12.598555} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -110,9 +131,9 @@ Biswas, D.%
 , Everson, L.%
 , Liu, M.%
 , Panwar, M.%
-, Verhoef, B\BHBI E.%
+, Verhoef, B.%
 , Patki, S.%
-\BDBL {}others%
+\BDBL {}Helleputte, N.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
@@ -125,6 +146,8 @@ Biswas, D.%
 \newblock
 \APACjournalVolNumPages{IEEE transactions on biomedical circuits and
   systems}{13}{2}{282--291}.
+\newblock
+\begin{APACrefDOI} \doi{10.1109/TBCAS.2019.2892297} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -153,6 +176,8 @@ Craik, A.%
   classification tasks: a review}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of neural engineering}{16}{3}{031001}.
+\newblock
+\begin{APACrefDOI} \doi{10.1088/1741-2552/ab0ab5} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -178,7 +203,7 @@ Daid%
 \APACrefbtitle {Empty Epsilon multiplayer spaceship bridge simulation.} {Empty
   epsilon multiplayer spaceship bridge simulation.}
 \newblock
-\APAChowpublished {URL: https://github.com/daid/EmptyEpsilon}.
+\APAChowpublished {URL: https://github.com /daid/EmptyEpsilon}.
 \newblock
 \APACaddressPublisher{}{GitHub}.
 \PrintBackRefs{\CurrentBib}
@@ -239,6 +264,38 @@ Dolmans, T.%
   manuscript submitted for publication}.{\BBCQ}
 \newblock
 
+\newblock
+\begin{APACrefDOI} \doi{10.3389/fnhum.2020.609096} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Feng%
+, Zhou%
+\BCBL {}\ \BBA {} Dong%
+}{%
+Feng%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+feng2019using}
+\APACinsertmetastar {%
+feng2019using}%
+\begin{APACrefauthors}%
+Feng, S.%
+, Zhou, H.%
+\BCBL {}\ \BBA {} Dong, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Using deep neural network with small dataset to predict
+  material defects} {Using deep neural network with small dataset to predict
+  material defects}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Materials \& Design}{162}{}{300--310}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.matdes.2018.11.060} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -297,6 +354,8 @@ Han, S\BHBI Y.%
 \newblock
 \APACjournalVolNumPages{Biocybernetics and Biomedical
   Engineering}{40}{1}{324--336}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/ j.bbe.2019.12.002} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -319,9 +378,9 @@ Hart, S\BPBI G.%
 {\BBOQ}\APACrefatitle {NASA-task load index (NASA-TLX); 20 years later}
   {Nasa-task load index (nasa-tlx); 20 years later}.{\BBCQ}
 \newblock
-\BIn{} \APACrefbtitle {Proceedings of the human factors and ergonomics society
-  annual meeting} {Proceedings of the human factors and ergonomics society
-  annual meeting}\ (\BVOL~50, \BPGS\ 904--908).
+\APACjournalVolNumPages{}{50}{9}{904--908}.
+\newblock
+\begin{APACrefDOI} \doi{10.1177/ 154193120605000909} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -351,6 +410,8 @@ Hogervorst, M\BPBI A.%
   assessment of mental workload}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Frontiers in neuroscience}{8}{}{322}.
+\newblock
+\begin{APACrefDOI} \doi{10.3389/ fnins.2014.00322} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -406,6 +467,8 @@ Jimenez-Molina, A.%
   mental workload during web browsing}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Sensors}{18}{2}{458}.
+\newblock
+\begin{APACrefDOI} \doi{10.3390/s18020458} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -432,7 +495,7 @@ Kothe, C.%
 {\BBOQ}\APACrefatitle {Lab Streaming Layer (2014)} {Lab streaming layer
   (2014)}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{URL: https://github. com/sccn/labstreaminglayer
+\APACjournalVolNumPages{URL: https://github. com /sccn /labstreaminglayer
   (visited on 02/01/2019)}{}{}{}.
 \PrintBackRefs{\CurrentBib}
 
@@ -460,6 +523,38 @@ LeCun, Y.%
 {\BBOQ}\APACrefatitle {Deep learning} {Deep learning}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{nature}{521}{7553}{436--444}.
+\newblock
+\begin{APACrefDOI} \doi{10.1038/ nature14539} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lemay%
+\ \protect \BOthers {.}}{%
+Lemay%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+lemay2014application}
+\APACinsertmetastar {%
+lemay2014application}%
+\begin{APACrefauthors}%
+Lemay, M.%
+, Bertschi, M.%
+, Sola, J.%
+, Renevey, P.%
+, Parak, J.%
+\BCBL {}\ \BBA {} Korhonen, I.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Application of optical heart rate monitoring}
+  {Application of optical heart rate monitoring}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{}{}{}{105--129}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/B978-0-12-418662-0.00023-4} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -483,62 +578,10 @@ Lever, J.%
 \newblock
 \APACrefYearMonthDay{2016}{}{}.
 \newblock
-\APACrefbtitle {Points of significance: model selection and overfitting.}
-  {Points of significance: model selection and overfitting.}
+{\BBOQ}\APACrefatitle {Points of significance: model selection and overfitting}
+  {Points of significance: model selection and overfitting}.{\BBCQ}
 \newblock
-\APACaddressPublisher{}{Nature Publishing Group}.
-\PrintBackRefs{\CurrentBib}
 
-\bibitem [\protect \citeauthoryear {%
-Mahtani%
-, Spencer%
-, Brassey%
-\BCBL {}\ \BBA {} Heneghan%
-}{%
-Mahtani%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2018}}%
-}]{%
-mahtani2018catalogue}
-\APACinsertmetastar {%
-mahtani2018catalogue}%
-\begin{APACrefauthors}%
-Mahtani, K.%
-, Spencer, E\BPBI A.%
-, Brassey, J.%
-\BCBL {}\ \BBA {} Heneghan, C.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2018}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Catalogue of bias: observer bias} {Catalogue of bias:
-  observer bias}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{BMJ Evidence-Based Medicine}{23}{1}{23}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Muse-incorperation%
-}{%
-Muse-incorperation%
-}{%
-{\protect \APACyear {{\protect \bibnodate {}}}}%
-}]{%
-muse}
-\APACinsertmetastar {%
-muse}%
-\begin{APACrefauthors}%
-Muse-incorperation.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{{\protect \bibnodate {}}}{}{}.
-\newblock
-\APACrefbtitle {Muse 2 Brainwave Activity Headband.} {Muse 2 brainwave activity
-  headband.}
-\newblock
-\APAChowpublished {Retrieved from: https://choosemuse.com/muse-2/}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -568,9 +611,9 @@ Nourbakhsh, N.%
   measurement in arithmetic and reading tasks} {Using galvanic skin response
   for cognitive load measurement in arithmetic and reading tasks}.{\BBCQ}
 \newblock
-\BIn{} \APACrefbtitle {Proceedings of the 24th Australian Computer-Human
-  Interaction Conference} {Proceedings of the 24th australian computer-human
-  interaction conference}\ (\BPGS\ 420--423).
+\APACjournalVolNumPages{}{}{}{420--423}.
+\newblock
+\begin{APACrefDOI} \doi{10.1145/2414536.2414602} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -627,6 +670,8 @@ Pretorius, A.%
   approach}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Ergonomics}{50}{9}{1503--1515}.
+\newblock
+\begin{APACrefDOI} \doi{10.1080/00140130701379055} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -654,6 +699,8 @@ Ramachandram, D.%
   trends}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{IEEE Signal Processing Magazine}{34}{6}{96--108}.
+\newblock
+\begin{APACrefDOI} \doi{10.1109/MSP.2017.2738401} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -686,6 +733,8 @@ Rastgoo, M\BPBI N.%
   multimodal deep learning}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Expert Systems with Applications}{138}{}{112793}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.eswa.2019.07.010} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -716,29 +765,8 @@ Schirrmeister, R\BPBI T.%
   for eeg decoding and visualization}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Human brain mapping}{38}{11}{5391--5420}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Shimmer-research%
-}{%
-Shimmer-research%
-}{%
-{\protect \APACyear {{\protect \bibnodate {}}}}%
-}]{%
-shimmer}
-\APACinsertmetastar {%
-shimmer}%
-\begin{APACrefauthors}%
-Shimmer-research.%
-\end{APACrefauthors}%
-\unskip\
 \newblock
-\APACrefYearMonthDay{{\protect \bibnodate {}}}{}{}.
-\newblock
-\APACrefbtitle {Shimmer3 GSR Unit.} {Shimmer3 gsr unit.}
-\newblock
-\APAChowpublished {Retrieved from:
-  https://www.shimmersensing.com/products/shimmer3-wireless-gsr-sensor}.
+\begin{APACrefDOI} \doi{10.1002/hbm.23730} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -770,6 +798,41 @@ Shuggi, I\BPBI M.%
   movements under various levels of task difficulty}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Neuroscience}{360}{}{166--179}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.neuroscience.2017.07.048} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Srivastava%
+, Hinton%
+, Krizhevsky%
+, Sutskever%
+\BCBL {}\ \BBA {} Salakhutdinov%
+}{%
+Srivastava%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+srivastava2014dropout}
+\APACinsertmetastar {%
+srivastava2014dropout}%
+\begin{APACrefauthors}%
+Srivastava, N.%
+, Hinton, G.%
+, Krizhevsky, A.%
+, Sutskever, I.%
+\BCBL {}\ \BBA {} Salakhutdinov, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Dropout: a simple way to prevent neural networks from
+  overfitting} {Dropout: a simple way to prevent neural networks from
+  overfitting}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The journal of machine learning
+  research}{15}{1}{1929--1958}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -800,6 +863,8 @@ Sun, X.%
   sentiment classification via galvanic skin response}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Neurocomputing}{358}{}{385--400}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.neucom.2019.05.061} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -860,6 +925,8 @@ Yin, Z.%
 \newblock
 \APACjournalVolNumPages{Computer methods and programs in
   biomedicine}{140}{}{93--110}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.cmpb.2016.12.005} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -889,6 +956,8 @@ Young, M\BPBI S.%
   of science: mental workload in ergonomics}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Ergonomics}{58}{1}{1--17}.
+\newblock
+\begin{APACrefDOI} \doi{10.1080/00140139.2014.956151} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -919,6 +988,8 @@ Zhang, X.%
 \newblock
 \APACjournalVolNumPages{International Journal of Human--Computer
   Interaction}{34}{8}{695--706}.
+\newblock
+\begin{APACrefDOI} \doi{10.1080/10447318.2018.1461763} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -946,8 +1017,7 @@ Zhou, J.%
   based on GSR features} {Dynamic workload adjustments in human-machine systems
   based on gsr features}.{\BBCQ}
 \newblock
-\BIn{} \APACrefbtitle {IFIP Conference on Human-Computer Interaction} {Ifip
-  conference on human-computer interaction}\ (\BPGS\ 550--558).
+\APACjournalVolNumPages{}{}{}{550--558}.
 \PrintBackRefs{\CurrentBib}
 
 \end{thebibliography}
