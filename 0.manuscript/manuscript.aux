@@ -32,6 +32,7 @@
 \citation{zhang2018evaluating}
 \citation{jimenez2018using}
 \citation{ramachandram2017deep}
+\citation{hogervorst2014combining}
 \citation{dolmans2020perceived}
 \citation{han2020classification}
 \citation{rastgoo2019automatic}
@@ -91,39 +92,44 @@
 \citation{dolmans2020perceived}
 \citation{schirrmeister2017deep}
 \citation{sun2019hybrid}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Unimodal Network Architectures. Each network constitutes a convolutional part of four convolutional blocks, and a classification part of two fully connected dense layers. \relax }}{6}{figure.caption.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Unimodal network architectures. Each network architecture constitutes a convolutional part of four convolutional blocks, and a classification part of two fully connected dense layers. \relax }}{6}{figure.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:singlearchitecture}{{1}{6}{Unimodal Network Architectures. Each network constitutes a convolutional part of four convolutional blocks, and a classification part of two fully connected dense layers. \relax }{figure.caption.1}{}}
+\newlabel{fig:singlearchitecture}{{1}{6}{Unimodal network architectures. Each network architecture constitutes a convolutional part of four convolutional blocks, and a classification part of two fully connected dense layers. \relax }{figure.caption.1}{}}
 \citation{han2020classification}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Amount of neurons and filters that each respective layer outputs. \relax }}{7}{table.caption.2}\protected@file@percent }
 \newlabel{table:modelvariations}{{1}{7}{Amount of neurons and filters that each respective layer outputs. \relax }{table.caption.2}{}}
 \newlabel{section:multimodal}{{2.3}{7}{}{table.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Multimodal Network Architecture. The network constitutes a convolutional part of four convolutional blocks for each of distinct network parts. All three distinct parts were flattened and concatenated subsequently. The prediction part of the network constitutes several dense layers.\relax }}{8}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:multiarchitecture}{{2}{8}{Multimodal Network Architecture. The network constitutes a convolutional part of four convolutional blocks for each of distinct network parts. All three distinct parts were flattened and concatenated subsequently. The prediction part of the network constitutes several dense layers.\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Multimodal network architecture. The network constitutes a convolutional part of four convolutional blocks for each of three subparts. All three distinct parts were flattened and concatenated. The prediction part of the network constitutes several dense layers.\relax }}{8}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:multiarchitecture}{{2}{8}{Multimodal network architecture. The network constitutes a convolutional part of four convolutional blocks for each of three subparts. All three distinct parts were flattened and concatenated. The prediction part of the network constitutes several dense layers.\relax }{figure.caption.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Network Performance Evaluation}{8}{subsection.2.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Results}{9}{section.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Distribution window labels. The solid line represents the median, whereas the two dashed line and their displayed values represent the 10\% and 90\% quantiles respectively. \relax }}{9}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:labels}{{3}{9}{Distribution window labels. The solid line represents the median, whereas the two dashed line and their displayed values represent the 10\% and 90\% quantiles respectively. \relax }{figure.caption.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Deep Neural Network Performance}{9}{subsection.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Distribution of the aggregate of all window labels. The solid line represents the median, whereas the two dashed lines represent the 10\% and 90\% quantiles respectively. \relax }}{9}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:labels}{{3}{9}{Distribution of the aggregate of all window labels. The solid line represents the median, whereas the two dashed lines represent the 10\% and 90\% quantiles respectively. \relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Results: Performance Metrics}{10}{subsection.3.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Deep Neural Network Performance Metrics\relax }}{10}{table.caption.5}\protected@file@percent }
 \newlabel{table:results}{{2}{10}{Deep Neural Network Performance Metrics\relax }{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Results: Further Exploration}{11}{subsection.3.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Distribution of window prediction error per network architecture. The solid lines represent the median, whereas the dashed lines represent the 10\% and 90\% quantiles respectively. \relax }}{11}{figure.caption.6}\protected@file@percent }
 \newlabel{fig:mae_hist}{{4}{11}{Distribution of window prediction error per network architecture. The solid lines represent the median, whereas the dashed lines represent the 10\% and 90\% quantiles respectively. \relax }{figure.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Relationship of absolute window prediction error opposed to window label value. The red lines represent the linear relationship between absolute prediction error and label value. The values \textit  {r} represent the Pearson's Correlation coefficient between prediction errors and label values.\relax }}{12}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:mae_scatter}{{5}{12}{Relationship of absolute window prediction error opposed to window label value. The red lines represent the linear relationship between absolute prediction error and label value. The values \textit {r} represent the Pearson's Correlation coefficient between prediction errors and label values.\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Relationship between absolute window prediction error and window label value. The lines represent the linear relationships between absolute prediction errors and label values. The values \textit  {r} represent the Pearson's correlation coefficients as captured by the lines.\relax }}{12}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:mae_scatter}{{5}{12}{Relationship between absolute window prediction error and window label value. The lines represent the linear relationships between absolute prediction errors and label values. The values \textit {r} represent the Pearson's correlation coefficients as captured by the lines.\relax }{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion \& Conclusion}{12}{section.4}\protected@file@percent }
+\citation{hogervorst2014combining}
 \citation{dolmans2020perceived}
 \citation{han2020classification}
 \citation{rastgoo2019automatic}
 \citation{yin2017recognition}
 \citation{han2020classification}
+\citation{dolmans2020perceived}
+\citation{rastgoo2019automatic}
 \citation{lever2016points}
-\citation{feng2019using}
 \citation{aggarwal2018neural}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion \& Conclusion}{13}{section.4}\protected@file@percent }
+\citation{feng2019using}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Discussion}{13}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Limitations \& Future Research Recommendations}{13}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:future}{{4.2}{13}{Limitations \& Future Research Recommendations}{subsection.4.2}{}}
 \citation{dolmans2020perceived}
 \citation{lemay2014application}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Limitations \& Future Research Recommendations}{14}{subsection.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Conclusion}{14}{subsection.4.3}\protected@file@percent }
 \bibstyle{apacite}
 \bibdata{References}

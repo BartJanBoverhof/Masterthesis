@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  8 MAY 2021 15:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  9 MAY 2021 20:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -842,7 +842,7 @@ LaTeX Info: Redefining \BHBI on input line 130.
 ) [1
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+phv on input line 48.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 55.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
@@ -852,10 +852,10 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 48.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 48.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 48.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 55.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 55.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
@@ -864,7 +864,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 48
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 55
 .
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
@@ -874,19 +874,19 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `ztmcm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 48
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 55
 .
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 48
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 55
 .
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 48
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 55
 .
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/omxztmcm.fd
@@ -898,93 +898,97 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 48.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 55.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 55.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 48.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 48.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 48.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <7> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 48.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 55.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.54 
-      [1]
+l.62 W
+      ith the current research we explore the feasibility of an approach tow...
+[1]
 LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <10> not available
-(Font)              Font shape `T1/phv/b/it' tried instead on input line 67.
+(Font)              Font shape `T1/phv/b/it' tried instead on input line 74.
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <10> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 67.
- [2] [3] [4] [5]
-<./figures/single_model_architecture.png, id=276, 731.73375pt x 617.30624pt>
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 74.
+ [2] [3]
+Underfull \vbox (badness 1540) has occurred while \output is active []
+
+ [4]
+[5]
+<./figures/single_model_architecture.png, id=279, 731.73375pt x 617.30624pt>
 File: ./figures/single_model_architecture.png Graphic file (type png)
 <use ./figures/single_model_architecture.png>
 Package pdftex.def Info: ./figures/single_model_architecture.png  used on input
- line 123.
+ line 130.
 (pdftex.def)             Requested size: 365.86598pt x 308.65236pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 124.
- [6 <./figures/single_model_architecture.png>]
-[7]
-<./figures/multi_model_architecture.png, id=302, 733.74126pt x 803.0pt>
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 131.
+ [6 <./figures/single_model_architecture.png>] [7]
+<./figures/multi_model_architecture.png, id=304, 733.74126pt x 803.0pt>
 File: ./figures/multi_model_architecture.png Graphic file (type png)
 <use ./figures/multi_model_architecture.png>
 Package pdftex.def Info: ./figures/multi_model_architecture.png  used on input 
-line 169.
+line 176.
 (pdftex.def)             Requested size: 366.86974pt x 401.49902pt.
  [8 <./figures/multi_model_architecture.png>]
-<./figures/labels.png, id=312, 560.0925pt x 393.47pt>
+<./figures/labels.png, id=315, 527.9725pt x 403.5075pt>
 File: ./figures/labels.png Graphic file (type png)
 <use ./figures/labels.png>
-Package pdftex.def Info: ./figures/labels.png  used on input line 199.
-(pdftex.def)             Requested size: 252.03929pt x 177.05986pt.
+Package pdftex.def Info: ./figures/labels.png  used on input line 206.
+(pdftex.def)             Requested size: 263.9856pt x 201.75325pt.
  [9 <./figures/labels.png>]
-<./figures/error_hist.png, id=327, 698.61pt x 568.1225pt>
+<./figures/error_hist.png, id=329, 666.49pt x 569.12625pt>
 File: ./figures/error_hist.png Graphic file (type png)
 <use ./figures/error_hist.png>
-Package pdftex.def Info: ./figures/error_hist.png  used on input line 242.
-(pdftex.def)             Requested size: 391.21893pt x 318.14642pt.
+Package pdftex.def Info: ./figures/error_hist.png  used on input line 246.
+(pdftex.def)             Requested size: 373.23186pt x 318.70853pt.
+ [10]
+<./figures/mae_scatter.png, id=338, 760.8425pt x 587.19376pt>
+File: ./figures/mae_scatter.png Graphic file (type png)
+<use ./figures/mae_scatter.png>
+Package pdftex.def Info: ./figures/mae_scatter.png  used on input line 258.
+(pdftex.def)             Requested size: 380.42032pt x 293.59616pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[10] [11 <./figures/error_hist.png>]
-<./figures/mae_scatter.png, id=342, 768.8725pt x 565.11125pt>
-File: ./figures/mae_scatter.png Graphic file (type png)
-<use ./figures/mae_scatter.png>
-Package pdftex.def Info: ./figures/mae_scatter.png  used on input line 256.
-(pdftex.def)             Requested size: 384.4353pt x 282.55493pt.
- [12 <./figures/mae_scatter.png>] [13]
-[14] (./manuscript.bbl
+[11 <./figures/error_hist.png>] [12 <./figures/mae_scatter.png>] [13] [14]
+(./manuscript.bbl
 Underfull \hbox (badness 1365) in paragraph at lines 130--152
 []\T1/ptm/m/n/10.95 (+20) Biswas, D., Ev-er-son, L., Liu, M., Pan-war, M., Ver-
 hoef, B., Patki, S., ... Helleputte, N.  (2019).
@@ -993,27 +997,27 @@ hoef, B., Patki, S., ... Helleputte, N.  (2019).
 [15]) [16] 
 AED: lastpage setting LastPage
 [17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 323.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 323.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 324.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 324.
  (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 323.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 323.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 324.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 324.
 Package rerunfilecheck Info: File `manuscript.out' has not changed.
-(rerunfilecheck)             Checksum: 1D52CC5EC6C0DB266E9EBF4492211EA9;873.
+(rerunfilecheck)             Checksum: AFBBF8CBE1281A1A44BFD4193D6D1A69;948.
  )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 300 ({)
-### simple group (level 1) entered at line 131 ({)
+### simple group (level 2) entered at line 301 ({)
+### simple group (level 1) entered at line 138 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 29477 strings out of 492616
- 566675 string characters out of 6129482
- 697109 words of memory out of 5000000
- 32799 multiletter control sequences out of 15000+600000
- 624015 words of font info for 298 fonts, out of 8000000 for 9000
+ 29475 strings out of 492616
+ 566696 string characters out of 6129482
+ 697163 words of memory out of 5000000
+ 32803 multiletter control sequences out of 15000+600000
+ 625302 words of font info for 295 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,14n,65p,1916b,663s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 47i,14n,65p,1926b,663s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc
 }</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
@@ -1028,10 +1032,10 @@ mf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2019/texmf-dist/fon
 ts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/ur
 w/times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/ut
 mri8a.pfb>
-Output written on manuscript.pdf (18 pages, 888189 bytes).
+Output written on manuscript.pdf (18 pages, 891866 bytes).
 PDF statistics:
- 469 PDF objects out of 1000 (max. 8388607)
- 421 compressed objects within 5 object streams
- 75 named destinations out of 1000 (max. 500000)
- 59018 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 481 PDF objects out of 1000 (max. 8388607)
+ 433 compressed objects within 5 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 57490 words of extra memory for PDF output out of 61914 (max. 10000000)
 
