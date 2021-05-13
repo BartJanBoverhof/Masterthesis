@@ -115,7 +115,7 @@ def HistGrid():
 
     #Plot
     ax1.hist(x, bins = 70, color = "#0092cb")
-    ax1.set_title("EEG-Networks", fontsize = 10, fontstyle = "italic") 
+    ax1.set_title("EEG Architecture", fontsize = 10, fontstyle = "italic") 
     ax1.vlines((lowerbound, median, upperbound), 0, 71, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
     ax1.text(lowerbound-0.05, 60, round(lowerbound,2), horizontalalignment='right', verticalalignment='center', 
             color = "black", fontstyle = "italic", fontsize = 10)
@@ -139,7 +139,7 @@ def HistGrid():
 
     #Plot
     ax2.hist(x, bins = 70, color = "#0092cb")
-    ax2.set_title("PPG-Networks", fontsize = 10, fontstyle = "italic") 
+    ax2.set_title("PPG Architecture", fontsize = 10, fontstyle = "italic") 
     ax2.vlines((lowerbound, median, upperbound), 0, 68, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
     ax2.text(lowerbound-0.05, 60, round(lowerbound,2), horizontalalignment='right', verticalalignment='center', 
             color = "black", fontstyle = "italic", fontsize = 10)
@@ -162,7 +162,7 @@ def HistGrid():
 
     #Plot
     ax3.hist(x, bins = 70, color = "#0092cb")
-    ax3.set_title("GSR-Networks", fontsize = 10, fontstyle = "italic") 
+    ax3.set_title("GSR Architecture", fontsize = 10, fontstyle = "italic") 
     ax3.vlines((lowerbound, median, upperbound), 0, 69, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
     ax3.set(ylabel='Count', xlabel = 'Prediction Error')
     ax3.text(lowerbound-0.05, 60, round(lowerbound,2), horizontalalignment='right', verticalalignment='center', 
@@ -186,7 +186,7 @@ def HistGrid():
 
     #Plot
     ax4.hist(x, bins = 70, color = "#0092cb")
-    ax4.set_title("Multi-Modular Networks", fontsize = 10, fontstyle = "italic") 
+    ax4.set_title("Multimodal Architecture", fontsize = 10, fontstyle = "italic") 
     ax4.vlines((lowerbound, median, upperbound), 0, 51, colors= "darkslategray", linestyles= ("dashed", "solid", "dashed"))
     ax4.set(xlabel='Prediction Error')
     ax4.text(lowerbound-0.05, 36, round(lowerbound,2), horizontalalignment='right', verticalalignment='center', 
@@ -249,8 +249,8 @@ def Scatter():
                    ec=(1., 0.5, 0.5),
                    fc=(1., 0.8, 0.8),
                    ))
-    ax1.set(ylabel = "Prediction Error")
-    ax1.set_title("EEG-Networks", fontsize = 10, fontstyle = "italic")
+    ax1.set(ylabel = "Absolute Prediction Error")
+    ax1.set_title("EEG Architecture", fontsize = 10, fontstyle = "italic")
 
 
     #PPG
@@ -275,7 +275,7 @@ def Scatter():
                    ec=(1., 0.5, 0.5),
                    fc=(1., 0.8, 0.8),
                    ))
-    ax2.set_title("PPG-Networks", fontsize = 10, fontstyle = "italic") 
+    ax2.set_title("PPG Architecture", fontsize = 10, fontstyle = "italic") 
 
 
     #GSR
@@ -300,8 +300,8 @@ def Scatter():
                    ec=(1., 0.5, 0.5),
                    fc=(1., 0.8, 0.8),
                    ))
-    ax3.set(ylabel = "Prediction Error", xlabel = "Label Value")
-    ax3.set_title("GSR-Networks", fontsize = 10, fontstyle = "italic") 
+    ax3.set(ylabel = "Absolute Prediction Error", xlabel = "Label Value")
+    ax3.set_title("GSR Architecture", fontsize = 10, fontstyle = "italic") 
 
     #EEG
     #Open results
@@ -326,7 +326,7 @@ def Scatter():
                    fc=(1., 0.8, 0.8),
                    ))
     ax4.set(xlabel = "Label Value")
-    ax4.set_title("Multi-Modular Networks", fontsize = 10, fontstyle = "italic") 
+    ax4.set_title("Multimodal Architecture", fontsize = 10, fontstyle = "italic") 
 
 
     plt.show()
@@ -354,6 +354,8 @@ def LabelPlot():
     plt.text(lowerbound-0.02, 850, round(lowerbound,2), horizontalalignment='right', verticalalignment='center', 
             color = "black", fontstyle = "italic", fontsize = 11)
     plt.text(upperbound+0.02, 850, round(upperbound,2), horizontalalignment='left', verticalalignment='center', 
+            color = "black", fontstyle = "italic", fontsize = 11)
+    plt.text(median+0.04, 850, round(median,2), horizontalalignment='left', verticalalignment='center', 
             color = "black", fontstyle = "italic", fontsize = 11)
     plt.show()
 
