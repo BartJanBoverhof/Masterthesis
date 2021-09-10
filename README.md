@@ -9,7 +9,7 @@ A general overview of the content and structure of this repository, in addition 
 | Folder | Description | Utilized software |
 | ----------- | ----------- | ----------------- |
 | `0.manuscript` | Written LaTeX manuscript | ![Texmaker](https://img.shields.io/badge/Texmaker-%35.0-orange) |
-| `1.pipeline` | Folder that contains scripts to read data and cut into windows of `pytorch tensor` type. | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) [PyTorch version](https://img.shields.io/badge/PyTorch-%31.7-green)|
+| `1.pipeline` | Folder that contains scripts to read data and cut into windows of `pytorch tensor` type. | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) ![PyTorch version](https://img.shields.io/badge/PyTorch-%31.7-green) |
 | `2.hpo` | Scripts to conduct hyperparamater optimization | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) ![PyTorch version](https://img.shields.io/badge/PyTorch-%31.7-green) ![Optuna](https://img.shields.io/badge/Optuna-%32.7.0-blue)| 
 | `3.pytorch` | Definition of deep-learning models and scripts to train them and test them to obtain predictions | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) ![PyTorch version](https://img.shields.io/badge/PyTorch-%31.7-green) | 
 | `4.results` | Scripts to create resulting statistics and plots from the obtained predictions | ![Python version](https://img.shields.io/badge/Python-%33.9-yellow) ![PyTorch version](https://img.shields.io/badge/PyTorch-%31.7-green) | 
